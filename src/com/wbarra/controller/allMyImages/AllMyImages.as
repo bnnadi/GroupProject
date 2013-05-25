@@ -12,6 +12,9 @@ package com.wbarra.controller.allMyImages
 		public static var Ship:Class;
 		[Embed(source="images/Turret.png")]
 		public static var Turret:Class;
+		[Embed(source="images/Bullet.png")]
+		public static var BulletImg:Class;
+		
 		
 		public function AllMyImages()
 		{
