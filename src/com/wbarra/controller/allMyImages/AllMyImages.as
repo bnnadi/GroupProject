@@ -16,6 +16,13 @@ package com.wbarra.controller.allMyImages
 		public static var BulletImg:Class;
 		
 		
+		// embed test texure 
+		[Embed(source="images/tp/myTexture.xml", mimeType ="application/octet-stream")]
+		public static const AtlasXML:Class;
+		
+		[Embed(source="images/tp/myTexture.png")]
+		public static const AtlasTexture:Class; 
+		
 		public function AllMyImages()
 		{
 		}
