@@ -2,12 +2,17 @@ package com.wbarra.controller.Screens
 {
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
+	import com.wbarra.controller.allMyImages.AllMyImages;
 	import com.wbarra.controller.hero.Hero;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import starling.core.Starling;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class GameScreen extends Sprite
 	{
@@ -112,6 +117,16 @@ package com.wbarra.controller.Screens
 			// FOR SOME REASON THIS IS BREAKING THE TRAJECTORIES
 			for (var i:int = 0; i < 3; i++) 
 			{
+				
+				// test atlas texture to be used 
+				var texture:Texture = Texture.fromBitmap(new AllMyImages.AtlasTexture())
+				var xml:XML = XML(new AllMyImages.AtlasXML());
+				
+				var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+				var mc:MovieClip = new MovieClip(atlas.getTextures("color"), 30);
+				addChild(mc);
+				
+				Starling.juggler.add(mc);
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
 				_enemyOne.scaleX = _enemyOne.scaleY = .5;
