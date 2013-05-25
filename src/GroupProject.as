@@ -27,6 +27,7 @@ package
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);			
 			// Create a Starling instance that will run the "Game" class
 			_starling = new Starling(GameController, stage);
+			_starling.showStats = true;
 			_starling.start();
 			
 			KeyClass.init(stage);
