@@ -78,7 +78,6 @@ package com.wbarra.controller.Screens
 				}
 			}
 			//=======================================================
-			//^^^^^^^^^^^^^^ unfreeez this 	
 			
 			//Moving EnemyTwo on the stage. 
 			//=======================================================
@@ -118,15 +117,20 @@ package com.wbarra.controller.Screens
 			for (var i:int = 0; i < 3; i++) 
 			{
 				
-				// test atlas texture to be used 
-				var texture:Texture = Texture.fromBitmap(new AllMyImages.AtlasTexture())
-				var xml:XML = XML(new AllMyImages.AtlasXML());
+				// this is the proof of concept that the MC Works. 
+				// do not touch this. 
+				//================
+				//================
+//				var texture:Texture = Texture.fromBitmap(new AllMyImages.AtlasTexture())
+//				var xml:XML = XML(new AllMyImages.AtlasXML());
+//				var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+//				var mc:MovieClip = new MovieClip(atlas.getTextures("color"), 30);
+//				addChild(mc);
+//				Starling.juggler.add(mc);
+				//================
+				//================
 				
-				var atlas:TextureAtlas = new TextureAtlas(texture, xml);
-				var mc:MovieClip = new MovieClip(atlas.getTextures("color"), 30);
-				addChild(mc);
 				
-				Starling.juggler.add(mc);
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
 				_enemyOne.scaleX = _enemyOne.scaleY = .5;
