@@ -20,8 +20,11 @@ package com.wbarra.controller.hero
 		public static var mouseY:Number;
 		private var _speedX:Number = 0;
 		private var _speedY:Number = 0;
+		private var health:int = 5;
 		private static const ACCEL:Number = 0.5;
 		private static const FRICTION:Number = 0.98;
+		
+		private var _speedBoost:PowerUp;
 		
 		public function Hero()
 		{

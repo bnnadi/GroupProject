@@ -24,8 +24,6 @@ package com.wbarra.controller.objects
 		
 		public function move(mouseX:Number, mouseY:Number):void
 		{
-			_bullet.x = mouseX;
-			_bullet.y = mouseY;
 			
 		}
 	}
