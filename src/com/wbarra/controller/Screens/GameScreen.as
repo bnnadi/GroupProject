@@ -75,7 +75,7 @@ package com.wbarra.controller.Screens
 				_distanceEnemyOne = Point.distance(_pHero, _pEnemyOne);
 				if (_distanceEnemyOne < _radHero + _radEnemyOne)
 				{
-					trace("Collision 1")
+					shipHit();
 				}
 			}
 			//=======================================================
@@ -93,7 +93,7 @@ package com.wbarra.controller.Screens
 				
 				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
 				{
-					trace("Collision 2")
+					shipHit();
 				}
 			}
 			//=======================================================
@@ -109,17 +109,15 @@ package com.wbarra.controller.Screens
 				_distanceEnemyThree = Point.distance(_pHero, _pEnemyThree);
 				if (_distanceEnemyThree < _radHero + _radEnemyThree)
 				{
-					trace("collision 3"); 
+					shipHit();
 				}
 			}
-			
-			
-				
-			
-				
-			
-			
 		}
+		private  function shipHit():void
+		{
+			trace("hit");
+		}
+		
 		private function onAdded():void
 		{
 			_hero = new Hero();
