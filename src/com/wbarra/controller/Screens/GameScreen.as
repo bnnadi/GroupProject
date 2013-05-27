@@ -96,14 +96,7 @@ package com.wbarra.controller.Screens
 					shipHit();
 				}
 			}
-<<<<<<< HEAD
-		
-			
-			// Attempting to get the firing function to run
-				
-=======
-			//=======================================================
->>>>>>> 3a5cc635521db88925934b4a7a75980e057758a6
+
 			
 			//Moving EnemyThree on the stage. 
 			//=======================================================

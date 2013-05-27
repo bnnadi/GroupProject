@@ -20,15 +20,13 @@ package com.wbarra.controller.hero
 		private var _ship:Image;
 		private var _turret:Image;
 		private var _maxSpeed:int = 5;
-<<<<<<< HEAD
 		
 		private var changeX:Number;
 		private var changeY:Number;
 		
-=======
 		private var _changeX:Number;
 		private var _changeY:Number;
->>>>>>> 3a5cc635521db88925934b4a7a75980e057758a6
+		
 		public static var mouseX:Number;
 		public static var mouseY:Number;
 		
