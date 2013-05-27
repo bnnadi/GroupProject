@@ -18,7 +18,6 @@ package com.wbarra.controller.EnemyShips
 		private var _angle:Number;
 		private var _rads:Number;
 		
-		private var _inside:Boolean;
 		
 		public function EnemyOne()
 		{
@@ -60,6 +59,7 @@ package com.wbarra.controller.EnemyShips
 		{
 			if (_alive)
 			{
+				// have to figure out a way to dumb down these ships. Some how make them not as perfect and have a secondary set of movement instructions. or something. 
 				// finding the change X and Change Y 
 				_changeX = heroX - x;
 				_changeY = heroY - y;
@@ -69,7 +69,7 @@ package com.wbarra.controller.EnemyShips
 				
 				x += (Math.cos(_rads) * _speedX);
 				y += (Math.sin(_rads) * _speedY);
-			}
+			}// end alive if 
 		
 			
 

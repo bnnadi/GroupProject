@@ -17,13 +17,18 @@ package com.wbarra.controller.hero
 	
 	public class Hero extends Sprite
 	{
-		private var ship:Image;
-		private var turret:Image;
+		private var _ship:Image;
+		private var _turret:Image;
 		private var _maxSpeed:int = 5;
+<<<<<<< HEAD
 		
 		private var changeX:Number;
 		private var changeY:Number;
 		
+=======
+		private var _changeX:Number;
+		private var _changeY:Number;
+>>>>>>> 3a5cc635521db88925934b4a7a75980e057758a6
 		public static var mouseX:Number;
 		public static var mouseY:Number;
 		
@@ -49,16 +54,16 @@ package com.wbarra.controller.hero
 			_bm.setup();
 			
 			// I'm a ship 
-			ship = Image.fromBitmap(new AllMyImages.Ship());
-			turret = Image.fromBitmap(new AllMyImages.Turret());
-			ship.x = this.width/2;
-			ship.y = this.height/2;
-			addChild(ship);
-			turret.pivotX = turret.width/2;
-			turret.pivotY = turret.height/2;
-			turret.x = this.width/2 - turret.x;
-			turret.y = this.height/2 - turret.y;
-			addChild(turret);
+			_ship = Image.fromBitmap(new AllMyImages.Ship());
+			_turret = Image.fromBitmap(new AllMyImages.Turret());
+			_ship.x = this.width/2;
+			_ship.y = this.height/2;
+			addChild(_ship);
+			_turret.pivotX = _turret.width/2;
+			_turret.pivotY = _turret.height/2;
+			_turret.x = this.width/2 - _turret.x;
+			_turret.y = this.height/2 - _turret.y;
+			addChild(_turret);
 			
 			update();
 		}
@@ -150,9 +155,9 @@ package com.wbarra.controller.hero
 		
 		private function updateRotation():void
 		{
-			changeX = mouseX - (this.x + 50);
-			changeY = mouseY - (this.y + 50);
-			this.turret.rotation = deg2rad(90) + Math.atan2(changeY, changeX);
+			_changeX = mouseX - (this.x + 50);
+			_changeY = mouseY - (this.y + 50);
+			this._turret.rotation = deg2rad(90) + Math.atan2(_changeY, _changeX);
 		}
 		public function get speed():int
 		{

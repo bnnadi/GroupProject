@@ -9,11 +9,15 @@ package com.wbarra.controller.allMyImages
 		[Embed(source="images/EnemyTwo.png")]
 		public static const EnemyTwo:Class;
 		[Embed(source="images/Ship.png")]
-		public static var Ship:Class;
+		public static const Ship:Class;
 		[Embed(source="images/Turret.png")]
-		public static var Turret:Class;
+		public static const Turret:Class;
 		[Embed(source="images/Bullet.png")]
-		public static var BulletImg:Class;
+		public static const BulletImg:Class;
+		
+		[Embed(source="images/EnemyThree.png")]
+		public static const EnemyThreeImage:Class;
+		
 		
 		
 		// embed test texure 

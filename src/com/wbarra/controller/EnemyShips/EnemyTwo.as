@@ -29,10 +29,9 @@ package com.wbarra.controller.EnemyShips
 			x = Math.random()*874+50;
 			// randomizing either top or bottom placement of the object
 			var placementVar:Boolean;
-			for (var i:int = 0; i < 5; i++) 
-			{
-				placementVar = Math.random() < 0.5;
-			}
+		
+			placementVar = Math.random() < 0.5;
+			
 			// setting my placement either coming from the top 
 			if (placementVar)
 			{
