@@ -1,29 +1,71 @@
 package com.wbarra.controller.managers
 {
+	import starling.display.Sprite;
 	import com.wbarra.controller.objects.Bullet;
 
-	public class BulletManager
+	public class BulletManager extends Sprite
 	{
-		private var _bulletsArr:Array = [];
-		private var _bullet:Bullet;
-		private var _maxBullets = 1000;
+		private var _maxBullets:int;
 		private var _index:int = 0;
+		private var _bulltsLsts:Array = [];
+		private var _cllsonLstsLsts:Array = [];
 		
-		public function BulletManager()
+		public function BulletManager(n:int = 1000)
 		{
-			initBullets();
+			super();
+			_maxBullets = n;
 		}
 		
-		private function initBullets():void
+		public function setup():void
 		{
-			// Setup the bullets
-			for(var i:int; i < _maxBullets; i++)
+			for(var i:int; i< _maxBullets; i++)
 			{
-				_bullet = new Bullet();
-				_bulletsArr.push(_bullet);
+				_bulltsLsts.push(new Bullet());
 			}
 		}
 		
+		public function Create(/*who:String, */ vx:Number, vy:Number):Bullet
+		{
+			var bullets:Bullet = _bulltsLsts[_index];
+			bullets.vx = vx;
+			bullets.vy = vy;
+			bullets.alive = true;
+			bullets.id = _index;
+			
+			_index++;
+			if(_index == _maxBullets)
+			{
+				_index = 0;
+			}
+			return bullets;
+		}
+		
+		public function updateAll():void
+		{
+			for each (var b:Bullet in _bulltsLsts) 
+			{
+				if(b.alive == true)
+				{
+					b.update();
+				}
+			}
+		}
+		
+		public function removeBullet(b:Bullet):void
+		{
+			b.parent.removeChild(b);
+			b.alive = false;
+		}
+		
+		public function get cllsonLstsLsts():Array
+		{
+			return _cllsonLstsLsts;
+		}
+		
+		public function set cllsonLstsLsts(value:Array):void
+		{
+			_cllsonLstsLsts = value;
+		}
 		
 	}
 }

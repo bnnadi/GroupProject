@@ -98,7 +98,7 @@ package com.wbarra.controller.Screens
 			}
 		
 			
-			
+			// Attempting to get the firing function to run
 				
 			
 				
