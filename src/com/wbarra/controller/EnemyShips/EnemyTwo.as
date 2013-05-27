@@ -1,6 +1,6 @@
 package com.wbarra.controller.EnemyShips
 {
-	import com.wbarra.controller.allMyImages.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyImages;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;

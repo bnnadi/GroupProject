@@ -3,12 +3,17 @@ package com.wbarra.controller.Screens
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
+	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	import com.wbarra.controller.hero.Hero;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import starling.core.Starling;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class GameScreen extends Sprite
 	{
@@ -52,7 +57,6 @@ package com.wbarra.controller.Screens
 		
 		private function onEnterFrame():void
 		{
-			
 			// moving the Hero
 			//=======================================================
 			_hero.update();
@@ -87,8 +91,6 @@ package com.wbarra.controller.Screens
 				d.enemyMove();
 				_radEnemyTwo = d.width/2;
 				_pEnemyTwo = new Point(d.x, d.y);
-				
-				
 				_distanceEnemyTwo = Point.distance(_pHero, _pEnemyTwo);
 				
 				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
@@ -120,6 +122,17 @@ package com.wbarra.controller.Screens
 		
 		private function onAdded():void
 		{
+//			// test 
+//			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
+//			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
+//			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+//			
+//			var mc:MovieClip = new MovieClip(atlas.getTextures("greenEnemy_animated"), 30);
+//			mc.x = 100;
+//			mc.y = 100;
+//			addChild(mc);
+//			Starling.juggler.add(mc);
+			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;

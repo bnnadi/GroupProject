@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>myTexture.png</filename>
+        <filename>greenEnemy.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -99,7 +99,7 @@
             <key>packageName</key>
             <string>Texture</string>
             <key>javaFileName</key>
-            <filename>myTexture.java</filename>
+            <filename>greenEnemy.java</filename>
             <key>wrap</key>
             <struct type="AndEngineWrap">
                 <key>s</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>myTexture.xml</filename>
+        <filename>greenEnemy.xml</filename>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -146,8 +146,66 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>blue.png</filename>
-            <filename>red.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0001.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0002.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0003.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0004.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0005.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0006.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0007.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0008.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0009.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0010.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0011.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0012.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0013.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0014.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0015.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0016.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0017.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0018.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0019.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0020.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0021.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0022.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0023.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0024.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0025.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0026.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0027.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0028.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0029.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0030.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0031.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0032.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0033.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0034.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0035.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0036.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0037.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0038.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0039.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0040.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0041.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0042.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0043.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0044.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0045.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0046.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0047.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0048.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0049.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0050.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0051.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0052.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0053.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0054.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0055.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0056.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0057.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0058.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0059.png</filename>
+            <filename>../texturePackerTest/greenEnemy_animated0060.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

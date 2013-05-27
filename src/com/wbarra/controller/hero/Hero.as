@@ -1,7 +1,7 @@
 package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
-	import com.wbarra.controller.allMyImages.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyImages;
 	
 	import flash.ui.Keyboard;
 	

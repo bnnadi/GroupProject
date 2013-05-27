@@ -1,4 +1,4 @@
-package com.wbarra.controller.allMyImages
+package com.wbarra.controller.allMyStuff
 {
 	public class AllMyImages
 	{
@@ -17,15 +17,6 @@ package com.wbarra.controller.allMyImages
 		
 		[Embed(source="images/EnemyThree.png")]
 		public static const EnemyThreeImage:Class;
-		
-		
-		
-		// embed test texure 
-		[Embed(source="images/tp/myTexture.xml", mimeType ="application/octet-stream")]
-		public static const AtlasXML:Class;
-		
-		[Embed(source="images/tp/myTexture.png")]
-		public static const AtlasTexture:Class; 
 		
 		public function AllMyImages()
 		{
