@@ -1,8 +1,8 @@
 package
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
+	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
-	import com.wbarra.controller.navigator.GameController;
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
@@ -26,7 +26,10 @@ package
 			
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);			
 			// Create a Starling instance that will run the "Game" class
-			_starling = new Starling(GameController, stage);
+			// If we need to change the navigation to the old way
+			// change the variable Game into GameController 
+			// AND MAKE SURE THE CODE ON THE GAMECONTROLLER AND GAMESCREEN IS UN-COMMENTED
+			_starling = new Starling(Game, stage);
 			_starling.showStats = true;
 			_starling.start();
 			

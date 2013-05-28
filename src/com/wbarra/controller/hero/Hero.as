@@ -2,6 +2,11 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
+<<<<<<< HEAD
+=======
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
+	import com.wbarra.controller.objects.PowerUp;
+>>>>>>> 224ec960ecd227aa565856f5bcc3ade87814754b
 	
 	import flash.ui.Keyboard;
 	
@@ -9,6 +14,10 @@ package com.wbarra.controller.hero
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
 	import starling.extensions.PDParticleSystem;
+<<<<<<< HEAD
+=======
+	import starling.textures.Texture;
+>>>>>>> 224ec960ecd227aa565856f5bcc3ade87814754b
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -16,6 +25,8 @@ package com.wbarra.controller.hero
 		private var _ship:Image;
 		private var _turret:Image;
 		private var _maxSpeed:int = 5;
+		// Instance of the Power Up class to access all of the stats
+		private var _powerUp:PowerUp;
 		
 		private var changeX:Number;
 		private var changeY:Number;
@@ -26,9 +37,13 @@ package com.wbarra.controller.hero
 		public static var mouseX:Number;
 		public static var mouseY:Number;
 		public static var click:TouchEvent;
+<<<<<<< HEAD
 		
 //		private var _click:TouchEvent;
 		
+=======
+
+>>>>>>> 224ec960ecd227aa565856f5bcc3ade87814754b
 		private var _speedX:Number = 0;
 		private var _speedY:Number = 0;
 		
@@ -68,23 +83,36 @@ package com.wbarra.controller.hero
 			updateX();
 			updateY();
 			updateRotation();
-			isAlive();
 		}
+<<<<<<< HEAD
 		
 		private function isAlive():void
+=======
+		private function shooting():void
 		{
-			if(_health < 1)
+			if(click)
 			{
-				_alive = false;
 			}
-			else if(_health > 5)
+		}
+		
+		// Function used to increase the speed of the Hero based
+		// on the speed up power up
+		private function speedBoostCheck():void
+		{
+			
+		}
+		
+		// This function is to check if the Hero is Alive
+		// if not, then break out of the Play State
+		public function isAlive(alive:Boolean):void
+>>>>>>> 224ec960ecd227aa565856f5bcc3ade87814754b
+		{
+			if(!alive)
 			{
-				_health = 5;
+				trace('Gotta take the ship off the stage');
+				trace('set the state to Over');
 			}
-			else
-			{
-				_alive = true;
-			}
+			
 		}
 		private function updateSpeed():void
 		{
@@ -148,5 +176,27 @@ package com.wbarra.controller.hero
 		{
 			this.y += _speedY;	
 		}
+
+		public function get health():int
+		{
+			return _health;
+		}
+
+		public function set health(value:int):void
+		{
+			_health = value;
+		}
+
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
+		}
+
+
 	}
 }
