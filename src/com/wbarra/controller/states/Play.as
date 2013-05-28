@@ -90,6 +90,7 @@ package com.wbarra.controller.states
 				if (_distanceEnemyOne < _radHero + _radEnemyOne)
 				{
 					shipHit();
+					break;
 				}
 			}
 			//=======================================================
@@ -106,6 +107,7 @@ package com.wbarra.controller.states
 				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
 				{
 					shipHit();
+					break;
 				}
 			}
 			
@@ -122,14 +124,20 @@ package com.wbarra.controller.states
 				if (_distanceEnemyThree < _radHero + _radEnemyThree)
 				{
 					shipHit();
+					break;
 				}
 			}
 		}
-		private  function shipHit():void
+		private function shipHit():void
 		{
 			trace("hit");
-			_game.changeState(Game.GAME_OVER_STATE);
+			killGame();
 			destroy();
+		}
+		
+		private function killGame():void
+		{
+			_game.changeState(Game.GAME_OVER_STATE);
 		}
 		
 		private function onAdded():void
@@ -151,6 +159,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
+				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
 			for (var e2:int = 0; e2 < 10; e2++)
@@ -162,6 +171,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
+				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
 			for (var e3:int = 0; e3 < 30; e3 ++ )
@@ -175,6 +185,7 @@ package com.wbarra.controller.states
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
 				spacer += _enemyThree.width + 10;
+				trace(_enemyThreeHolder.length);
 			}
 			
 			// building the bullets 
@@ -183,17 +194,18 @@ package com.wbarra.controller.states
 				
 			}
 		}
-		
-		
+
 		public function update():void
 		{
 		}
 		
 		public function destroy():void
 		{
-			while(this.numChildren > 0)
+			if(this.numChildren > 0)
 			{
-				removeChildAt(0);
+				trace('test');
+				this.removeChildAt(0);				
+				trace(this.numChildren);
 			}
 		}
 	}

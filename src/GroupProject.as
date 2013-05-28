@@ -26,6 +26,9 @@ package
 			
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);			
 			// Create a Starling instance that will run the "Game" class
+			// If we need to change the navigation to the old way
+			// change the variable Game into GameController 
+			// AND MAKE SURE THE CODE ON THE GAMECONTROLLER AND GAMESCREEN IS UN-COMMENTED
 			_starling = new Starling(Game, stage);
 			_starling.showStats = true;
 			_starling.start();

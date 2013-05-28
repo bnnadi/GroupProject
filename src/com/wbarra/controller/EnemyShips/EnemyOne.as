@@ -57,8 +57,6 @@ package com.wbarra.controller.EnemyShips
 			
 			// calling spawn point function 
 			spawnPoint();
-			
-			
 		}
 		
 		private function spawnPoint():void
@@ -88,7 +86,6 @@ package com.wbarra.controller.EnemyShips
 		{
 			if (_alive)
 			{
-				
 				// have to figure out a way to dumb down these ships. Some how make them not as perfect and have a secondary set of movement instructions. or something. 
 				// finding the change X and Change Y 
 				_changeX = heroX - x;
@@ -101,9 +98,6 @@ package com.wbarra.controller.EnemyShips
 				y += (Math.sin(_rads) * _speedY);
 				
 			}// end alive if 
-		
-			
-
 		}
 	}
 }
