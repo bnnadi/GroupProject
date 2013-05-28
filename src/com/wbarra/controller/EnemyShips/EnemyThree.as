@@ -1,6 +1,5 @@
 package com.wbarra.controller.EnemyShips
 {
-	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	
 	import flash.utils.Timer;
@@ -8,7 +7,6 @@ package com.wbarra.controller.EnemyShips
 	import starling.core.Starling;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
-	import starling.extensions.PDParticleSystem;
 	import starling.textures.Texture;
 	import starling.textures.TextureAtlas;
 	import starling.utils.deg2rad;
@@ -27,8 +25,6 @@ package com.wbarra.controller.EnemyShips
 		private var _timer:Timer;
 		private var _placementVar:Boolean;
 		private var _mc:MovieClip;
-		private var _psUp:PDParticleSystem;
-		private var _psDown:PDParticleSystem;
 	
 		
 		public function EnemyThree()
@@ -47,29 +43,17 @@ package com.wbarra.controller.EnemyShips
 			_mc.rotation = deg2rad(180); // -> rotate around center
 			
 			// adding the particle effects
-			// 1
-			var psConfig:XML = XML(new AllMyParticles.PE3Down());
-			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIE3Down());
-			_psUp = new PDParticleSystem(psConfig, psTexture);
-			_psUp.x = 0;
-			_psUp.y = 0;
-			_psUp.emitterX = 0;
-			_psUp.emitterY = 0;
-			addChild( _psUp );
-			Starling.juggler.add( _psUp );
-//			_psUp.start();
+//			// 1
+//			var psConfig:XML = XML(new AllMyParticles.PE3Down());
+//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIE3Down());
+//			_psUp = new PDParticleSystem(psConfig, psTexture);
+//			_psUp.x = 0;
+//			_psUp.y = 0;
+//			_psUp.emitterX = 0;
+//			_psUp.emitterY = 0;
+//			addChild( _psUp );
+//			Starling.juggler.add( _psUp );
 			
-			//2
-			var psConfigTwo:XML = XML(new AllMyParticles.PE3Up());
-			_psDown = new PDParticleSystem(psConfigTwo, psTexture);
-			_psDown.x = 0;
-			_psDown.y = 0;
-			_psDown.emitterX = 0;
-			_psUp.emitterY = 0;
-			addChild( _psDown );
-			Starling.juggler.add( _psDown );
-			
-			_psUp.start();
 			_alive = true;	
 			spawnPoint();
 		}
@@ -87,18 +71,12 @@ package com.wbarra.controller.EnemyShips
 			{
 				_speedY *= -1;
 				_mc.rotation += deg2rad(180); 
-//				_psDown.stop();
-//				_psUp.start();
 			}
 			if (y <= 0)
 			{
 				_speedY *= -1;
 				_mc.rotation += deg2rad(180); 
-//				_psDown.start();
-//				_psUp.stop();
 			}
-			
-			
 		}
 	}
 }

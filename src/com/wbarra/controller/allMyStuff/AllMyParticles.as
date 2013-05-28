@@ -20,11 +20,16 @@ package com.wbarra.controller.allMyStuff
 		public static const PIE3Down:Class;
 
 		[Embed(source="particles/greenTubeR.pex", mimeType = "application/octet-stream")]
-		public static const PE3Up:Class;
+		public static const PE3R:Class;
 		
 		[Embed(source="particles/greenTubeR.png")]
-		public static const PIE3Up:Class;
+		public static const PIE3R:Class;
 		
+		[Embed(source="particles/hero.pex", mimeType = "application/octet-stream")]
+		public static const PHero:Class;
+		
+		[Embed(source="particles/hero.png")]
+		public static const PIHero:Class; 
 		
 		
 		

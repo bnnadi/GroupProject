@@ -72,7 +72,7 @@ package com.wbarra.controller.Screens
 			//=======================================================
 			for each (var e:EnemyOne in _enemyOneHolder) 
 			{
-				e.enemyMove( (_hero.x ), (_hero.y));// breaks when i account for the height and the width 
+				e.enemyMove( (_hero.x  ), (_hero.y ));// breaks when i account for the height and the width 
 				// somethingto do with the mouse coming onto the stage. 
 				// collision detection for enemy One
 				_radEnemyOne = e.width / 2;

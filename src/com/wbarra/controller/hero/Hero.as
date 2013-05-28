@@ -2,15 +2,17 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.managers.BulletManager;
 	
 	import flash.ui.Keyboard;
 	
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import starling.events.Touch;
 	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
+	import starling.extensions.PDParticleSystem;
+	import starling.textures.Texture;
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -43,6 +45,9 @@ package com.wbarra.controller.hero
 		
 		private var _speedBoost:PowerUp;
 		
+		// hugo messing with stuff 
+		private var _ps:PDParticleSystem;
+		
 		public function Hero()
 		{
 			// Creating the bullets
@@ -51,6 +56,18 @@ package com.wbarra.controller.hero
 			
 			// I'm a ship 
 			_ship = Image.fromBitmap(new AllMyImages.Ship());
+			// setting the particle effect
+			var psConfig:XML = XML(new AllMyParticles.PHero());
+			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIHero());
+			_ps = new PDParticleSystem(psConfig, psTexture);
+			_ps.x = x+width/2;
+			_ps.y = y+height/2;
+			_ps.emitterX = 50;
+			_ps.emitterY = 50;
+			addChild( _ps );
+			Starling.juggler.add( _ps );
+			_ps.start();
+			// =====
 			_turret = Image.fromBitmap(new AllMyImages.Turret());
 			_ship.x = this.width/2;
 			_ship.y = this.height/2;
@@ -78,7 +95,6 @@ package com.wbarra.controller.hero
 			if(click)
 			{
 				_bm.Create(mouseX, mouseY);
-				
 			}
 		}
 		
