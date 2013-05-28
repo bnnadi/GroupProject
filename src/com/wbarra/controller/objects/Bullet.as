@@ -98,7 +98,7 @@ package com.wbarra.controller.objects
 				if (y > 768 || y < 0)
 				{
 					_alive = false;	
-					parent.removeChild(this);
+//					parent.removeChild(this);
 					_onceOver = true;
 				}
 				
