@@ -2,7 +2,6 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
-	import com.wbarra.controller.objects.Bullet;
 	
 	import flash.ui.Keyboard;
 	
@@ -68,7 +67,7 @@ package com.wbarra.controller.hero
 		{
 			if(click)
 			{
-				var bullet:Bullet = new Bullet();
+				
 			}
 		}
 		
