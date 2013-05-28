@@ -8,6 +8,8 @@ package com.wbarra.controller.allMyStuff
 		public static const EnemyShip:Class;
 		[Embed(source="images/EnemyTwo.png")]
 		public static const EnemyTwo:Class;
+		[Embed(source="images/EnemyThree.png")]
+		public static const EnemyThreeImage:Class;
 		[Embed(source="images/Ship.png")]
 		public static const Ship:Class;
 		[Embed(source="images/Turret.png")]
@@ -21,8 +23,6 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="images/OptionsBtn.png")]
 		public static const OptionsButton:Class;
 		
-		[Embed(source="images/EnemyThree.png")]
-		public static const EnemyThreeImage:Class;
 		
 		public function AllMyImages()
 		{

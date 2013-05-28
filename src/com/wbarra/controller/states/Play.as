@@ -91,7 +91,6 @@ package com.wbarra.controller.states
 				if (_distanceEnemyOne < _radHero + _radEnemyOne)
 				{
 					shipHit();
-					break;
 				}
 			}
 			//=======================================================
@@ -108,7 +107,6 @@ package com.wbarra.controller.states
 				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
 				{
 					shipHit();
-					break;
 				}
 			}
 			
@@ -125,22 +123,23 @@ package com.wbarra.controller.states
 				if (_distanceEnemyThree < _radHero + _radEnemyThree)
 				{
 					shipHit();
-					break;
 				}
 			}
 		}
 		private function shipHit():void
 		{
+			// Trying to get the _hero.health to break us
+			// out of the Play State ---- The changeState(), is 
+			// the last method in this class.
 			trace("hit");
 			trace(_hero.health);
-			_hero.health -= _damage;
 			
 			if(_hero.health <= 0)
 			{
 				_hero.alive = false;
-				_hero.isAlive(_hero.alive);
-				destroy();
-				killGame();
+//				_hero.isAlive(_hero.alive);
+//				destroy();
+//				killGame();
 			}
 			else if(_hero.health > 5)
 			{
@@ -148,14 +147,11 @@ package com.wbarra.controller.states
 			}
 			else
 			{
+				_hero.health -= _damage;
 				_hero.alive = true;
 			}
 		}
 		
-		private function killGame():void
-		{
-			_game.changeState(Game.GAME_OVER_STATE);
-		}
 		
 		private function onAdded():void
 		{
@@ -218,12 +214,21 @@ package com.wbarra.controller.states
 		
 		public function destroy():void
 		{
+			// Removing all children from the screen, yet somehow there
+			// is still colision happening. It is breaking the game 
+			// if either the changeState() is called.
+			// Uncomment Lines 141 & 142 to test
 			if(this.numChildren > 0)
 			{
 				trace('test');
 				this.removeChildAt(0);				
 				trace(this.numChildren);
 			}
+		}
+		
+		private function killGame():void
+		{
+			_game.changeState(Game.GAME_OVER_STATE);
 		}
 	}
 }

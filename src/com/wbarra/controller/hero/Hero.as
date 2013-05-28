@@ -3,6 +3,7 @@ package com.wbarra.controller.hero
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.allMyStuff.AllMyParticles;
+	import com.wbarra.controller.objects.PowerUp;
 	
 	import flash.ui.Keyboard;
 	
@@ -18,6 +19,8 @@ package com.wbarra.controller.hero
 		private var _ship:Image;
 		private var _turret:Image;
 		private var _maxSpeed:int = 5;
+		// Instance of the Power Up class to access all of the stats
+		private var _powerUp:PowerUp;
 		
 		private var changeX:Number;
 		private var changeY:Number;
@@ -76,6 +79,15 @@ package com.wbarra.controller.hero
 			}
 		}
 		
+		// Function used to increase the speed of the Hero based
+		// on the speed up power up
+		private function speedBoostCheck():void
+		{
+			
+		}
+		
+		// This function is to check if the Hero is Alive
+		// if not, then break out of the Play State
 		public function isAlive(alive:Boolean):void
 		{
 			if(!alive)
