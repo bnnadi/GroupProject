@@ -3,14 +3,16 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
-	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
+	import com.wbarra.controller.objects.Bullet;
 	
 	import flash.events.Event;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.utils.Timer;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -61,6 +63,7 @@ package com.wbarra.controller.states
 		private var _mx:Number;
 		private var _my:Number;
 		private var _pBullet:Point;
+		private var _shootTimer:Timer;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];
@@ -83,10 +86,9 @@ package com.wbarra.controller.states
 			{
 				if(touch.phase == TouchPhase.BEGAN)
 				{
-					_firing = true;
-					bulletFire();
-					_mx = touch.globalX;
-					_my = touch.globalY;
+//					_firing = true;
+//					bulletFire();
+					
 				}
 					
 				else if(touch.phase == TouchPhase.ENDED)
@@ -97,14 +99,17 @@ package com.wbarra.controller.states
 					
 				else if(touch.phase == TouchPhase.MOVED)
 				{
-					
+					_mx = touch.globalX;
+					_my = touch.globalY;
+					_shootTimer = new Timer(0, 2);
+					_shootTimer.addEventListener(TimerEvent.TIMER, timerShoot);
+					_shootTimer.start()
 				}
 			}
 		}		
 		
-		private function bulletFire():void{
+		private function timerShoot(event:TimerEvent):void
 		{
-			
 			_bulletHolder[_bulletCounter].x = _hero.x;
 			_bulletHolder[_bulletCounter].y = _hero.y;
 			// calculate the firing angle 
@@ -117,6 +122,23 @@ package com.wbarra.controller.states
 			{
 				_bulletCounter = 0;
 			}
+		}
+		
+		private function bulletFire():void{
+		{
+			
+//			_bulletHolder[_bulletCounter].x = _hero.x;
+//			_bulletHolder[_bulletCounter].y = _hero.y;
+//			// calculate the firing angle 
+//			_bulletHolder[_bulletCounter].targetY = _my;
+//			_bulletHolder[_bulletCounter].targetX = _mx;
+//			_bulletHolder[_bulletCounter].alive = true;
+//			stage.addChild(_bulletHolder[_bulletCounter]);
+//			_bulletCounter ++;
+//			if (_bulletCounter >= 100)
+//			{
+//				_bulletCounter = 0;
+//			}
 		}			
 		}
 		private function onAdded():void
