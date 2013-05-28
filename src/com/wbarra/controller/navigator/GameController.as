@@ -12,7 +12,6 @@ package com.wbarra.controller.navigator
 			
 			var gameScreen:GameScreen = new GameScreen();
 			addChild( gameScreen );
-			
 		}
 		
 	}
