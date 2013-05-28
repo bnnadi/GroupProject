@@ -3,9 +3,6 @@ package com.wbarra.controller.hero
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.allMyStuff.AllMyParticles;
-
-	import com.wbarra.controller.allMyStuff.AllMyParticles;
-
 	
 	import flash.ui.Keyboard;
 	
@@ -13,9 +10,7 @@ package com.wbarra.controller.hero
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
 	import starling.extensions.PDParticleSystem;
-
 	import starling.textures.Texture;
-
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -73,7 +68,6 @@ package com.wbarra.controller.hero
 			updateX();
 			updateY();
 			updateRotation();
-			isAlive();
 		}
 		private function shooting():void
 		{
@@ -82,20 +76,14 @@ package com.wbarra.controller.hero
 			}
 		}
 		
-		private function isAlive():void
+		public function isAlive(alive:Boolean):void
 		{
-			if(_health < 1)
+			if(!alive)
 			{
-				_alive = false;
+				trace('Gotta take the ship off the stage');
+				trace('set the state to Over');
 			}
-			else if(_health > 5)
-			{
-				_health = 5;
-			}
-			else
-			{
-				_alive = true;
-			}
+			
 		}
 		private function updateSpeed():void
 		{
@@ -159,5 +147,27 @@ package com.wbarra.controller.hero
 		{
 			this.y += _speedY;	
 		}
+
+		public function get health():int
+		{
+			return _health;
+		}
+
+		public function set health(value:int):void
+		{
+			_health = value;
+		}
+
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
+		}
+
+
 	}
 }

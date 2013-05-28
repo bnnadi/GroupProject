@@ -23,6 +23,7 @@ package com.wbarra.controller.states
 		/***************************/
 		
 		private var _hero:Hero;
+		private var _damage:int = 1;
 		private var _enemyOne:EnemyOne;
 		private var _enemyTwo:EnemyTwo;
 		private var _enemyThree:EnemyThree;
@@ -131,8 +132,24 @@ package com.wbarra.controller.states
 		private function shipHit():void
 		{
 			trace("hit");
-			killGame();
-			destroy();
+			trace(_hero.health);
+			_hero.health -= _damage;
+			
+			if(_hero.health <= 0)
+			{
+				_hero.alive = false;
+				_hero.isAlive(_hero.alive);
+				destroy();
+				killGame();
+			}
+			else if(_hero.health > 5)
+			{
+				_hero.health = 5;
+			}
+			else
+			{
+				_hero.alive = true;
+			}
 		}
 		
 		private function killGame():void
