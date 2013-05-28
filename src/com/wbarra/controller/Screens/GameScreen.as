@@ -14,6 +14,7 @@ package com.wbarra.controller.Screens
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import com.wbarra.controller.objects.Bullet;
 	
 	public class GameScreen extends Sprite
 	{

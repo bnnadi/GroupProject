@@ -3,7 +3,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
-	import com.wbarra.controller.Screens.Bullet;
+	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
@@ -46,6 +46,7 @@ package com.wbarra.controller.states
 		private var _distanceEnemyOne:Number;
 		private var _distanceEnemyTwo:Number;
 		private var _distanceEnemyThree:Number;
+		private var _distanceBullet:Number;
 		
 		// collision detection 
 		private var _pHero:Point;
@@ -56,8 +57,10 @@ package com.wbarra.controller.states
 		private var _radEnemyOne:Number;
 		private var _radEnemyTwo:Number;
 		private var _radEnemyThree:Number;
+		private var _radBullet:Number;
 		private var _mx:Number;
 		private var _my:Number;
+		private var _pBullet:Point;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];
@@ -84,8 +87,6 @@ package com.wbarra.controller.states
 					bulletFire();
 					_mx = touch.globalX;
 					_my = touch.globalY;
-					trace(_mx);
-					trace(_my);
 				}
 					
 				else if(touch.phase == TouchPhase.ENDED)
@@ -103,13 +104,19 @@ package com.wbarra.controller.states
 		
 		private function bulletFire():void{
 		{
+			
 			_bulletHolder[_bulletCounter].x = _hero.x;
 			_bulletHolder[_bulletCounter].y = _hero.y;
+			// calculate the firing angle 
 			_bulletHolder[_bulletCounter].targetY = _my;
 			_bulletHolder[_bulletCounter].targetX = _mx;
 			_bulletHolder[_bulletCounter].alive = true;
 			stage.addChild(_bulletHolder[_bulletCounter]);
 			_bulletCounter ++;
+			if (_bulletCounter >= 100)
+			{
+				_bulletCounter = 0;
+			}
 		}			
 		}
 		private function onAdded():void
@@ -181,6 +188,21 @@ package com.wbarra.controller.states
 			for each (var bullet:Bullet in _bulletHolder) 
 			{
 				bullet.bulletTargetingSystem()
+				_pBullet = new Point(bullet.x, bullet.y);
+				_radBullet = bullet.width/2;
+				
+				if (_distanceBullet < _radBullet + _radEnemyOne)
+				{
+					trace("enemy one hit");
+				}
+				if (_distanceBullet < _radBullet + _radEnemyTwo)
+				{
+					trace("enemy two hit");
+				}
+				if (_distanceBullet < _radBullet + _radEnemyThree)
+				{
+					trace("enemy three hit");
+				}
 			}
 			
 			// moving the Hero
@@ -191,7 +213,6 @@ package com.wbarra.controller.states
 			// testing the collisions
 			_pHero = new Point( (_hero.x) , (_hero.y) );// breaking when we add the height and the width 
 			_radHero= _hero.width / 2;
-			
 			
 			//Moving EnemyOne on the stage. 
 			//=======================================================

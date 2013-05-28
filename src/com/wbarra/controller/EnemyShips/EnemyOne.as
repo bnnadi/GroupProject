@@ -1,11 +1,9 @@
 package com.wbarra.controller.EnemyShips
 {
-	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	
 	import starling.core.Starling;
-	import starling.display.Image;
 	import starling.display.MovieClip;
 	import starling.display.Sprite;
 	import starling.extensions.PDParticleSystem;
@@ -37,6 +35,7 @@ package com.wbarra.controller.EnemyShips
 			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
 			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
 			_mc= new MovieClip(atlas.getTextures("enemy1"), 30);
+			// look for a way to stop a movie clip on a frame 
 			addChild(_mc);
 			Starling.juggler.add(_mc);
 			

@@ -1,5 +1,7 @@
 bin-debug/
+bin-debug/*
 bin-release/
+bin-release/*
 .settings/
 .DS_Store
 .project
