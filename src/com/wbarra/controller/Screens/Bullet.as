@@ -17,26 +17,76 @@ package com.wbarra.controller.Screens
 		private var _rads:Number;
 		private var _distX:Number;
 		private var _distY:Number;
+		private var _targetX:Number;
+		private var _targetY:Number;
+		
 		
 		public function Bullet(alive = false)
 		{
 			super();
 			var bullet:Image = Image.fromBitmap(new AllMyImages.BulletImg());
+			scaleX = scaleY = .5;
 			addChild(bullet);
 			_alive = alive;
 		}
+
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
+		}
+
+		public function get targetY():Number
+		{
+			return _targetY;
+		}
+
+		public function set targetY(value:Number):void
+		{
+			_targetY = value;
+		}
+
+		public function get targetX():Number
+		{
+			return _targetX;
+		}
+
+		public function set targetX(value:Number):void
+		{
+			_targetX = value;
+		}
+
 		public function bulletTargetingSystem():void
 		{
 			
 			if (_alive == true)
 			{
-//				_changeX  = _bulletTarget._newX - x;
-//				_changeY  = _bulletTarget._newY -y;
+				_changeX  = targetX - x;
+				_changeY  = targetY - y;
 				_angle    = Math.atan2(_changeY, _changeX) * (180/ Math.PI) ;
 				_rads     = _angle * Math.PI /180;
+				x += Math.cos(_angle) * _speed;
+				y += Math.sin(_angle) * _speed;
+//				x += Math.cos(_rads) * _speed;
+//				y += Math.sin(_rads) * _speed;
 				
-				x += Math.cos(_rads) * _speed;
-				y += Math.sin(_rads) * _speed;
+//				var mc = pEvt.currentTarget;
+//				var angleRadian = Math.atan2(mouseY - mc.y,mouseX - mc.x);
+//				var angleDegree = angleRadian * 180 / Math.PI;
+//				mc.rotation = angleDegree;
+//				txtAngle.text = Math.round(angleDegree) + "°";
+				// Get the current object (Bullet)
+//				var b = pEvent.currentTarget;
+				
+//				b.x +=  Math.cos(b.angleRadian) * speed;
+//				// On Y axis use the sinus angle
+//				b.y +=  Math.sin(b.angleRadian) * speed;
+//				// Orient the bullet to the direction
+//				b.rotation = b.angleRadian * 180 / Math.PI;
 				
 				//setting distance to be a positive number 
 //				_distanceX = x - _bulletTarget.x;

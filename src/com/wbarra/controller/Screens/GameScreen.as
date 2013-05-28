@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package com.wbarra.controller.Screens
 {
 	import com.wbarra.controller.EnemyShips.EnemyOne;
@@ -7,6 +7,7 @@ package com.wbarra.controller.Screens
 	import com.wbarra.controller.hero.Hero;
 	
 	import flash.events.Event;
+	import flash.events.LocationChangeEvent;
 	import flash.geom.Point;
 	
 	import starling.display.Sprite;
@@ -46,19 +47,23 @@ package com.wbarra.controller.Screens
 		private var _radEnemyOne:Number;
 		private var _radEnemyTwo:Number;
 		private var _radEnemyThree:Number;
+		private var _mx:Number;
+		private var _my:Number;
 		
 		public function GameScreen()
 		{
 			super();
+			trace("ran");
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			
 		}
 		
 		private function onTouch(event:TouchEvent):void
 		{
-			var touch:Touch = event.getTouch(stage, TouchPhase.BEGAN);
+			var touch:Touch = event.getTouch(stage);
 			if (touch)
 			{
-				firing();
+				trace("firing");
 				
 			}
 		}		
@@ -197,7 +202,7 @@ package com.wbarra.controller.Screens
 		}
 	}	
 }
-=======
+
 /*
 
 THIS CLASS IS NO LONGER BEING USED

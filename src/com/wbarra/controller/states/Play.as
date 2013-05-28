@@ -3,18 +3,20 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
+	import com.wbarra.controller.Screens.Bullet;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
-	import com.wbarra.controller.states.Play;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class Play extends Sprite implements IState
 	{
@@ -54,23 +56,68 @@ package com.wbarra.controller.states
 		private var _radEnemyOne:Number;
 		private var _radEnemyTwo:Number;
 		private var _radEnemyThree:Number;
+		private var _mx:Number;
+		private var _my:Number;
+		
+		// bullet realted
+		private var _bulletHolder:Array = [];
+		private var _firing:Boolean = false;
+		private var _bulletCounter:uint = 0;
 		
 		public function Play(game:Game)
 		{
 			this._game = game;
-			
+			trace("ran");
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			addEventListener(TouchEvent.TOUCH, onTouch);
+			
 		}
 		
 		private function onTouch(event:TouchEvent):void
 		{
-			Hero.click = event;
+			var touch:Touch = event.getTouch(stage);
+			if(touch)
+			{
+				if(touch.phase == TouchPhase.BEGAN)
+				{
+					_firing = true;
+					bulletFire();
+					_mx = touch.globalX;
+					_my = touch.globalY;
+					trace(_mx);
+					trace(_my);
+				}
+					
+				else if(touch.phase == TouchPhase.ENDED)
+				{
+					_firing = false;
+					
+				}
+					
+				else if(touch.phase == TouchPhase.MOVED)
+				{
+					
+				}
+			}
 		}		
 		
+		private function bulletFire():void{
+		{
+			_bulletHolder[_bulletCounter].x = _hero.x;
+			_bulletHolder[_bulletCounter].y = _hero.y;
+			_bulletHolder[_bulletCounter].targetY = _my;
+			_bulletHolder[_bulletCounter].targetX = _mx;
+			_bulletHolder[_bulletCounter].alive = true;
+			stage.addChild(_bulletHolder[_bulletCounter]);
+			_bulletCounter ++;
+		}			
+		}
 		private function onAdded():void
 		{
+			// adding the event listener to the stage
+			stage.addEventListener(TouchEvent.TOUCH, onTouch);
+			
+			
 			_background = Image.fromBitmap(new AllMyImages.Background());
 			addChild(_background);
 			
@@ -91,7 +138,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
-				trace(_enemyOneHolder.length);
+//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
 			for (var e2:int = 0; e2 < 10; e2++)
@@ -103,7 +150,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
-				trace(_enemyTwoHolder.length);
+//				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
 			for (var e3:int = 0; e3 < 30; e3 ++ )
@@ -117,18 +164,25 @@ package com.wbarra.controller.states
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
 				spacer += _enemyThree.width + 10;
-				trace(_enemyThreeHolder.length);
+//				trace(_enemyThreeHolder.length);
 			}
 			
 			// building the bullets 
 			for (var f:int = 0; f < 100; f++)
 			{
-				
+				var bullet:Bullet = new Bullet(false);
+				_bulletHolder.push( bullet );
 			}
 		}
 		
 		private function onEnterFrame():void
 		{
+			// moving the bullet 
+			for each (var bullet:Bullet in _bulletHolder) 
+			{
+				bullet.bulletTargetingSystem()
+			}
+			
 			// moving the Hero
 			//=======================================================
 			_hero.update();
@@ -222,7 +276,7 @@ package com.wbarra.controller.states
 		{
 			if(!_hero.alive)
 			{
-				trace('running the update()');
+//				trace('running the update()');
 				destroy();
 			}
 		}
@@ -232,17 +286,17 @@ package com.wbarra.controller.states
 			// Removing all children from the screen, yet somehow there
 			// is still colision happening. It is breaking the game 
 			// if either the changeState() is called.
-			if(this.numChildren > 0)
-			{
-				trace('testing the destroy()');
-				this.removeChildAt(0);				
-				trace(this.numChildren);
-			}
-			else
-			{
-				trace('times');
-				killGame();
-			}
+//			if(this.numChildren > 0)
+//			{
+//				trace('testing the destroy()');
+//				this.removeChildAt(0);				
+//				trace(this.numChildren);
+//			}
+//			else
+//			{
+//				trace('times');
+//				killGame();
+//			}
 		}
 		
 		private function killGame():void
