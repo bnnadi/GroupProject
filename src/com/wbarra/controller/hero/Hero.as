@@ -2,28 +2,13 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-	import com.wbarra.controller.allMyStuff.AllMyParticles;
-	import com.wbarra.controller.managers.BulletManager;
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
->>>>>>> 3b9818589adbbaa728077117055c58311b6e6db9
 	
 	import flash.ui.Keyboard;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
-<<<<<<< HEAD
-=======
 	import starling.extensions.PDParticleSystem;
-<<<<<<< HEAD
-=======
-	import starling.textures.Texture;
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
->>>>>>> 3b9818589adbbaa728077117055c58311b6e6db9
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -42,11 +27,8 @@ package com.wbarra.controller.hero
 		public static var mouseY:Number;
 		public static var click:TouchEvent;
 		
-<<<<<<< HEAD
 //		private var _click:TouchEvent;
 		
-=======
->>>>>>> 3b9818589adbbaa728077117055c58311b6e6db9
 		private var _speedX:Number = 0;
 		private var _speedY:Number = 0;
 		
@@ -56,17 +38,12 @@ package com.wbarra.controller.hero
 		private static const ACCEL:Number = 0.5;
 		private static const FRICTION:Number = 0.98;
 		
-		private var _speedBoost:PowerUp;
 		
 		// hugo messing with stuff 
 		private var _ps:PDParticleSystem;
 		
 		public function Hero()
 		{
-<<<<<<< HEAD
-			
-=======
->>>>>>> 3b9818589adbbaa728077117055c58311b6e6db9
 			// I'm a ship 
 			_ship = Image.fromBitmap(new AllMyImages.Ship());
 			// setting the particle effect
@@ -93,23 +70,7 @@ package com.wbarra.controller.hero
 			updateRotation();
 			isAlive();
 		}
-<<<<<<< HEAD
-=======
 		
-		private function shooting():void
-		{
-			if(click)
-			{
-<<<<<<< HEAD
-				
-=======
-				_bm.Create(mouseX, mouseY);
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
-			}
-		}
-		
-		
->>>>>>> 3b9818589adbbaa728077117055c58311b6e6db9
 		private function isAlive():void
 		{
 			if(_health < 1)

@@ -17,24 +17,21 @@ package com.wbarra.controller.Screens
 		private var _rads:Number;
 		private var _distX:Number;
 		private var _distY:Number;
-		private var _bulletTarget;
 		
-		public function Bullet(alive:Boolean = false, posX:Number = 0, posY:Number = 0)
+		public function Bullet(alive = false)
 		{
 			super();
 			var bullet:Image = Image.fromBitmap(new AllMyImages.BulletImg());
-			_alive = alive;
-			_posX = posX;
-			_posY = posY;
 			addChild(bullet);
+			_alive = alive;
 		}
 		public function bulletTargetingSystem():void
 		{
 			
 			if (_alive == true)
 			{
-				_changeX  = _bulletTarget._newX - x;
-				_changeY  = _bulletTarget._newY -y;
+//				_changeX  = _bulletTarget._newX - x;
+//				_changeY  = _bulletTarget._newY -y;
 				_angle    = Math.atan2(_changeY, _changeX) * (180/ Math.PI) ;
 				_rads     = _angle * Math.PI /180;
 				
@@ -42,8 +39,8 @@ package com.wbarra.controller.Screens
 				y += Math.sin(_rads) * _speed;
 				
 				//setting distance to be a positive number 
-				_distanceX = x - _bulletTarget.x;
-				_distanceY = y - _bulletTarget.y;
+//				_distanceX = x - _bulletTarget.x;
+//				_distanceY = y - _bulletTarget.y;
 				
 				if (_distX < 0)
 				{
@@ -54,11 +51,11 @@ package com.wbarra.controller.Screens
 					_distY *= -1;
 				}
 				
-				if (!_bulletTarget._alive)
-				{
-					//bullets disipate 
-					alpha -= .05;
-				}
+//				if (!_bulletTarget._alive)
+//				{
+//					//bullets disipate 
+//					alpha -= .05;
+//				}
 			}
 		}
 	}

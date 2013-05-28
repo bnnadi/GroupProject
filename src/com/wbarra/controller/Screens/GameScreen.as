@@ -9,7 +9,9 @@ package com.wbarra.controller.Screens
 	import flash.geom.Point;
 	
 	import starling.display.Sprite;
+	import starling.events.Touch;
 	import starling.events.TouchEvent;
+	import starling.events.TouchPhase;
 	
 	public class GameScreen extends Sprite
 	{
@@ -21,6 +23,7 @@ package com.wbarra.controller.Screens
 		private var _enemyOneHolder:Array = [];
 		private var _enemyTwoHolder:Array = [];
 		private var _enemyThreeHolder:Array = [];
+		private var _bulletHolder:Array = [];
 		
 		// getting the hero's X/Y position to pass into the Enemy One for Targeting.
 		private var _heroX:Number; 
@@ -47,17 +50,32 @@ package com.wbarra.controller.Screens
 		{
 			super();
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
-			addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
 		private function onTouch(event:TouchEvent):void
 		{
-			Hero.click = event;
+			var touch:Touch = event.getTouch(stage, TouchPhase.BEGAN);
+			if (touch)
+			{
+				firing();
+				
+			}
 		}		
 		
+		private function firing():void
+		{
+			
+		}
 		private function onEnterFrame():void
 		{
+			//moving bullets
+			var space:Number= 10;
+			
+			for each (var b:Bullet in _bulletHolder) 
+			{
+				b.bulletTargetingSystem();
+			}
+			
 			// moving the Hero
 			//=======================================================
 			_hero.update();
@@ -66,7 +84,6 @@ package com.wbarra.controller.Screens
 			// testing the collisions
 			_pHero = new Point( (_hero.x) , (_hero.y) );// breaking when we add the height and the width 
 			_radHero= _hero.width / 2;
-			
 			
 			//Moving EnemyOne on the stage. 
 			//=======================================================
@@ -123,6 +140,9 @@ package com.wbarra.controller.Screens
 		
 		private function onAdded():void
 		{
+			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			stage.addEventListener(TouchEvent.TOUCH, onTouch);
+			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
@@ -169,7 +189,8 @@ package com.wbarra.controller.Screens
 			// building the bullets 
 			for (var f:int = 0; f < 100; f++)
 			{
-				var bullet:Bu
+				var bullet:Bullet = new Bullet(true);
+				_bulletHolder.push(bullet);
 			}
 			
 		}
