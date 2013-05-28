@@ -2,11 +2,7 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
-<<<<<<< HEAD
-=======
 	import com.wbarra.controller.allMyStuff.AllMyParticles;
-	import com.wbarra.controller.managers.BulletManager;
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
 	
 	import flash.ui.Keyboard;
 	
@@ -14,11 +10,8 @@ package com.wbarra.controller.hero
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
-<<<<<<< HEAD
-=======
 	import starling.extensions.PDParticleSystem;
 	import starling.textures.Texture;
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -93,11 +86,6 @@ package com.wbarra.controller.hero
 		{
 			if(click)
 			{
-<<<<<<< HEAD
-				
-=======
-				_bm.Create(mouseX, mouseY);
->>>>>>> d553a7c17845ed5f51d54b3d9c8968a51387a2a5
 			}
 		}
 		
