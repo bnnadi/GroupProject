@@ -14,6 +14,12 @@ package com.wbarra.controller.allMyStuff
 		public static const Turret:Class;
 		[Embed(source="images/Bullet.png")]
 		public static const BulletImg:Class;
+		[Embed(source="images/Main_bg.png")]
+		public static const Background:Class;
+		[Embed(source="images/PlayBtn.png")]
+		public static const PlayButton:Class;
+		[Embed(source="images/OptionsBtn.png")]
+		public static const OptionsButton:Class;
 		
 		[Embed(source="images/EnemyThree.png")]
 		public static const EnemyThreeImage:Class;
