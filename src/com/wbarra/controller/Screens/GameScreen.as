@@ -166,6 +166,12 @@ package com.wbarra.controller.Screens
 				spacer += _enemyThree.width + 10;
 			}
 			
+			// building the bullets 
+			for (var f:int = 0; f < 100; f++)
+			{
+				var bullet:Bu
+			}
+			
 		}
 	}	
 }
