@@ -27,16 +27,16 @@ package com.wbarra.controller.hero
 		
 		public static var mouseX:Number;
 		public static var mouseY:Number;
+		public static var click:TouchEvent;
 		
 		private var _bm:BulletManager;
-		
+//		private var _click:TouchEvent;
 		
 		private var _speedX:Number = 0;
 		private var _speedY:Number = 0;
 		
 		private var _health:int = 5;
 		private var _alive:Boolean = true;
-		private var _click:Touch;
 		
 		private static const ACCEL:Number = 0.5;
 		private static const FRICTION:Number = 0.98;
@@ -75,20 +75,13 @@ package com.wbarra.controller.hero
 		
 		private function shooting():void
 		{
-			this.addEventListener(TouchEvent.TOUCH, onFire);
+			if(click)
+			{
+				_bm.Create(mouseX, mouseY);
+				
+			}
 		}
 		
-		private function onFire(event:TouchEvent):void
-		{
-			trace('test func running');
-			_click = event.getTouch(parent.stage, TouchPhase.BEGAN);
-			if(_click)
-			{
-				trace('test click');
-			}
-			_bm.Create(mouseX, mouseY);
-			_bm.updateAll();
-		}
 		
 		private function isAlive():void
 		{

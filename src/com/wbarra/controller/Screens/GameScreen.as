@@ -3,17 +3,13 @@ package com.wbarra.controller.Screens
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
-	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	import com.wbarra.controller.hero.Hero;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	
-	import starling.core.Starling;
-	import starling.display.MovieClip;
 	import starling.display.Sprite;
-	import starling.textures.Texture;
-	import starling.textures.TextureAtlas;
+	import starling.events.TouchEvent;
 	
 	public class GameScreen extends Sprite
 	{
@@ -52,8 +48,13 @@ package com.wbarra.controller.Screens
 			super();
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
+			addEventListener(TouchEvent.TOUCH, onTouch);
 		}
 		
+		private function onTouch(event:TouchEvent):void
+		{
+			Hero.click = event;
+		}		
 		
 		private function onEnterFrame():void
 		{
