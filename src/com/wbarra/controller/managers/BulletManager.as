@@ -1,7 +1,8 @@
 package com.wbarra.controller.managers
 {
-	import starling.display.Sprite;
 	import com.wbarra.controller.objects.Bullet;
+	
+	import starling.display.Sprite;
 
 	public class BulletManager extends Sprite
 	{

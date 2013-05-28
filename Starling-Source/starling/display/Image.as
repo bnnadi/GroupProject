@@ -42,6 +42,7 @@ package starling.display
         
         private var mVertexDataCache:VertexData;
         private var mVertexDataCacheInvalid:Boolean;
+        public var maxDistance:Object;
         
         /** Creates a quad with a texture mapped onto it. */
         public function Image(texture:Texture)

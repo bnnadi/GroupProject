@@ -2,15 +2,13 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
-	import com.wbarra.controller.managers.BulletManager;
+	import com.wbarra.controller.objects.Bullet;
 	
 	import flash.ui.Keyboard;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
-	import starling.events.Touch;
 	import starling.events.TouchEvent;
-	import starling.events.TouchPhase;
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -29,9 +27,6 @@ package com.wbarra.controller.hero
 		public static var mouseY:Number;
 		public static var click:TouchEvent;
 		
-		private var _bm:BulletManager;
-//		private var _click:TouchEvent;
-		
 		private var _speedX:Number = 0;
 		private var _speedY:Number = 0;
 		
@@ -45,10 +40,6 @@ package com.wbarra.controller.hero
 		
 		public function Hero()
 		{
-			// Creating the bullets
-			_bm = new BulletManager();
-			_bm.setup();
-			
 			// I'm a ship 
 			_ship = Image.fromBitmap(new AllMyImages.Ship());
 			_turret = Image.fromBitmap(new AllMyImages.Turret());
@@ -77,8 +68,7 @@ package com.wbarra.controller.hero
 		{
 			if(click)
 			{
-				_bm.Create(mouseX, mouseY);
-				
+				var bullet:Bullet = new Bullet();
 			}
 		}
 		
