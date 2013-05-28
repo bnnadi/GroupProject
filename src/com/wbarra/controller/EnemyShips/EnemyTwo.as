@@ -1,9 +1,14 @@
 package com.wbarra.controller.EnemyShips
 {
-	import com.wbarra.controller.allMyStuff.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
+	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	
-	import starling.display.Image;
+	import starling.core.Starling;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.extensions.PDParticleSystem;
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class EnemyTwo extends Sprite
 	{
@@ -12,12 +17,20 @@ package com.wbarra.controller.EnemyShips
 		private var _alive:Boolean;
 		private var _randX:Number;
 		private var _randY:Number;
+		private var _mc:MovieClip;
+		private var _ps:PDParticleSystem;
 		public function EnemyTwo()
 		{
 			// you could call me a bouncy ball
 			super();
-			var myImage:Image = Image.fromBitmap(new AllMyImages.EnemyTwo());
-			addChild(myImage);
+			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
+			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
+			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+			_mc= new MovieClip(atlas.getTextures("enemy2"), 30);
+			addChild(_mc);
+			Starling.juggler.add(_mc);
+			
+			
 			_alive = true;
 			// calling spawn point function 
 			spawnPoint();

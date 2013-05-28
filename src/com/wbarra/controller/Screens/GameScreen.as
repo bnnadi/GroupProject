@@ -122,17 +122,6 @@ package com.wbarra.controller.Screens
 		
 		private function onAdded():void
 		{
-//			// test 
-//			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
-//			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
-//			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
-//			
-//			var mc:MovieClip = new MovieClip(atlas.getTextures("greenEnemy_animated"), 30);
-//			mc.x = 100;
-//			mc.y = 100;
-//			addChild(mc);
-//			Starling.juggler.add(mc);
-			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
@@ -141,7 +130,7 @@ package com.wbarra.controller.Screens
 			//building a bunch of test enemies of class Enemy one
 			var spacer:Number = 10;
 			// ENEMY 1 
-			for (var e1:int = 0; e1 < 1; e1++)
+			for (var e1:int = 0; e1 < 10; e1++)
 			{
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
@@ -152,7 +141,7 @@ package com.wbarra.controller.Screens
 				_enemyOneHolder.push(_enemyOne);
 			}
 			// ENEMY 2 
-			for (var e2:int = 0; e2 < 1; e2++)
+			for (var e2:int = 0; e2 < 10; e2++)
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
