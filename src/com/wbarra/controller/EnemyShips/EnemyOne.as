@@ -1,9 +1,16 @@
 package com.wbarra.controller.EnemyShips
 {
 	import com.wbarra.controller.allMyStuff.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
+	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	
+	import starling.core.Starling;
 	import starling.display.Image;
+	import starling.display.MovieClip;
 	import starling.display.Sprite;
+	import starling.extensions.PDParticleSystem;
+	import starling.textures.Texture;
+	import starling.textures.TextureAtlas;
 	
 	public class EnemyOne extends Sprite 
 	{
@@ -17,14 +24,35 @@ package com.wbarra.controller.EnemyShips
 		
 		private var _angle:Number;
 		private var _rads:Number;
-		
+		private var _mc:MovieClip;
+		private var _ps:PDParticleSystem;
 		
 		public function EnemyOne()
 		{
 			super();
 			// I am  homing ship.
-			var myImage:Image = Image.fromBitmap(new AllMyImages.EnemyShip());
-			addChild(myImage);
+			
+			// adding the texture 
+			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
+			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
+			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+			_mc= new MovieClip(atlas.getTextures("enemy1"), 30);
+			addChild(_mc);
+			Starling.juggler.add(_mc);
+			
+			// adding the particles 
+			
+			var psConfig:XML = XML(new AllMyParticles.PEOne());
+			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIEOne());
+			_ps = new PDParticleSystem(psConfig, psTexture);
+			_ps.x = 30;
+			_ps.y = 25;
+			_ps.emitterX = 0;
+			_ps.emitterY = 0;
+			addChild( _ps );
+			Starling.juggler.add( _ps );
+		
+			_ps.start();
 			_alive = true;
 			
 			// calling spawn point function 
@@ -38,6 +66,7 @@ package com.wbarra.controller.EnemyShips
 			// I set the spawn point of the ship somewhere in the stage. 
 			var tempVar:Number;
 			x = Math.random()*874+50;
+			
 			// randomizing either top or bottom placement of the object
 			var placementVar:Boolean;
 			for (var i:int = 0; i < 5; i++) 
@@ -59,6 +88,7 @@ package com.wbarra.controller.EnemyShips
 		{
 			if (_alive)
 			{
+				
 				// have to figure out a way to dumb down these ships. Some how make them not as perfect and have a secondary set of movement instructions. or something. 
 				// finding the change X and Change Y 
 				_changeX = heroX - x;
@@ -69,6 +99,7 @@ package com.wbarra.controller.EnemyShips
 				
 				x += (Math.cos(_rads) * _speedX);
 				y += (Math.sin(_rads) * _speedY);
+				
 			}// end alive if 
 		
 			

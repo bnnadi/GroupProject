@@ -35,14 +35,24 @@ package com.wbarra.controller.EnemyShips
 			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
 			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
 			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
-			_mc= new MovieClip(atlas.getTextures("greenEnemy_animated"), 30);
+			_mc= new MovieClip(atlas.getTextures("enemy3"), 30);
 			addChild(_mc);
 			Starling.juggler.add(_mc);
-			rotation = 0;
-			
 			_mc.pivotX = _mc.width  / 2.0;
 			_mc.pivotY =  _mc.height / 2.0;
 			_mc.rotation = deg2rad(180); // -> rotate around center
+			
+			// adding the particle effects
+//			// 1
+//			var psConfig:XML = XML(new AllMyParticles.PE3Down());
+//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIE3Down());
+//			_psUp = new PDParticleSystem(psConfig, psTexture);
+//			_psUp.x = 0;
+//			_psUp.y = 0;
+//			_psUp.emitterX = 0;
+//			_psUp.emitterY = 0;
+//			addChild( _psUp );
+//			Starling.juggler.add( _psUp );
 			
 			_alive = true;	
 			spawnPoint();
@@ -57,7 +67,12 @@ package com.wbarra.controller.EnemyShips
 		public function enemyMove():void
 		{
 			y += _speedY;
-			if (y <= 0 || y >= 750)
+			if (y >= 750)
+			{
+				_speedY *= -1;
+				_mc.rotation += deg2rad(180); 
+			}
+			if (y <= 0)
 			{
 				_speedY *= -1;
 				_mc.rotation += deg2rad(180); 
