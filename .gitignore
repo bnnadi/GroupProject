@@ -1,7 +1,6 @@
 bin-debug/
-bin-debug/*
+bin-debug/GroupProject.swf
 bin-release/
-bin-release/*
 .settings/
 .DS_Store
 .project
