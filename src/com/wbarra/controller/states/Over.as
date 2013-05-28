@@ -26,7 +26,7 @@ package com.wbarra.controller.states
 		private function init(event:Event):void
 		{
 			_background = Image.fromBitmap(new AllMyImages.Background());
-			addChild(_background);
+//			addChild(_background);
 			
 			_play = new Button(Texture.fromBitmap(new AllMyImages.PlayButton()));
 			_play.addEventListener(Event.TRIGGERED, onClickPlay);

@@ -3,7 +3,6 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.interfaces.IState;
-	import com.wbarra.controller.navigator.GameController;
 	
 	import starling.display.Button;
 	import starling.display.Image;

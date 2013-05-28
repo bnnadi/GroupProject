@@ -3,6 +3,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.EnemyShips.EnemyOne;
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
+	import com.wbarra.controller.allMyStuff.AllMyImages;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
@@ -11,6 +12,7 @@ package com.wbarra.controller.states
 	import flash.events.Event;
 	import flash.geom.Point;
 	
+	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
 	
@@ -21,6 +23,7 @@ package com.wbarra.controller.states
 		// so we can switch back to Menu or Over states
 		private var _game:Game;
 		/***************************/
+		private var _background:Image;
 		
 		private var _hero:Hero;
 		private var _damage:int = 1;
@@ -65,6 +68,64 @@ package com.wbarra.controller.states
 		{
 			Hero.click = event;
 		}		
+		
+		private function onAdded():void
+		{
+			_background = Image.fromBitmap(new AllMyImages.Background());
+			addChild(_background);
+			
+			_hero = new Hero();
+			_hero.x = stage.stageWidth/2
+			_hero.y = stage.stageHeight/2;
+			addChild( _hero);
+			
+			//building a bunch of test enemies of class Enemy one
+			var spacer:Number = 10;
+			// ENEMY 1 
+			for (var e1:int = 0; e1 < 10; e1++)
+			{
+				// spawning enemy One
+				_enemyOne = new EnemyOne();
+				_enemyOne.scaleX = _enemyOne.scaleY = .5;
+				addChild( _enemyOne );
+				
+				// pushing into enemy array 
+				_enemyOneHolder.push(_enemyOne);
+				trace(_enemyOneHolder.length);
+			}
+			// ENEMY 2 
+			for (var e2:int = 0; e2 < 10; e2++)
+			{
+				// spawning enemy two
+				_enemyTwo = new EnemyTwo();
+				_enemyTwo.scaleX = _enemyTwo.scaleY = .5;
+				addChild( _enemyTwo);
+				
+				// pushing into enemy array 
+				_enemyTwoHolder.push(_enemyTwo);
+				trace(_enemyTwoHolder.length);
+			}
+			// ENEMY 3 
+			for (var e3:int = 0; e3 < 30; e3 ++ )
+			{
+				// spawning enemy three
+				_enemyThree = new EnemyThree();
+				_enemyThree.scaleX = _enemyThree.scaleY = .5;
+				_enemyThree.x = spacer;
+				addChild( _enemyThree);
+				
+				// pushing into enemy array 
+				_enemyThreeHolder.push(_enemyThree);
+				spacer += _enemyThree.width + 10;
+				trace(_enemyThreeHolder.length);
+			}
+			
+			// building the bullets 
+			for (var f:int = 0; f < 100; f++)
+			{
+				
+			}
+		}
 		
 		private function onEnterFrame():void
 		{
@@ -126,13 +187,14 @@ package com.wbarra.controller.states
 				}
 			}
 		}
+		
 		private function shipHit():void
 		{
 			// Trying to get the _hero.health to break us
 			// out of the Play State ---- The changeState(), is 
 			// the last method in this class.
-			trace("hit");
-			trace(_hero.health);
+//			trace("hit");
+//			trace('hero health: '+_hero.health);
 			
 			if(_hero.health <= 0)
 			{
@@ -140,6 +202,10 @@ package com.wbarra.controller.states
 //				_hero.isAlive(_hero.alive);
 //				destroy();
 //				killGame();
+				// If the destroy() and the killGame() are running,
+				// this is the error code we get:
+				// Error #3691: Resource limit for this resource type exceeded.
+				//WTF!?!!
 			}
 			else if(_hero.health > 5)
 			{
@@ -152,64 +218,13 @@ package com.wbarra.controller.states
 			}
 		}
 		
-		
-		private function onAdded():void
-		{
-			_hero = new Hero();
-			_hero.x = stage.stageWidth/2
-			_hero.y = stage.stageHeight/2;
-			addChild( _hero);
-			
-			//building a bunch of test enemies of class Enemy one
-			var spacer:Number = 10;
-			// ENEMY 1 
-			for (var e1:int = 0; e1 < 10; e1++)
-			{
-				// spawning enemy One
-				_enemyOne = new EnemyOne();
-				_enemyOne.scaleX = _enemyOne.scaleY = .5;
-				addChild( _enemyOne );
-				
-				// pushing into enemy array 
-				_enemyOneHolder.push(_enemyOne);
-				trace(_enemyOneHolder.length);
-			}
-			// ENEMY 2 
-			for (var e2:int = 0; e2 < 10; e2++)
-			{
-				// spawning enemy two
-				_enemyTwo = new EnemyTwo();
-				_enemyTwo.scaleX = _enemyTwo.scaleY = .5;
-				addChild( _enemyTwo);
-				
-				// pushing into enemy array 
-				_enemyTwoHolder.push(_enemyTwo);
-				trace(_enemyTwoHolder.length);
-			}
-			// ENEMY 3 
-			for (var e3:int = 0; e3 < 30; e3 ++ )
-			{
-				// spawning enemy three
-				_enemyThree = new EnemyThree();
-				_enemyThree.scaleX = _enemyThree.scaleY = .5;
-				_enemyThree.x = spacer;
-				addChild( _enemyThree);
-				
-				// pushing into enemy array 
-				_enemyThreeHolder.push(_enemyThree);
-				spacer += _enemyThree.width + 10;
-				trace(_enemyThreeHolder.length);
-			}
-			
-			// building the bullets 
-			for (var f:int = 0; f < 100; f++)
-			{
-				
-			}
-		}
-
 		public function update():void
 		{
+			if(!_hero.alive)
+			{
+				trace('running the update()');
+				destroy();
+			}
 		}
 		
 		public function destroy():void
@@ -217,17 +232,22 @@ package com.wbarra.controller.states
 			// Removing all children from the screen, yet somehow there
 			// is still colision happening. It is breaking the game 
 			// if either the changeState() is called.
-			// Uncomment Lines 141 & 142 to test
 			if(this.numChildren > 0)
 			{
-				trace('test');
+				trace('testing the destroy()');
 				this.removeChildAt(0);				
 				trace(this.numChildren);
+			}
+			else
+			{
+				trace('times');
+				killGame();
 			}
 		}
 		
 		private function killGame():void
 		{
+			trace('testing the killGame()');
 			_game.changeState(Game.GAME_OVER_STATE);
 		}
 	}
