@@ -98,7 +98,7 @@ package com.wbarra.controller.Screens
 					shipHit();
 				}
 			}
-			//=======================================================
+
 			
 			//Moving EnemyThree on the stage. 
 			//=======================================================

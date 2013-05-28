@@ -8,11 +8,15 @@ package com.wbarra.controller.objects
 	public class Bullet extends Sprite
 	{
 		private var _bullet:Image;
+		public var vx:Number;
+		public var vy:Number;
+		public var alive:Boolean;
+		public var speed:int = 15;
+		public var id:int;
 		
 		public function Bullet()
 		{
 			super();
-			
 			setup();
 		}
 		
@@ -20,13 +24,13 @@ package com.wbarra.controller.objects
 		{
 			// Creating the bullet using the image
 			_bullet = Image.fromBitmap(new AllMyImages.BulletImg());
+			addChild(_bullet);
 		}
 		
-		public function move(mouseX:Number, mouseY:Number):void
+		public function update():void
 		{
-			_bullet.x = mouseX;
-			_bullet.y = mouseY;
-			
+			this.x += vx * speed;
+			this.y += vy * speed;
 		}
 	}
 }
