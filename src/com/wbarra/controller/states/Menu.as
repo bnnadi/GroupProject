@@ -61,6 +61,8 @@ package com.wbarra.controller.states
 			while(this.numChildren > 0)
 			{
 				removeChildAt(0);
+				removeEventListeners(Event.TRIGGERED);
+				removeEventListener(Event.ADDED_TO_STAGE, init);
 			}
 		}
 	}

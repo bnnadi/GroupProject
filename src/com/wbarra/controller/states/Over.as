@@ -63,6 +63,8 @@ package com.wbarra.controller.states
 			{
 				removeChildAt(0);
 			}
+			// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
+			removeEventListener(Event.ADDED_TO_STAGE, init);
 		}
 	}
 }

@@ -10,13 +10,14 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.objects.PowerUp;
 	
-	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
@@ -92,6 +93,7 @@ package com.wbarra.controller.states
 		public function Play(game:Game)
 		{
 			this._game = game;
+			//***************EVENT LISTENER******************
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
 		}
@@ -143,11 +145,12 @@ package com.wbarra.controller.states
 			}
 		}
 		
-			
+		
 		
 		private function onAdded():void
 		{
 			// adding the event listener to the stage
+			//***************EVENT LISTENER******************
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 			
 			
@@ -171,7 +174,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
-//				trace(_enemyOneHolder.length);
+				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
 			for (var e2:int = 0; e2 < 10; e2++)
@@ -183,7 +186,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
-//				trace(_enemyTwoHolder.length);
+				//				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
 			for (var e3:int = 0; e3 < 30; e3 ++ )
@@ -197,7 +200,7 @@ package com.wbarra.controller.states
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
 				spacer += _enemyThree.width + 10;
-//				trace(_enemyThreeHolder.length);
+				//				trace(_enemyThreeHolder.length);
 			}
 			// building the bullets 
 			for (var f:int = 0; f < 100; f++)
@@ -316,7 +319,7 @@ package com.wbarra.controller.states
 			_distanceDoubleShot = Point.distance(_pHero, _pDoubleShot);
 			
 			*/
-			//========================================================s
+			//========================================================sgit 
 		}
 		
 		private function shipHit():void
@@ -324,13 +327,13 @@ package com.wbarra.controller.states
 			// Trying to get the _hero.health to break us
 			// out of the Play State ---- The changeState(), is 
 			// the last method in this class.
-//			trace("hit");
-//			trace('hero health: '+_hero.health);
+			//			trace("hit");
+			//			trace('hero health: '+_hero.health);
 			
 			if(_hero.health <= 0)
 			{
 				_hero.alive = false;
-//				_hero.isAlive(_hero.alive);
+				//				_hero.isAlive(_hero.alive);
 				destroy();
 				killGame();
 				// If the destroy() and the killGame() are running,
@@ -354,37 +357,52 @@ package com.wbarra.controller.states
 		{
 			if(!_hero.alive)
 			{
-//				trace('running the update()');
+				//				trace('running the update()');
 				destroy();
 			}
 		}
 		
 		public function destroy():void
 		{
-			// Removing all children from the screen, yet somehow there
-			// is still colision happening. It is breaking the game 
-			// if either the changeState() is called.
-//			if(this.numChildren > 0)
-//			{
-//				trace('testing the destroy()');
-//				this.removeChildAt(0);				
-//				trace(this.numChildren);
-//			}
-//			else
-//			{
-//				trace('times');
-//				killGame();
-//			}
+			//			Removing all children from the screen, yet somehow there
+			//			is still colision happening. It is breaking the game 
+			//			if either the changeState() is called.
+			while(this.numChildren > 0)
+			{
+				trace('testing the destroy()');
+				this.removeChildAt(0);				
+				
+				for each (var i:Bullet in _bulletHolder) 
+				{
+					stage.removeChild(i);
+				}
+				_enemyOneHolder = null;
+				_enemyTwoHolder = null;
+				_enemyThreeHolder = null;
+				
+			}
+			if(this.numChildren == 0)
+			{
+				trace('should not be running multiple times');
+				killGame();
+			}
 		}
 		
 		private function killGame():void
 		{
-			if(_killGame){
+			trace('WTF!!!!');
+			if(_killGame)
+			{
+				trace('testing the killGame()');
+				_killGame = false;
 				
-			trace('testing the killGame()');
-			_killGame = false;
-			_game.changeState(Game.GAME_OVER_STATE);
-			
+				// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
+				removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+				removeEventListener(TouchEvent.TOUCH, onTouch);
+//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+				
+				_game.changeState(Game.GAME_OVER_STATE);
 			}
 		}
 	}
