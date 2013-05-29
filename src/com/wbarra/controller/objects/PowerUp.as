@@ -5,38 +5,33 @@ package com.wbarra.controller.objects
 	
 	public class PowerUp extends Sprite
 	{
-		private var _speedUp:int = 2;
+		public static const SPEED_UP:int = 2;
 		private var _speedImg:Image;
 	
-		private var _slowDown:int = 2;
+		public static const SLOW_DOWN:int = 2;
 		private var _slowImg:Image;
 		
-		private var _doubleShot:int;
+		public static const DOUBLE_SHOT:int;
 		private var _doubleImg:Image;
 		
-		private var _healthDrop:int = 1;
+		public static const HEALTH_DROP:int = 1;
 		private var _healthImg:Image;
+		
+		private var _powerUpHolder:Array = [];
+		private var _index:int = 10;
 		
 		public function PowerUp()
 		{
 			super();
+			init();
 		}
-
-		public function set speedUp(value:int):void
+		
+		private function init():void
 		{
-			_speedUp = value;
+			for(var i:int = 1; i < _index; i++)
+			{
+				
+			}
 		}
-
-		public function set slowDown(value:int):void
-		{
-			_slowDown = value;
-		}
-
-		public function set healthDrop(value:int):void
-		{
-			_healthDrop = value;
-		}
-
-
 	}
 }
