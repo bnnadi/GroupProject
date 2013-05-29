@@ -87,6 +87,8 @@ package com.wbarra.controller.states
 		private var _firing:Boolean = false; // Tracks whether the mouse is currently down, for machine-gun.
 		private var _bulletCounter:uint = 0;
 		
+		private var _killGame:Boolean = true;
+		
 		public function Play(game:Game)
 		{
 			this._game = game;
@@ -296,7 +298,9 @@ package com.wbarra.controller.states
 					shipHit();
 				}
 			}
-			
+			// =======================================================
+			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
+			// ALLOWS FOR IT
 			// Setting the points for the power ups
 			//========================================================
 			/*_pHealthUp = new Point(_powerUp.x, _powerUp.y);
@@ -312,6 +316,7 @@ package com.wbarra.controller.states
 			_distanceDoubleShot = Point.distance(_pHero, _pDoubleShot);
 			
 			*/
+			//========================================================s
 		}
 		
 		private function shipHit():void
@@ -326,8 +331,8 @@ package com.wbarra.controller.states
 			{
 				_hero.alive = false;
 //				_hero.isAlive(_hero.alive);
-//				destroy();
-//				killGame();
+				destroy();
+				killGame();
 				// If the destroy() and the killGame() are running,
 				// this is the error code we get:
 				// Error #3691: Resource limit for this resource type exceeded.
@@ -340,6 +345,7 @@ package com.wbarra.controller.states
 			else
 			{
 				_hero.health -= _damage;
+				trace(_hero.health);
 				_hero.alive = true;
 			}
 		}
@@ -373,8 +379,13 @@ package com.wbarra.controller.states
 		
 		private function killGame():void
 		{
+			if(_killGame){
+				
 			trace('testing the killGame()');
+			_killGame = false;
 			_game.changeState(Game.GAME_OVER_STATE);
+			
+			}
 		}
 	}
 }
