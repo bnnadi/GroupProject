@@ -3,3 +3,5 @@ bin-release/
 .settings/
 .DS_Store
 .project
+
+!bin-debug/trackme
