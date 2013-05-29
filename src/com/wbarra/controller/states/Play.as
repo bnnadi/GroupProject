@@ -249,6 +249,9 @@ package com.wbarra.controller.states
 					e1.enemyMove( (_hero.x  ), (_hero.y ));
 					// collision detection for enemy One
 					
+					
+					// this is the working model for collision detection. 
+					// use this model to build the rest of the collision detection system
 					if(_hero.x > e1.x){
 						_shipDistanceX = _hero.x - e1.x;
 					}else{
