@@ -1,10 +1,5 @@
-bin-debug/
-bin-debug/GroupProject.swf
+bin-debug/*.swf
 bin-release/
 .settings/
 .DS_Store
 .project
-
-# .actionScriptProperties
-
-bin-debug/GroupProject-app.xml
