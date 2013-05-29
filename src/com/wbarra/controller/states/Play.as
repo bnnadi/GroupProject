@@ -12,7 +12,9 @@ package com.wbarra.controller.states
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.globalization.LastOperationStatus;
 	import flash.utils.Timer;
+	import flash.utils.setTimeout;
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
@@ -38,6 +40,7 @@ package com.wbarra.controller.states
 		private var _enemyTwoHolder:Array = [];
 		private var _enemyThreeHolder:Array = [];
 		
+		
 		// getting the hero's X/Y position to pass into the Enemy One for Targeting.
 		private var _heroX:Number; 
 		private var _heroY:Number;
@@ -60,62 +63,63 @@ package com.wbarra.controller.states
 		private var _radEnemyTwo:Number;
 		private var _radEnemyThree:Number;
 		private var _radBullet:Number;
-		private var _mx:Number;
-		private var _my:Number;
+		private var _lastMouseX:Number;
+		private var _lastMouseY:Number;
 		private var _pBullet:Point;
 		private var _shootTimer:Timer;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];
-		private var _firing:Boolean = false;
+		private var _canFire:Boolean = true; // Tracks whether enough time has elapsed since last bullet.
+		private var _firing:Boolean = false; // Tracks whether the mouse is currently down, for machine-gun.
 		private var _bulletCounter:uint = 0;
 		
 		public function Play(game:Game)
 		{
 			this._game = game;
-			trace("ran");
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
 			addEventListener(Event.ENTER_FRAME, onEnterFrame);
-			
 		}
 		
 		private function onTouch(event:TouchEvent):void
 		{
 			var touch:Touch = event.getTouch(stage);
+			
 			if(touch)
 			{
-				if(touch.phase == TouchPhase.BEGAN)
+				_lastMouseX = touch.globalX;
+				_lastMouseY = touch.globalY;
+				
+				if(_canFire && touch.phase == TouchPhase.BEGAN)
 				{
-//					_firing = true;
-//					bulletFire();
-					
+					_firing = true;
+					fireBullet(touch.globalX,touch.globalY);
 				}
-					
-				else if(touch.phase == TouchPhase.ENDED)
+				
+				if(touch.phase == TouchPhase.ENDED)
 				{
 					_firing = false;
-					
-				}
-					
-				else if(touch.phase == TouchPhase.MOVED)
-				{
-					_mx = touch.globalX;
-					_my = touch.globalY;
-					_shootTimer = new Timer(0, 2);
-					_shootTimer.addEventListener(TimerEvent.TIMER, timerShoot);
-					_shootTimer.start()
 				}
 			}
-		}		
+		}
 		
-		private function timerShoot(event:TimerEvent):void
+		private function resetFiring():void
 		{
+			_canFire = true;
+		}
+		
+		private function fireBullet(xParam:Number,yParam:Number):void
+		{
+			_canFire = false;
+			setTimeout(resetFiring,100);
+			
+			
 			_bulletHolder[_bulletCounter].x = _hero.x;
 			_bulletHolder[_bulletCounter].y = _hero.y;
 			// calculate the firing angle 
-			_bulletHolder[_bulletCounter].targetY = _my;
-			_bulletHolder[_bulletCounter].targetX = _mx;
-			_bulletHolder[_bulletCounter].alive = true;
+			_bulletHolder[_bulletCounter].targetY = yParam;
+			_bulletHolder[_bulletCounter].targetX = xParam;
+			_bulletHolder[_bulletCounter].alive = true
 			stage.addChild(_bulletHolder[_bulletCounter]);
 			_bulletCounter ++;
 			if (_bulletCounter >= 100)
@@ -124,23 +128,8 @@ package com.wbarra.controller.states
 			}
 		}
 		
-		private function bulletFire():void{
-		{
 			
-//			_bulletHolder[_bulletCounter].x = _hero.x;
-//			_bulletHolder[_bulletCounter].y = _hero.y;
-//			// calculate the firing angle 
-//			_bulletHolder[_bulletCounter].targetY = _my;
-//			_bulletHolder[_bulletCounter].targetX = _mx;
-//			_bulletHolder[_bulletCounter].alive = true;
-//			stage.addChild(_bulletHolder[_bulletCounter]);
-//			_bulletCounter ++;
-//			if (_bulletCounter >= 100)
-//			{
-//				_bulletCounter = 0;
-//			}
-		}			
-		}
+		
 		private function onAdded():void
 		{
 			// adding the event listener to the stage
@@ -195,7 +184,6 @@ package com.wbarra.controller.states
 				spacer += _enemyThree.width + 10;
 //				trace(_enemyThreeHolder.length);
 			}
-			
 			// building the bullets 
 			for (var f:int = 0; f < 100; f++)
 			{
@@ -203,9 +191,11 @@ package com.wbarra.controller.states
 				_bulletHolder.push( bullet );
 			}
 		}
-		
 		private function onEnterFrame():void
 		{
+			if(_firing && _canFire){
+				fireBullet(_lastMouseX,_lastMouseY);
+			}
 			// moving the bullet 
 			for each (var bullet:Bullet in _bulletHolder) 
 			{
@@ -213,10 +203,15 @@ package com.wbarra.controller.states
 				_pBullet = new Point(bullet.x, bullet.y);
 				_radBullet = bullet.width/2;
 				
-				if (_distanceBullet < _radBullet + _radEnemyOne)
+				for each (var e:EnemyOne in _enemyOneHolder) 
 				{
-					trace("enemy one hit");
+					if (_distanceBullet < _radBullet + _radEnemyOne)
+					{
+						trace("enemy one hit");
+					}
 				}
+				
+				
 				if (_distanceBullet < _radBullet + _radEnemyTwo)
 				{
 					trace("enemy two hit");
