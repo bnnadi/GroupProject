@@ -299,7 +299,7 @@ package com.wbarra.controller.states
 			
 			// Setting the points for the power ups
 			//========================================================
-			_pHealthUp = new Point(_powerUp.x, _powerUp.y);
+			/*_pHealthUp = new Point(_powerUp.x, _powerUp.y);
 			_distanceHealthDrop = Point.distance(_pHero, _pHealthUp);
 			
 			_pSpeedUp = new Point(_powerUp.x, _powerUp.y)
@@ -311,7 +311,7 @@ package com.wbarra.controller.states
 			_pDoubleShot = new Point(_powerUp.x, _powerUp.y);
 			_distanceDoubleShot = Point.distance(_pHero, _pDoubleShot);
 			
-			
+			*/
 		}
 		
 		private function shipHit():void
