@@ -8,6 +8,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
 	import com.wbarra.controller.objects.Bullet;
+	import com.wbarra.controller.objects.PowerUp;
 	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
@@ -64,6 +65,17 @@ package com.wbarra.controller.states
 		private var _my:Number;
 		private var _pBullet:Point;
 		private var _shootTimer:Timer;
+		
+		// Power Up Distance and Collision Detection
+		private var _pSpeedUp:Point;
+		private var _pSlowDown :Point;
+		private var _pHealthUp:Point;
+		private var _pDoubleShot:Point;
+		private var _distanceSpeedUp:Number;
+		private var _distanceSlowDown:Number;
+		private var _distanceHealthDrop:Number;
+		private var _distanceDoubleShot:Number;
+		private var _powerUp:PowerUp;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];
@@ -283,6 +295,22 @@ package com.wbarra.controller.states
 					shipHit();
 				}
 			}
+			
+			// Setting the points for the power ups
+			//========================================================
+			_pHealthUp = new Point(_powerUp.x, _powerUp.y);
+			_distanceHealthDrop = Point.distance(_pHero, _pHealthUp);
+			
+			_pSpeedUp = new Point(_powerUp.x, _powerUp.y)
+			_distanceSpeedUp = Point.distance(_pHero, _pSpeedUp);
+			
+			_pSlowDown = new Point(_powerUp.x, _powerUp.y);
+			_distanceSlowDown = Point.distance(_pHero, _pSlowDown);
+			
+			_pDoubleShot = new Point(_powerUp.x, _powerUp.y);
+			_distanceDoubleShot = Point.distance(_pHero, _pDoubleShot);
+			
+			
 		}
 		
 		private function shipHit():void
