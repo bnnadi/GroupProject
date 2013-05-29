@@ -4,6 +4,7 @@ package com.wbarra.controller.objects
 	
 	import starling.display.Image;
 	import starling.display.Sprite;
+	import starling.events.Event;
 	
 	public class Bullet extends Sprite
 	{
@@ -25,10 +26,8 @@ package com.wbarra.controller.objects
 		public function Bullet(alive = false)
 		{
 			super();
-			var bullet:Image = Image.fromBitmap(new AllMyImages.BulletImg());
-			scaleX = scaleY = .5;
-			addChild(bullet);
-			_alive = alive;
+			addEventListener(Event.ADDED_TO_STAGE, onAdded);
+			
 		}
 
 		public function get onceOver():Boolean
@@ -71,6 +70,13 @@ package com.wbarra.controller.objects
 			_targetX = value;
 		}
 
+		public function onAdded():void
+		{
+			var bullet:Image = Image.fromBitmap(new AllMyImages.BulletImg());
+			scaleX = scaleY = .5;
+			addChild(bullet);
+			_alive = alive;
+		}
 		public function bulletTargetingSystem():void
 		{
 			
@@ -98,11 +104,14 @@ package com.wbarra.controller.objects
 				if (y > 768 || y < 0)
 				{
 					_alive = false;	
-					parent.removeChild(this);
 					_onceOver = true;
 				}
 				
 			}// end if 
+			if (!alive)
+			{
+				removeChild(this);
+			}
 		}
 	}
 }
