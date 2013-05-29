@@ -75,6 +75,8 @@ package com.wbarra.controller.states
 		
 		private var _shipDistanceX:Number;
 		private var _shipDistanceY:Number;
+		private var _bullDistanceX:Number;
+		private var _bullDistanceY:Number;
 		
 		private var _e1Distance:Number;
 		// Power Up Distance and Collision Detection
@@ -245,7 +247,6 @@ package com.wbarra.controller.states
 				
 				if(e1.alive)
 				{
-					
 					e1.enemyMove( (_hero.x  ), (_hero.y ));
 					// collision detection for enemy One
 					
@@ -269,33 +270,34 @@ package com.wbarra.controller.states
 						trace("hit1");
 						shipHit();
 					}
-				
+					// BULLET SHOT TEST
+					for each (var b:Bullet in _bulletHolder) 
+					{
+						if (b.alive)
+						{
+							if (b.x > e1.x)
+							{
+								_bullDistanceX = b.x - e1.x;
+							}
+							else
+							{
+								_bullDistanceX = e1.x - b.x;
+							}
+							if (b.y > e1.y)
+							{
+								_bullDistanceY = b.y - e1.y;
+							}
+							else
+							{
+								_bullDistanceY = e1.y - b.y;
+							}
+							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+							{
+								removeChild(e1);
+							}
+						}
+					}
 				}
-				for each (var b:Bullet in _bulletHolder) 
-				{
-						
-				}
-				
-				
-//				_radEnemyOne = e1.width / 2;
-//				_pEnemyOne = new Point(e1.x, e1.y);
-//				_distanceEnemyOne = Point.distance(_pHero, _pEnemyOne);
-//				if (_distanceEnemyOne < _radHero + _radEnemyOne)
-//				{
-//					shipHit();
-//				}
-//				// checking bullet for collision 
-//				
-//				for each (var bullet:Bullet in _bulletHolder) 
-//				{
-//					_pBullet = new Point(bullet.x, bullet.y);
-//				_radBullet = bullet.width/2;
-//					_distanceBulletEnemyOne = Point.distance(_pBullet, _pEnemyOne);
-//					if (_distanceBulletEnemyOne < _radBullet + _radEnemyOne)
-//					{
-//						trace("1");
-//					}
-//				}
 			}
 			//=======================================================
 			
@@ -325,25 +327,35 @@ package com.wbarra.controller.states
 						trace("hit2");
 						shipHit();
 					}
+					// BULLET SHOT TEST
+					for each (var b:Bullet in _bulletHolder) 
+					{
+						if (b.alive)
+						{
+							if (b.x > e2.x)
+							{
+								_bullDistanceX = b.x - e2.x;
+							}
+							else
+							{
+								_bullDistanceX = e2.x - b.x;
+							}
+							if (b.y > e2.y)
+							{
+								_bullDistanceY = b.y - e2.y;
+							}
+							else
+							{
+								_bullDistanceY = e2.y - b.y;
+							}
+							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+							{
+								removeChild(e2);
+							}
+						}
+					}
 				
 				}
-//				_radEnemyTwo = d.width/2;
-//				_pEnemyTwo = new Point(d.x, d.y);
-//				_distanceEnemyTwo = Point.distance(_pHero, _pEnemyTwo);
-//				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
-//				{
-//					shipHit();
-//				}
-//				for each (var bullet:Bullet in _bulletHolder) 
-//				{
-//					_pBullet = new Point(bullet.x, bullet.y);
-//					_radBullet = bullet.width/2;
-//					_distanceBulletEnemyTwo = Point.distance(_pBullet, _pEnemyTwo);
-//					if (_distanceBulletEnemyTwo < _radBullet + _radEnemyTwo)
-//					{
-//						trace("2");
-//					}
-//				}
 			}
 			
 			
@@ -372,25 +384,34 @@ package com.wbarra.controller.states
 						trace("hit3");
 						shipHit();
 					}
+					// BULLET SHOT TEST
+					for each (var b:Bullet in _bulletHolder) 
+					{
+						if (b.alive)
+						{
+							if (b.x > e3.x)
+							{
+								_bullDistanceX = b.x - e3.x;
+							}
+							else
+							{
+								_bullDistanceX = e3.x - b.x;
+							}
+							if (b.y > e3.y)
+							{
+								_bullDistanceY = b.y - e3.y;
+							}
+							else
+							{
+								_bullDistanceY = e3.y - b.y;
+							}
+							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+							{
+								removeChild(e3);
+							}
+						}
+					}
 				}
-//				_radEnemyThree = f.width/2;
-//				_pEnemyThree = new Point(f.x, f.y);
-//				
-//				_distanceEnemyThree = Point.distance(_pHero, _pEnemyThree);
-//				if (_distanceEnemyThree < _radHero + _radEnemyThree)
-//				{
-//					shipHit();
-//				}
-//				for each (var bullet:Bullet in _bulletHolder) 
-//				{
-//					_pBullet = new Point(bullet.x, bullet.y);
-//					_radBullet = bullet.width/2;
-//					_distanceBulletEnemyThree = Point.distance(_pBullet, _pEnemyThree);
-//					if (_distanceBulletEnemyThree < _radBullet + _radEnemyThree)
-//					{
-//						trace("2");
-//					}
-//				}
 			}
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
@@ -412,7 +433,6 @@ package com.wbarra.controller.states
 			*/
 			//========================================================sgit 
 		}
-		
 		private function shipHit():void
 		{
 			// Trying to get the _hero.health to break us
@@ -421,27 +441,23 @@ package com.wbarra.controller.states
 			//			trace("hit");
 			//			trace('hero health: '+_hero.health);
 			
-			if(_hero.health <= 0)
-			{
-				_hero.alive = false;
-				//				_hero.isAlive(_hero.alive);
-				destroy();
-				killGame();
-				// If the destroy() and the killGame() are running,
-				// this is the error code we get:
-				// Error #3691: Resource limit for this resource type exceeded.
-				//WTF!?!!
-			}
-			else if(_hero.health > 5)
-			{
-				_hero.health = 5;
-			}
-			else
-			{
-				_hero.health -= _damage;
-				trace(_hero.health);
-				_hero.alive = true;
-			}
+//			if(_hero.health <= 0)
+//			{
+//				_hero.alive = false;
+//				//				_hero.isAlive(_hero.alive);
+//				destroy();
+//				killGame();
+//			}
+//			else if(_hero.health > 5)
+//			{
+//				_hero.health = 5;
+//			}
+//			else
+//			{
+//				_hero.health -= _damage;
+//				trace(_hero.health);
+//				_hero.alive = true;
+//			}
 		}
 		
 		public function update():void
@@ -449,7 +465,7 @@ package com.wbarra.controller.states
 			if(!_hero.alive)
 			{
 				trace('running the update()');
-				destroy();
+//				destroy();
 			}
 		}
 		
