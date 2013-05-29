@@ -6,3 +6,5 @@ bin-release/
 .project
 
 .actionScriptProperties
+
+bin-debug/GroupProject-app.xml
