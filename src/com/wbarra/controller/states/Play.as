@@ -19,6 +19,7 @@ package com.wbarra.controller.states
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.utils.formatString;
 	
 	public class Play extends Sprite implements IState
 	{
@@ -52,7 +53,7 @@ package com.wbarra.controller.states
 		private var _distanceBullet:Number;
 		private var _distanceBulletEnemyOne:Number;
 		private var _distanceBulletEnemyTwo:Number;
-		private var _distanceBulletEnmyThree:Number;
+		private var _distanceBulletEnemyThree:Number;
 		
 		// collision detection 
 		private var _pHero:Point;
@@ -69,6 +70,11 @@ package com.wbarra.controller.states
 		private var _pBullet:Point;
 		private var _shootTimer:Timer;
 		
+		
+		private var _shipDistanceX:Number;
+		private var _shipDistanceY:Number;
+		
+		private var _e1Distance:Number;
 		// bullet realted
 		private var _bulletHolder:Array = [];
 		private var _canFire:Boolean = true; // Tracks whether enough time has elapsed since last bullet.
@@ -219,70 +225,149 @@ package com.wbarra.controller.states
 			//=======================================================
 			for each (var e1:EnemyOne in _enemyOneHolder) 
 			{
-				e1.enemyMove( (_hero.x  ), (_hero.y ));// breaks when i account for the height and the width 
-				// somethingto do with the mouse coming onto the stage. 
-				// collision detection for enemy One
-				_radEnemyOne = e1.width / 2;
-				_pEnemyOne = new Point(e1.x, e1.y);
-				_distanceEnemyOne = Point.distance(_pHero, _pEnemyOne);
-				if (_distanceEnemyOne < _radHero + _radEnemyOne)
-				{
-					shipHit();
-				}
-				// checking bullet for collision 
 				
-				for each (var bullet:Bullet in _bulletHolder) 
+				if(e1.alive)
 				{
-					_pBullet = new Point(bullet.x, bullet.y);
-					_radBullet = bullet.width/2;
-					_distanceBulletEnemyOne = Point.distance(_pBullet, _pEnemyOne);
-					if (_distanceBulletEnemyOne < _radBullet + _radEnemyOne)
-					{
-						trace("1");
+					
+					e1.enemyMove( (_hero.x  ), (_hero.y ));
+					// collision detection for enemy One
+					
+					if(_hero.x > e1.x){
+						_shipDistanceX = _hero.x - e1.x;
+					}else{
+						_shipDistanceX =  e1.x - _hero.x;
 					}
+					
+					if(_hero.y > e1.y){
+						_shipDistanceY = _hero.y - e1.y;
+					}else{
+						_shipDistanceY = e1.y - _hero.y;
+					}
+					
+					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
+					{
+						trace("hit1");		
+					}
+				
 				}
+				for each (var b:Bullet in _bulletHolder) 
+				{
+						
+				}
+				
+				
+//				_radEnemyOne = e1.width / 2;
+//				_pEnemyOne = new Point(e1.x, e1.y);
+//				_distanceEnemyOne = Point.distance(_pHero, _pEnemyOne);
+//				if (_distanceEnemyOne < _radHero + _radEnemyOne)
+//				{
+//					shipHit();
+//				}
+//				// checking bullet for collision 
+//				
+//				for each (var bullet:Bullet in _bulletHolder) 
+//				{
+//					_pBullet = new Point(bullet.x, bullet.y);
+//				_radBullet = bullet.width/2;
+//					_distanceBulletEnemyOne = Point.distance(_pBullet, _pEnemyOne);
+//					if (_distanceBulletEnemyOne < _radBullet + _radEnemyOne)
+//					{
+//						trace("1");
+//					}
+//				}
 			}
 			//=======================================================
 			
 			//Moving EnemyTwo on the stage. 
 			//=======================================================
-			for each (var d:EnemyTwo in _enemyTwoHolder)
+			for each (var e2:EnemyTwo in _enemyTwoHolder)
 			{
-				d.enemyMove();
-				_radEnemyTwo = d.width/2;
-				_pEnemyTwo = new Point(d.x, d.y);
-				_distanceEnemyTwo = Point.distance(_pHero, _pEnemyTwo);
+				if(e2.alive)
+				{
 				
-				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
-				{
-					shipHit();
-				}
-				for each (var bullet:Bullet in _bulletHolder) 
-				{
-					_pBullet = new Point(bullet.x, bullet.y);
-					_radBullet = bullet.width/2;
-					_distanceBulletEnemyTwo = Point.distance(_pBullet, _pEnemyTwo);
-					if (_distanceBulletEnemyOne < _radBullet + _radEnemyTwo)
-					{
-						trace("2");
+					e2.enemyMove();
+					
+					if(_hero.x > e2.x){
+						_shipDistanceX = _hero.x - e2.x;
+					}else{
+						_shipDistanceX =  e2.x - _hero.x;
 					}
+					
+					if(_hero.y > e2.y){
+						_shipDistanceY = _hero.y - e2.y;
+					}else{
+						_shipDistanceY = e2.y - _hero.y;
+					}
+					
+					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
+					{
+						trace("hit2");		
+					}
+				
 				}
+//				_radEnemyTwo = d.width/2;
+//				_pEnemyTwo = new Point(d.x, d.y);
+//				_distanceEnemyTwo = Point.distance(_pHero, _pEnemyTwo);
+//				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
+//				{
+//					shipHit();
+//				}
+//				for each (var bullet:Bullet in _bulletHolder) 
+//				{
+//					_pBullet = new Point(bullet.x, bullet.y);
+//					_radBullet = bullet.width/2;
+//					_distanceBulletEnemyTwo = Point.distance(_pBullet, _pEnemyTwo);
+//					if (_distanceBulletEnemyTwo < _radBullet + _radEnemyTwo)
+//					{
+//						trace("2");
+//					}
+//				}
 			}
 			
 			
 			//Moving EnemyThree on the stage. 
 			//=======================================================
-			for each (var f:EnemyThree in _enemyThreeHolder)
+			for each (var e3:EnemyThree in _enemyThreeHolder)
 			{
-				f.enemyMove();	
-				_radEnemyThree = f.width/2;
-				_pEnemyThree = new Point(f.x, f.y);
-				
-				_distanceEnemyThree = Point.distance(_pHero, _pEnemyThree);
-				if (_distanceEnemyThree < _radHero + _radEnemyThree)
+				if(e2.alive)
 				{
-					shipHit();
+					e3.enemyMove();	
+					
+					if(_hero.x > e3.x){
+						_shipDistanceX = _hero.x - e3.x;
+					}else{
+						_shipDistanceX =  e3.x - _hero.x;
+					}
+					
+					if(_hero.y > e3.y){
+						_shipDistanceY = _hero.y - e3.y;
+					}else{
+						_shipDistanceY = e3.y - _hero.y;
+					}
+					
+					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
+					{
+	//					trace("hit3");		
+					}
 				}
+//				_radEnemyThree = f.width/2;
+//				_pEnemyThree = new Point(f.x, f.y);
+//				
+//				_distanceEnemyThree = Point.distance(_pHero, _pEnemyThree);
+//				if (_distanceEnemyThree < _radHero + _radEnemyThree)
+//				{
+//					shipHit();
+//				}
+//				for each (var bullet:Bullet in _bulletHolder) 
+//				{
+//					_pBullet = new Point(bullet.x, bullet.y);
+//					_radBullet = bullet.width/2;
+//					_distanceBulletEnemyThree = Point.distance(_pBullet, _pEnemyThree);
+//					if (_distanceBulletEnemyThree < _radBullet + _radEnemyThree)
+//					{
+//						trace("2");
+//					}
+//				}
 			}
 		}
 		

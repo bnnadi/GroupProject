@@ -57,6 +57,12 @@ package com.wbarra.controller.EnemyShips
 			_alive = true;	
 			spawnPoint();
 		}
+
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
 		private function spawnPoint():void
 		{
 			// spawn point on the bottom of the stage 

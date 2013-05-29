@@ -35,6 +35,12 @@ package com.wbarra.controller.EnemyShips
 			// calling spawn point function 
 			spawnPoint();
 		}
+
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
 		private function spawnPoint():void
 		{
 			// I set the spawn point of the ship somewhere in the stage. 

@@ -41,23 +41,28 @@ package com.wbarra.controller.EnemyShips
 			
 			// adding the particles 
 			
-			var psConfig:XML = XML(new AllMyParticles.PEOne());
-			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIEOne());
-			_ps = new PDParticleSystem(psConfig, psTexture);
-			_ps.x = 30;
-			_ps.y = 25;
-			_ps.emitterX = 0;
-			_ps.emitterY = 0;
-			addChild( _ps );
-			Starling.juggler.add( _ps );
-		
-			_ps.start();
+//			var psConfig:XML = XML(new AllMyParticles.PEOne());
+//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIEOne());
+//			_ps = new PDParticleSystem(psConfig, psTexture);
+//			_ps.x = 30;
+//			_ps.y = 25;
+//			_ps.emitterX = 0;
+//			_ps.emitterY = 0;
+//			addChild( _ps );
+//			Starling.juggler.add( _ps );
+//		
+//			_ps.start();
 			_alive = true;
 			
 			// calling spawn point function 
 			spawnPoint();
 		}
 		
+		public function get alive():Boolean
+		{
+			return _alive;
+		}
+
 		private function spawnPoint():void
 		{
 			// I set the spawn point of the ship somewhere in the stage. 
