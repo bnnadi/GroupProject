@@ -30,27 +30,15 @@ package com.wbarra.controller.states
 			
 			_play = new Button(Texture.fromBitmap(new AllMyImages.PlayButton()));
 			_play.addEventListener(Event.TRIGGERED, onClickPlay);
-			_play.x = stage.stageWidth*.5 - _play.width - 50;
+			_play.x = (stage.stageWidth*.5) - (_play.width*.5);
 			_play.y = 400;
 			addChild(_play);
-			
-			_options = new Button(Texture.fromBitmap(new AllMyImages.OptionsButton()));
-			_options.addEventListener(Event.TRIGGERED, onClickOptions);
-			_options.x = stage.stageWidth*.5 + 50;
-			_options.y = 400;
-			addChild(_options);
-		}
-		
-		private function onClickOptions(event:Event):void
-		{
-			_game.changeState(Game.MENU_STATE);
-			destroy();
 		}
 		
 		private function onClickPlay(event:Event):void
 		{
-			_game.changeState(Game.PLAY_STATE);
-			destroy()
+			_game.changeState(Game.MENU_STATE);
+			destroy();
 		}
 		
 		public function update():void

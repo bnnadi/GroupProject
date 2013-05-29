@@ -266,7 +266,8 @@ package com.wbarra.controller.states
 					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-						trace("hit1");		
+						trace("hit1");
+						shipHit();
 					}
 				
 				}
@@ -321,7 +322,8 @@ package com.wbarra.controller.states
 					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-						trace("hit2");		
+						trace("hit2");
+						shipHit();
 					}
 				
 				}
@@ -367,7 +369,8 @@ package com.wbarra.controller.states
 					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-	//					trace("hit3");		
+						trace("hit3");
+						shipHit();
 					}
 				}
 //				_radEnemyThree = f.width/2;
@@ -445,7 +448,7 @@ package com.wbarra.controller.states
 		{
 			if(!_hero.alive)
 			{
-				//				trace('running the update()');
+				trace('running the update()');
 				destroy();
 			}
 		}
