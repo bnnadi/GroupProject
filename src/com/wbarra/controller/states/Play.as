@@ -98,6 +98,9 @@ package com.wbarra.controller.states
 		
 		private var _killGame:Boolean = true;
 		
+		// Battlefield
+		private var _battlefield:Sprite;
+		
 		public function Play(game:Game)
 		{
 			this._game = game;
@@ -152,8 +155,6 @@ package com.wbarra.controller.states
 				_bulletCounter = 0;
 			}
 		}
-		
-		
 		
 		private function onAdded():void
 		{
@@ -271,6 +272,7 @@ package com.wbarra.controller.states
 						shipHit();
 					}
 					// BULLET SHOT TEST
+					// Bullet collisioin with the enemy ships
 					for each (var b:Bullet in _bulletHolder) 
 					{
 						if (b.alive)
@@ -354,10 +356,8 @@ package com.wbarra.controller.states
 							}
 						}
 					}
-				
 				}
 			}
-			
 			
 			//Moving EnemyThree on the stage. 
 			//=======================================================
@@ -440,24 +440,25 @@ package com.wbarra.controller.states
 			// the last method in this class.
 			//			trace("hit");
 			//			trace('hero health: '+_hero.health);
+						
 			
-//			if(_hero.health <= 0)
-//			{
-//				_hero.alive = false;
-//				//				_hero.isAlive(_hero.alive);
-//				destroy();
-//				killGame();
-//			}
-//			else if(_hero.health > 5)
-//			{
-//				_hero.health = 5;
-//			}
-//			else
-//			{
-//				_hero.health -= _damage;
-//				trace(_hero.health);
-//				_hero.alive = true;
-//			}
+			if(_hero.health <= 0)
+			{
+				_hero.alive = false;
+				//				_hero.isAlive(_hero.alive);
+				destroy();
+				killGame();
+			}
+			else if(_hero.health > 5)
+			{
+				_hero.health = 5;
+			}
+			else
+			{
+				_hero.health -= _damage;
+				trace(_hero.health);
+				_hero.alive = true;
+			}
 		}
 		
 		public function update():void
