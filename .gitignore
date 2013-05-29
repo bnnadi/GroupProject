@@ -5,6 +5,6 @@ bin-release/
 .DS_Store
 .project
 
-.actionScriptProperties
+# .actionScriptProperties
 
 bin-debug/GroupProject-app.xml
