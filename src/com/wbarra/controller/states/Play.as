@@ -491,6 +491,7 @@ package com.wbarra.controller.states
 				removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 				removeEventListener(TouchEvent.TOUCH, onTouch);
+				stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 //				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
 				
 				_game.changeState(Game.GAME_OVER_STATE);
