@@ -10,9 +10,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	
 	import flash.events.Event;
-	import flash.events.TimerEvent;
 	import flash.geom.Point;
-	import flash.globalization.LastOperationStatus;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
@@ -52,6 +50,9 @@ package com.wbarra.controller.states
 		private var _distanceEnemyTwo:Number;
 		private var _distanceEnemyThree:Number;
 		private var _distanceBullet:Number;
+		private var _distanceBulletEnemyOne:Number;
+		private var _distanceBulletEnemyTwo:Number;
+		private var _distanceBulletEnmyThree:Number;
 		
 		// collision detection 
 		private var _pHero:Point;
@@ -203,23 +204,6 @@ package com.wbarra.controller.states
 				_pBullet = new Point(bullet.x, bullet.y);
 				_radBullet = bullet.width/2;
 				
-				for each (var e:EnemyOne in _enemyOneHolder) 
-				{
-					if (_distanceBullet < _radBullet + _radEnemyOne)
-					{
-						trace("enemy one hit");
-					}
-				}
-				
-				
-				if (_distanceBullet < _radBullet + _radEnemyTwo)
-				{
-					trace("enemy two hit");
-				}
-				if (_distanceBullet < _radBullet + _radEnemyThree)
-				{
-					trace("enemy three hit");
-				}
 			}
 			
 			// moving the Hero
@@ -233,17 +217,29 @@ package com.wbarra.controller.states
 			
 			//Moving EnemyOne on the stage. 
 			//=======================================================
-			for each (var e:EnemyOne in _enemyOneHolder) 
+			for each (var e1:EnemyOne in _enemyOneHolder) 
 			{
-				e.enemyMove( (_hero.x  ), (_hero.y ));// breaks when i account for the height and the width 
+				e1.enemyMove( (_hero.x  ), (_hero.y ));// breaks when i account for the height and the width 
 				// somethingto do with the mouse coming onto the stage. 
 				// collision detection for enemy One
-				_radEnemyOne = e.width / 2;
-				_pEnemyOne = new Point(e.x, e.y);
+				_radEnemyOne = e1.width / 2;
+				_pEnemyOne = new Point(e1.x, e1.y);
 				_distanceEnemyOne = Point.distance(_pHero, _pEnemyOne);
 				if (_distanceEnemyOne < _radHero + _radEnemyOne)
 				{
 					shipHit();
+				}
+				// checking bullet for collision 
+				
+				for each (var bullet:Bullet in _bulletHolder) 
+				{
+					_pBullet = new Point(bullet.x, bullet.y);
+					_radBullet = bullet.width/2;
+					_distanceBulletEnemyOne = Point.distance(_pBullet, _pEnemyOne);
+					if (_distanceBulletEnemyOne < _radBullet + _radEnemyOne)
+					{
+						trace("1");
+					}
 				}
 			}
 			//=======================================================
@@ -260,6 +256,16 @@ package com.wbarra.controller.states
 				if (_distanceEnemyTwo < _radHero + _radEnemyTwo)
 				{
 					shipHit();
+				}
+				for each (var bullet:Bullet in _bulletHolder) 
+				{
+					_pBullet = new Point(bullet.x, bullet.y);
+					_radBullet = bullet.width/2;
+					_distanceBulletEnemyTwo = Point.distance(_pBullet, _pEnemyTwo);
+					if (_distanceBulletEnemyOne < _radBullet + _radEnemyTwo)
+					{
+						trace("2");
+					}
 				}
 			}
 			
