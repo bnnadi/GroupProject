@@ -38,25 +38,16 @@ package com.wbarra.controller.EnemyShips
 			// look for a way to stop a movie clip on a frame 
 			addChild(_mc);
 			Starling.juggler.add(_mc);
-			
-			// adding the particles 
-			
-//			var psConfig:XML = XML(new AllMyParticles.PEOne());
-//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIEOne());
-//			_ps = new PDParticleSystem(psConfig, psTexture);
-//			_ps.x = 30;
-//			_ps.y = 25;
-//			_ps.emitterX = 0;
-//			_ps.emitterY = 0;
-//			addChild( _ps );
-//			Starling.juggler.add( _ps );
-//			_ps.start();
-			
 			_alive = true;
 			// calling spawn point function 
 			spawnPoint();
 		}
 		
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
+		}
+
 		public function get alive():Boolean
 		{
 			return _alive;

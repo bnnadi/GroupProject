@@ -10,7 +10,6 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.objects.PowerUp;
 	
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
@@ -21,7 +20,6 @@ package com.wbarra.controller.states
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.utils.formatString;
 	
 	public class Play extends Sprite implements IState
 	{
@@ -294,6 +292,8 @@ package com.wbarra.controller.states
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
 								removeChild(e1);
+								e1.alive = false;
+								
 							}
 						}
 					}
@@ -351,6 +351,7 @@ package com.wbarra.controller.states
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
 								removeChild(e2);
+								e2.alive = false;
 							}
 						}
 					}
@@ -384,31 +385,32 @@ package com.wbarra.controller.states
 						trace("hit3");
 						shipHit();
 					}
-					// BULLET SHOT TEST
-					for each (var b:Bullet in _bulletHolder) 
+				}
+				// BULLET SHOT TEST
+				for each (var b:Bullet in _bulletHolder) 
+				{
+					if (b.alive)
 					{
-						if (b.alive)
+						if (b.x > e3.x)
 						{
-							if (b.x > e3.x)
-							{
-								_bullDistanceX = b.x - e3.x;
-							}
-							else
-							{
-								_bullDistanceX = e3.x - b.x;
-							}
-							if (b.y > e3.y)
-							{
-								_bullDistanceY = b.y - e3.y;
-							}
-							else
-							{
-								_bullDistanceY = e3.y - b.y;
-							}
-							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
-							{
-								removeChild(e3);
-							}
+							_bullDistanceX = b.x - e3.x;
+						}
+						else
+						{
+							_bullDistanceX = e3.x - b.x;
+						}
+						if (b.y > e3.y)
+						{
+							_bullDistanceY = b.y - e3.y;
+						}
+						else
+						{
+							_bullDistanceY = e3.y - b.y;
+						}
+						if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+						{
+							removeChild(e3);
+							e3.alive = false;
 						}
 					}
 				}
@@ -441,23 +443,23 @@ package com.wbarra.controller.states
 			//			trace("hit");
 			//			trace('hero health: '+_hero.health);
 			
-//			if(_hero.health <= 0)
-//			{
-//				_hero.alive = false;
-//				//				_hero.isAlive(_hero.alive);
-//				destroy();
-//				killGame();
-//			}
-//			else if(_hero.health > 5)
-//			{
-//				_hero.health = 5;
-//			}
-//			else
-//			{
-//				_hero.health -= _damage;
-//				trace(_hero.health);
-//				_hero.alive = true;
-//			}
+			if(_hero.health <= 0)
+			{
+				_hero.alive = false;
+				//				_hero.isAlive(_hero.alive);
+				destroy();
+				killGame();
+			}
+			else if(_hero.health > 5)
+			{
+				_hero.health = 5;
+			}
+			else
+			{
+				_hero.health -= _damage;
+				trace(_hero.health);
+				_hero.alive = true;
+			}
 		}
 		
 		public function update():void
