@@ -8,6 +8,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
 	import com.wbarra.controller.objects.Bullet;
+	import com.wbarra.controller.objects.PowerUp;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -75,11 +76,24 @@ package com.wbarra.controller.states
 		private var _shipDistanceY:Number;
 		
 		private var _e1Distance:Number;
+		// Power Up Distance and Collision Detection
+		private var _pSpeedUp:Point;
+		private var _pSlowDown :Point;
+		private var _pHealthUp:Point;
+		private var _pDoubleShot:Point;
+		private var _distanceSpeedUp:Number;
+		private var _distanceSlowDown:Number;
+		private var _distanceHealthDrop:Number;
+		private var _distanceDoubleShot:Number;
+		private var _powerUp:PowerUp;
+		
 		// bullet realted
 		private var _bulletHolder:Array = [];
 		private var _canFire:Boolean = true; // Tracks whether enough time has elapsed since last bullet.
 		private var _firing:Boolean = false; // Tracks whether the mouse is currently down, for machine-gun.
 		private var _bulletCounter:uint = 0;
+		
+		private var _killGame:Boolean = true;
 		
 		public function Play(game:Game)
 		{
@@ -369,6 +383,25 @@ package com.wbarra.controller.states
 //					}
 //				}
 			}
+			// =======================================================
+			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
+			// ALLOWS FOR IT
+			// Setting the points for the power ups
+			//========================================================
+			/*_pHealthUp = new Point(_powerUp.x, _powerUp.y);
+			_distanceHealthDrop = Point.distance(_pHero, _pHealthUp);
+			
+			_pSpeedUp = new Point(_powerUp.x, _powerUp.y)
+			_distanceSpeedUp = Point.distance(_pHero, _pSpeedUp);
+			
+			_pSlowDown = new Point(_powerUp.x, _powerUp.y);
+			_distanceSlowDown = Point.distance(_pHero, _pSlowDown);
+			
+			_pDoubleShot = new Point(_powerUp.x, _powerUp.y);
+			_distanceDoubleShot = Point.distance(_pHero, _pDoubleShot);
+			
+			*/
+			//========================================================s
 		}
 		
 		private function shipHit():void
@@ -383,8 +416,8 @@ package com.wbarra.controller.states
 			{
 				_hero.alive = false;
 //				_hero.isAlive(_hero.alive);
-//				destroy();
-//				killGame();
+				destroy();
+				killGame();
 				// If the destroy() and the killGame() are running,
 				// this is the error code we get:
 				// Error #3691: Resource limit for this resource type exceeded.
@@ -397,6 +430,7 @@ package com.wbarra.controller.states
 			else
 			{
 				_hero.health -= _damage;
+				trace(_hero.health);
 				_hero.alive = true;
 			}
 		}
@@ -430,8 +464,13 @@ package com.wbarra.controller.states
 		
 		private function killGame():void
 		{
+			if(_killGame){
+				
 			trace('testing the killGame()');
+			_killGame = false;
 			_game.changeState(Game.GAME_OVER_STATE);
+			
+			}
 		}
 	}
 }
