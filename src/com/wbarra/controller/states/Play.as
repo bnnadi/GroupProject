@@ -11,6 +11,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.objects.PowerUp;
 	
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
@@ -23,6 +24,7 @@ package com.wbarra.controller.states
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.extensions.PDParticleSystem;
+	import starling.text.TextField;
 	import starling.textures.Texture;
 	
 	public class Play extends Sprite implements IState
@@ -75,7 +77,6 @@ package com.wbarra.controller.states
 		private var _pBullet:Point;
 		private var _shootTimer:Timer;
 		
-		
 		private var _shipDistanceX:Number;
 		private var _shipDistanceY:Number;
 		private var _bullDistanceX:Number;
@@ -110,6 +111,13 @@ package com.wbarra.controller.states
 		private var _e2BaseSpawn:uint = 5;
 		private var _e3BaseSpawn:uint = 10;
 		
+		// SCORE STUFF
+		private var _score:uint = 0;
+		private var _scoreTextfied:TextField;
+		
+		// LIVES DISPLAY
+		private var _livesDisplay:TextField;
+		
 		// particle effects 
 		// p1
 		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
@@ -123,9 +131,19 @@ package com.wbarra.controller.states
 		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
 		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
 		private var _psE3:PDParticleSystem;
-			
+		
+<<<<<<< HEAD
+=======
+		private var _psE1Holder:Array = [];
+		private var _psE2Holder:Array = [];
+		private var _psE3Holder:Array = [];
+		
+		
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 		
 		private var _spacer:uint;
+		
+		private var _enemyAmount:uint = 0;
 		
 		public function Play(game:Game)
 		{
@@ -199,10 +217,22 @@ package com.wbarra.controller.states
 			_background.y = 50;
 			_battleField.addChild(_background);
 			
+			_scoreTextfied = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_scoreTextfied.x = 200;
+			_scoreTextfied.y = 22;
+			_scoreTextfied.text = String("Score: "+_score);
+			_battleField.addChild(_scoreTextfied);
+			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
 			_battleField.addChild( _hero);
+			
+			_livesDisplay = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_livesDisplay.x = 10;
+			_livesDisplay.y = 22;
+			_livesDisplay.text = String("HP: "+_hero.health);
+			_battleField.addChild(_livesDisplay);
 			
 			// Creating enemies
 			createEnemies();
@@ -229,6 +259,8 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
+				
+				_enemyAmount++;
 			}
 			// ENEMY 2 
 			
@@ -242,6 +274,7 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
+				_enemyAmount++;
 			}
 			// ENEMY 3 
 			// Creating space between enemies based on the amount of enemies
@@ -257,11 +290,37 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
+				_enemyAmount++;
 			}
 		}
 		
 		private function onEnterFrame():void
 		{
+			// removing the particle effects
+			if (_psE1Holder.length >= 10)
+			{
+				for (var i:int = 0; i < 10; i++) 
+				{
+					_psE1Holder.splice(i, 1);
+					
+				}
+			}
+			if (_psE2Holder.length >= 10)
+			{
+				for (var j:int = 0; i < _psE2Holder.length; i++) 
+				{
+					_psE2Holder.splice(i, 1);
+					
+				}
+			}
+			if (_psE3Holder.length >= 10)
+			{
+				for (var k:int = 0; i < _psE3Holder.length; i++) 
+				{
+					_psE3Holder.splice(i, 1);
+					
+				}
+			}
 			if(_firing && _canFire){
 				fireBullet(_lastMouseX,_lastMouseY);
 			}
@@ -309,6 +368,11 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
+<<<<<<< HEAD
+						e1.dispose();
+=======
+						_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -335,10 +399,28 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-								_psE1.start();
+								_psE1 = new PDParticleSystem(_psE1PopCon, _psE1PopImg);
+								_battleField.addChild(_psE1);
+								_psE1.x = b.x;
+								_psE1.y = b.y;
+								Starling.juggler.add(_psE1);
+								_psE1.start(.4);
+								
+								_psE1Holder.push(_psE1);
+//								setTimeout(function(_psE1:PDParticleSystem){
+//									_battleField.removeChild(_psE1);
+//									_psE1.dispose();
+//								}, 1000);
+								
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
+<<<<<<< HEAD
+								e1.dispose();
+								_score++;
+=======
+								_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								checkWin();
 							}
 						}
@@ -373,6 +455,11 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
+<<<<<<< HEAD
+						e2.dispose();
+=======
+						_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -398,10 +485,25 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-								_psE2.start();
+								_psE2 = new PDParticleSystem(_psE2PopCon, _psE2PopImg);
+								_battleField.addChild(_psE2);
+								_psE2.x = bull.x;
+								_psE2.y = bull.y;
+								Starling.juggler.add(_psE2);
+								_psE2.start(.4);
+								_psE2Holder.push(_psE2);
+//								setTimeout(function(_psE2:PDParticleSystem){
+//									_battleField.removeChild(_psE2);
+//								}, 1000);
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
+<<<<<<< HEAD
+								e2.dispose();
+								_score++;
+=======
+								_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								checkWin();
 							}
 						}
@@ -431,47 +533,74 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
+<<<<<<< HEAD
+						e3.dispose();
+=======
+						_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
-				}
-				// BULLET SHOT TEST
-				for each (var bulls:Bullet in _bulletHolder) 
-				{
-					if (bulls.alive)
+					
+					// BULLET SHOT TEST
+					for each (var bulls:Bullet in _bulletHolder) 
 					{
-						if (bulls.x > e3.x)
+						if (bulls.alive)
 						{
-							_bullDistanceX = bulls.x - e3.x;
-						}
-						else
-						{
-							_bullDistanceX = e3.x - bulls.x;
-						}
-						if (bulls.y > e3.y)
-						{
-							_bullDistanceY = bulls.y - e3.y;
-						}
-						else
-						{
-							_bullDistanceY = e3.y - bulls.y;
-						}
-						if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
-						{
-							_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
-							_battleField.addChild(_psE3);
-							_psE3.x = bulls.x;
-							_psE3.y = bulls.y;
-							Starling.juggler.add(_psE3);
-							_psE3.start(1);
-							
-							_battleField.removeChild(e3);
-							_battleField.removeChild( bulls );
-							e3.alive = false;
-							checkWin();
+							if (bulls.x > e3.x)
+							{
+								_bullDistanceX = bulls.x - e3.x;
+							}
+							else
+							{
+								_bullDistanceX = e3.x - bulls.x;
+							}
+							if (bulls.y > e3.y)
+							{
+								_bullDistanceY = bulls.y - e3.y;
+							}
+							else
+							{
+								_bullDistanceY = e3.y - bulls.y;
+							}
+							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+							{
+<<<<<<< HEAD
+								/*_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
+=======
+								_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
+								_battleField.addChild(_psE3);
+								_psE3.x = bulls.x;
+								_psE3.y = bulls.y;
+								Starling.juggler.add(_psE3);
+<<<<<<< HEAD
+								_psE3.start(1);*/
+=======
+								_psE3.start(.4);
+								_psE3Holder.push(_psE3);
+//								setTimeout(function(_psE3:PDParticleSystem){
+//									_battleField.removeChild(_psE3);
+//								}, 1000);
+								
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
+								
+								_battleField.removeChild(e3);
+								_battleField.removeChild( bulls );
+								e3.alive = false;
+<<<<<<< HEAD
+								e3.dispose();
+								_score++;
+=======
+								_enemyAmount--;
+>>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
+								checkWin();
+							}
 						}
 					}
+					
 				}
 			}
+			trace(_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
 			// ALLOWS FOR IT
@@ -494,12 +623,6 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			// Trying to get the _hero.health to break us
-			// out of the Play State ---- The changeState(), is 
-			// the last method in this class.
-			//			trace("hit");
-			//			trace('hero health: '+_hero.health);
-			
 			
 			if(_hero.health <= 0)
 			{
@@ -524,7 +647,6 @@ package com.wbarra.controller.states
 		{
 			if(!_hero.alive)
 			{
-				trace('running the update()');
 				destroy();
 			}
 		}
@@ -540,32 +662,33 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder 	= null;
+				_enemyOneHolder		= null;
 				_enemyTwoHolder 	= null;
 				_enemyThreeHolder 	= null;
 				_bulletHolder 		= null;
+				_psE1Holder 		=  [];
+				_psE2Holder 		=  [];
+				_psE3Holder 		=  [];
 				
 			}
 			
 			if(_battleField.numChildren == 0)
 			{
-				trace('should not be running multiple times');
 				killGame();
 			}
 		}
 		
 		private function killGame():void
 		{
-			trace('WTF!!!!');
 			if(_killGame)
 			{
-				trace('testing the killGame()');
 				_killGame = false;
 				// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
 				_battleField.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
 				//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+				_battleField.dispose();
 				
 				_game.changeState(Game.GAME_OVER_STATE);
 			}
@@ -573,20 +696,17 @@ package com.wbarra.controller.states
 		
 		private function checkWin():void
 		{
-			trace('is this shit running');
 			// We a re checking to see if the Hero is alive and there are
 			// no more enemies on the _battleField.
 			
 			// WE ARE USING 2 BECAUSE THERE WILL ALWAYS BE A SHIP AND A TURRET 
-			if(_hero.alive && _battleField.numChildren == 2)
+			if(_hero.alive && _enemyAmount == 0)
 			{
-				
 				if(_relaunchGame)
 				{
 					_relaunchGame = false;	
 					_waveCounter++;
 					createEnemies();
-					trace('SUCCESS!!!!');
 				}
 			}
 		}
