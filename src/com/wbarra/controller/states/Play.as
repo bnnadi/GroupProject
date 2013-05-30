@@ -373,7 +373,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
-						
+						e1.dispose();
 						_enemyAmount--;
 						checkWin();
 					}
@@ -409,15 +409,10 @@ package com.wbarra.controller.states
 								_psE1.start(.4);
 								
 								_psE1Holder.push(_psE1);
-								//								setTimeout(function(_psE1:PDParticleSystem){
-								//									_battleField.removeChild(_psE1);
-								//									_psE1.dispose();
-								//								}, 1000);
-								
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
-								
+								e1.dispose();
 								_score += 10;
 								_enemyAmount--;
 								checkWin();
@@ -454,7 +449,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
-						
+						e2.dispose();
 						_enemyAmount--;
 						checkWin();
 					}
@@ -488,13 +483,9 @@ package com.wbarra.controller.states
 								Starling.juggler.add(_psE2);
 								_psE2.start(.4);
 								_psE2Holder.push(_psE2);
-								//								setTimeout(function(_psE2:PDParticleSystem){
-								//									_battleField.removeChild(_psE2);
-								//								}, 1000);
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
-								
 								_score += 10;
 								_enemyAmount--;
 								checkWin();
@@ -526,6 +517,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
+						e3.dispose();
+
 						
 						((_score++) * 10);
 						_enemyAmount--;
@@ -555,18 +548,13 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-								_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
-								_battleField.addChild(_psE3);
-								_psE3.x = bulls.x;
-								_psE3.y = bulls.y;
-								Starling.juggler.add(_psE3);
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
 								
 								_battleField.removeChild(e3);
 								_battleField.removeChild( bulls );
 								e3.alive = false;
-								
+								e3.dispose();
 								_score += 10;
 								_enemyAmount--;
 								checkWin();
