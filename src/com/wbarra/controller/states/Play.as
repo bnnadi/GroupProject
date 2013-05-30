@@ -118,6 +118,9 @@ package com.wbarra.controller.states
 		// LIVES DISPLAY
 		private var _livesDisplay:TextField;
 		
+		// WAVES TEXTFIELD
+		private var _wavesTextfield:TextField;
+		
 		// particle effects 
 		// p1
 		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
@@ -180,8 +183,8 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			_bulletHolder[_bulletCounter].x = _hero.x ;
-			_bulletHolder[_bulletCounter].y = _hero.y ;
+			_bulletHolder[_bulletCounter].x = _hero.x;
+			_bulletHolder[_bulletCounter].y = _hero.y;
 			// calculate the firing angle 
 			_bulletHolder[_bulletCounter].targetY = yParam;
 			_bulletHolder[_bulletCounter].targetX = xParam;
@@ -198,9 +201,6 @@ package com.wbarra.controller.states
 		private function onAdded():void
 		{
 			// adding the particle effects 
-			Starling.juggler.add(_psE1);
-			Starling.juggler.add(_psE2);
-			Starling.juggler.add(_psE3);
 			// adding the event listener to the stage
 			//***************EVENT LISTENER******************
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -224,11 +224,16 @@ package com.wbarra.controller.states
 			_hero.y = stage.stageHeight/2;
 			_battleField.addChild( _hero);
 			
-			_livesDisplay = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_livesDisplay = new TextField(200, 30, "HP: ", "Verdana", 16, 0xffffff);
 			_livesDisplay.x = 10;
 			_livesDisplay.y = 22;
 			_livesDisplay.text = String("HP: "+_hero.health);
 			_battleField.addChild(_livesDisplay);
+			
+			_wavesTextfield = new TextField(200, 30, "Wave: ", "Verdana", 16, 0xffffff);
+			_wavesTextfield.x = 390;
+			_wavesTextfield.y = 22;
+			_battleField.addChild(_wavesTextfield);
 			
 			// Creating enemies
 			createEnemies();
@@ -565,6 +570,7 @@ package com.wbarra.controller.states
 					}
 				}
 			}
+			_wavesTextfield.text = String("Wave: "+_waveCounter);
 			_scoreTextfied.text = String("Score: "+_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
@@ -588,7 +594,7 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			if(_hero.health <= 0)
+			if(_hero.health < 1)
 			{
 				_hero.alive = false;
 				//				_hero.isAlive(_hero.alive);
@@ -676,6 +682,7 @@ package com.wbarra.controller.states
 					_waveCounter++;
 					createEnemies();
 					createBullets();
+					
 				}
 			}
 		}
