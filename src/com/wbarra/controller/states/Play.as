@@ -4,6 +4,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.EnemyShips.EnemyThree;
 	import com.wbarra.controller.EnemyShips.EnemyTwo;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
 	import com.wbarra.controller.interfaces.IState;
@@ -20,6 +21,8 @@ package com.wbarra.controller.states
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
+	import starling.extensions.PDParticleSystem;
+	import starling.textures.Texture;
 	
 	public class Play extends Sprite implements IState
 	{
@@ -103,6 +106,20 @@ package com.wbarra.controller.states
 		private var _e1BaseSpawn:uint = 3;
 		private var _e2BaseSpawn:uint = 5;
 		private var _e3BaseSpawn:uint = 10;
+		
+		// particle effects 
+		// p1
+		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
+		private const _psE1PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e1PopImg());
+		private var _psE1:PDParticleSystem;
+		// p2
+		private const _psE2PopCon:XML = XML(new AllMyParticles.e2Pop());
+		private const _psE2PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e2PopImg());
+		private var _psE2:PDParticleSystem;
+		// p3
+		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
+		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
+		private var _psE3:PDParticleSystem;
 		
 		private var _spacer:uint;
 		

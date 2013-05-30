@@ -49,8 +49,8 @@ package com.wbarra.controller.states
 			//			Starling.juggler.add( _psUp );
 			
 			_titlePS = new PDParticleSystem(_psConfig, _psTexture);
-			_titlePS.x = 220;
-			_titlePS.y = 200;
+//			_titlePS.x = 220;
+			_titlePS.y = 225;
 			
 			_titlePS.emitterX = 0;
 			_titlePS.emitterY = 0;
