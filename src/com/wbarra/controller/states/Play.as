@@ -97,9 +97,6 @@ package com.wbarra.controller.states
 		
 		private var _killGame:Boolean = true;
 		
-		// Battlefield
-		private var _battlefield:Sprite;
-		
 		public function Play(game:Game)
 		{
 			this._game = game;
@@ -472,11 +469,11 @@ package com.wbarra.controller.states
 			//			if either the changeState() is called.
 			while(numChildren > 0)
 			{
-				removeChildAt(0);				
+				_battleField.removeChildAt(0);				
 				
 				for each (var i:Bullet in _bulletHolder) 
 				{
-					removeChild(i);
+					_battleField.removeChild(i);
 				}
 				_enemyOneHolder 	= null;
 				_enemyTwoHolder 	= null;
@@ -499,10 +496,9 @@ package com.wbarra.controller.states
 				trace('testing the killGame()');
 				_killGame = false;
 				// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
-				removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-				removeEventListener(TouchEvent.TOUCH, onTouch);
-				stage.removeEventListener(TouchEvent.TOUCH, onTouch);
+				_battleField.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
 //				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
 
 				_game.changeState(Game.GAME_OVER_STATE);
