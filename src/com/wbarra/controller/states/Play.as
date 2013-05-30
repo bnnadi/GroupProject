@@ -131,15 +131,10 @@ package com.wbarra.controller.states
 		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
 		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
 		private var _psE3:PDParticleSystem;
-		
-<<<<<<< HEAD
-=======
+
 		private var _psE1Holder:Array = [];
 		private var _psE2Holder:Array = [];
 		private var _psE3Holder:Array = [];
-		
-		
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 		
 		private var _spacer:uint;
 		
@@ -368,11 +363,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
-<<<<<<< HEAD
-						e1.dispose();
-=======
+
 						_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -415,12 +407,8 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
-<<<<<<< HEAD
-								e1.dispose();
-								_score++;
-=======
+
 								_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								checkWin();
 							}
 						}
@@ -455,11 +443,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
-<<<<<<< HEAD
-						e2.dispose();
-=======
+
 						_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -498,12 +483,8 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
-<<<<<<< HEAD
-								e2.dispose();
-								_score++;
-=======
+
 								_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								checkWin();
 							}
 						}
@@ -533,11 +514,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
-<<<<<<< HEAD
-						e3.dispose();
-=======
+
 						_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 						checkWin();
 					}
 					
@@ -564,35 +542,20 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-<<<<<<< HEAD
-								/*_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
-=======
 								_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								_battleField.addChild(_psE3);
 								_psE3.x = bulls.x;
 								_psE3.y = bulls.y;
 								Starling.juggler.add(_psE3);
-<<<<<<< HEAD
-								_psE3.start(1);*/
-=======
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
-//								setTimeout(function(_psE3:PDParticleSystem){
-//									_battleField.removeChild(_psE3);
-//								}, 1000);
 								
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								
 								_battleField.removeChild(e3);
 								_battleField.removeChild( bulls );
 								e3.alive = false;
-<<<<<<< HEAD
-								e3.dispose();
-								_score++;
-=======
+
 								_enemyAmount--;
->>>>>>> 2db65bbd309f03864bd5decd51cea6a2ad221014
 								checkWin();
 							}
 						}
@@ -662,10 +625,10 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder		= null;
-				_enemyTwoHolder 	= null;
-				_enemyThreeHolder 	= null;
-				_bulletHolder 		= null;
+				_enemyOneHolder		=  [];
+				_enemyTwoHolder 	=  [];
+				_enemyThreeHolder 	=  [];
+				_bulletHolder 		=  [];
 				_psE1Holder 		=  [];
 				_psE2Holder 		=  [];
 				_psE3Holder 		=  [];
