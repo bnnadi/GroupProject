@@ -88,6 +88,7 @@ package com.wbarra.controller.states
 		private var _distanceHealthDrop:Number;
 		private var _distanceDoubleShot:Number;
 		private var _powerUp:PowerUp;
+		private var _totalScore:uint = 0;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];

@@ -11,8 +11,8 @@ package com.wbarra.controller.objects
 		public static const SLOW_DOWN:int = 2;
 		private var _slowImg:Image;
 		
-		public static const DOUBLE_SHOT:int;
-		private var _doubleImg:Image;
+//		public static const DOUBLE_SHOT:int;
+//		private var _doubleImg:Image;
 		
 		public static const HEALTH_DROP:int = 1;
 		private var _healthImg:Image;
