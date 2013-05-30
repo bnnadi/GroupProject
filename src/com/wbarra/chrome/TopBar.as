@@ -112,7 +112,7 @@ package com.wbarra.chrome
 		{
 			// Well put the game in full screen mode
 			trace("I am He-man!!!!!");
-			stage.align = StageAlign.TOP;
+			//stage.align = StageAlign.TOP;
 			
 			if(event.fullScreen)
 			{
