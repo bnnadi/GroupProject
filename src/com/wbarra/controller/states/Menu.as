@@ -63,6 +63,7 @@ package com.wbarra.controller.states
 				removeChildAt(0);
 				removeEventListeners(Event.TRIGGERED);
 				removeEventListener(Event.ADDED_TO_STAGE, init);
+
 			}
 		}
 	}

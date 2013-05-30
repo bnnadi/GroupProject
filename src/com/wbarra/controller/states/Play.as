@@ -484,9 +484,10 @@ package com.wbarra.controller.states
 				{
 					stage.removeChild(i);
 				}
-				_enemyOneHolder = null;
-				_enemyTwoHolder = null;
-				_enemyThreeHolder = null;
+				_enemyOneHolder 	= null;
+				_enemyTwoHolder 	= null;
+				_enemyThreeHolder 	= null;
+				_bulletHolder 		= null;
 				
 			}
 			if(this.numChildren == 0)
@@ -510,7 +511,7 @@ package com.wbarra.controller.states
 				removeEventListener(TouchEvent.TOUCH, onTouch);
 				stage.removeEventListener(TouchEvent.TOUCH, onTouch);
 //				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
-				
+
 				_game.changeState(Game.GAME_OVER_STATE);
 			}
 		}

@@ -23,7 +23,7 @@ package com.wbarra.controller.core
 		
 		private function init(event:Event):void
 		{
-			changeState(PLAY_STATE);
+			changeState(MENU_STATE);
 			addEventListener(Event.ENTER_FRAME, update);
 		}
 		
