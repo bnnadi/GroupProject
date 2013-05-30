@@ -74,7 +74,7 @@ package com.wbarra.controller.states
 			_titlePS.stop();
 			
 			addChild( _instructions );
-			_optionsR = new Button(Texture.fromBitmap(new AllMyImages.OptionsButton()));
+			_optionsR = new Button(Texture.fromBitmap(new AllMyImages.backButton()));
 			_optionsR.addEventListener(Event.TRIGGERED, onClickOptionsR);
 			_optionsR.x = stage.stageWidth*.5;
 			_optionsR.y = 600;

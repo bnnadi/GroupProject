@@ -35,6 +35,9 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="Images/instructions.png")]
 		public static const instructions:Class
 		
+		[Embed(source="Images/backButton.png")]
+		public static const backButton:Class;
+		
 		public function AllMyImages()
 		{
 		}
