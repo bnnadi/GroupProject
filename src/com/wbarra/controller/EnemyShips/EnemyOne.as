@@ -25,15 +25,17 @@ package com.wbarra.controller.EnemyShips
 		private var _mc:MovieClip;
 		private var _ps:PDParticleSystem;
 		
+		private static var _image:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
+		private static var _xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
+		private static var _atlas:TextureAtlas = new TextureAtlas(_image, _xml);
+		
 		public function EnemyOne()
 		{
 			super();
 			// I am  homing ship.
 			
 			// adding the texture 
-			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
-			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
-			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+			var atlas:TextureAtlas = _atlas;
 			_mc= new MovieClip(atlas.getTextures("enemy1"), 30);
 			// look for a way to stop a movie clip on a frame 
 			addChild(_mc);
