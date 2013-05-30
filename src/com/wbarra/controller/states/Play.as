@@ -459,27 +459,28 @@ package com.wbarra.controller.states
 			if(!_hero.alive)
 			{
 				trace('running the update()');
-//				destroy();
+				destroy();
 			}
 		}
 		
 		public function destroy():void
 		{
 			//			if either the changeState() is called.
-			while(numChildren > 0)
+			while(_battleField.numChildren > 0)
 			{
-				removeChildAt(0);				
+				_battleField.removeChildAt(0);				
 				
 				for each (var i:Bullet in _bulletHolder) 
 				{
-					removeChild(i);
+					_battleField.removeChild(i);
 				}
 				_enemyOneHolder = null;
 				_enemyTwoHolder = null;
 				_enemyThreeHolder = null;
 				
 			}
-			if(this.numChildren == 0)
+			
+			if(_battleField.numChildren == 0)
 			{
 				trace('should not be running multiple times');
 				killGame();
