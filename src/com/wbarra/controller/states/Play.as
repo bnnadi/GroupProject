@@ -185,7 +185,7 @@ package com.wbarra.controller.states
 				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
-			for (var e2:int = 0; e2 < 100wd; e2++)
+			for (var e2:int = 0; e2 < 100; e2++)
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
