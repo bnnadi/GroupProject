@@ -198,6 +198,20 @@ package com.wbarra.controller.states
 			_hero.y = stage.stageHeight/2;
 			_battleField.addChild( _hero);
 			
+			// Creating enemies
+			createEnemies();
+			
+			// building the bullets 
+			for (var f:int = 0; f < 100; f++)
+			{
+				var bullet:Bullet = new Bullet(false);
+				_bulletHolder.push( bullet );
+			}
+		}
+		
+		private function createEnemies():void
+		{
+			_relaunchGame = true;
 			//building a bunch of test enemies of class Enemy one
 			// ENEMY 1 
 			for (var e1:int = 0; e1 < (_e1BaseSpawn*_waveCounter); e1++)
@@ -211,9 +225,9 @@ package com.wbarra.controller.states
 				_enemyOneHolder.push(_enemyOne);
 			}
 			// ENEMY 2 
-
+			
 			for (var e2:int = 0; e2 < (_e2BaseSpawn*_waveCounter); e2++)
-
+				
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
@@ -238,13 +252,8 @@ package com.wbarra.controller.states
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
 			}
-			// building the bullets 
-			for (var f:int = 0; f < 100; f++)
-			{
-				var bullet:Bullet = new Bullet(false);
-				_bulletHolder.push( bullet );
-			}
 		}
+		
 		private function onEnterFrame():void
 		{
 			if(_firing && _canFire){
@@ -549,16 +558,20 @@ package com.wbarra.controller.states
 		
 		private function checkWin():void
 		{
+			trace('is this shit running');
 			// We a re checking to see if the Hero is alive and there are
 			// no more enemies on the _battleField.
 			
-			if(_relaunchGame)
+			// WE ARE USING 2 BECAUSE THERE WILL ALWAYS BE A SHIP AND A TURRET 
+			if(_hero.alive && _battleField.numChildren == 2)
 			{
-				_relaunchGame = false;				
-				// WE ARE USING 2 BECAUSE THERE WILL ALWAYS BE A SHIP AND A TURRET 
-				if(_hero.alive && _battleField.numChildren == 2)
+				
+				if(_relaunchGame)
 				{
-					
+					_relaunchGame = false;	
+					_waveCounter++;
+					createEnemies();
+					trace('SUCCESS!!!!');
 				}
 			}
 		}
