@@ -1,5 +1,6 @@
 package
 {
+	import com.wbarra.chrome.TopBar;
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.hero.Hero;
@@ -12,7 +13,7 @@ package
 	import starling.core.Starling;
 	
 	
-	[SWF(width="1024", height="768", frameRate="60", backgroundColor="#000000")]
+	[SWF(frameRate="60", backgroundColor="#000000")]
 	
 	public class GroupProject extends Sprite
 	{
@@ -23,6 +24,9 @@ package
 			// These settings are recommended to avoid problems with touch handling
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
+			
+			var top:TopBar = new TopBar();
+			addChild(top);
 			
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);			
 			// Create a Starling instance that will run the "Game" class
