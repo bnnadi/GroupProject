@@ -5,6 +5,7 @@ package com.wbarra.chrome
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
 	import flash.events.MouseEvent;
+	import flash.ui.Keyboard;
 	
 	import libs.Bar;
 	import libs.closeBtn;
@@ -21,10 +22,12 @@ package com.wbarra.chrome
 		private var _full:fullscreen;
 
 		private var _close:closeBtn;
+
+		private var _bbg:Sprite;
 		public function TopBar()
 		{
 			super();
-			
+			_bbg = new Sprite();
 			addEventListener(Event.ADDED_TO_STAGE, onAdd);
 		}
 		
@@ -98,10 +101,11 @@ package com.wbarra.chrome
 			
 			if(event.fullScreen)
 			{
-				var bbg:Sprite = new Sprite();
-				bbg.graphics.beginFill(0);
-				bbg.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
-				bbg.graphics.endFill();
+				_bbg.graphics.beginFill(0);
+				_bbg.graphics.drawRect(0,0,stage.nativeWindow.width, stage.nativeWindow.height);
+				_bbg.graphics.endFill();
+				addChild(_bbg);
+				_bbg.visible = true;
 				
 				_bar.x = 0;
 				_bar.width = stage.nativeWindow.width;
@@ -114,7 +118,7 @@ package com.wbarra.chrome
 			}
 			else
 			{
-				bbg.graphics.clear();
+				_bbg.graphics.clear();
 			}
 		}
 		
