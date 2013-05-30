@@ -183,8 +183,8 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			_bulletHolder[_bulletCounter].x = (_hero.x + (_hero.width*.5) - 25);
-			_bulletHolder[_bulletCounter].y = (_hero.y + (_hero.height*.5) - 25);
+			_bulletHolder[_bulletCounter].x = (_hero.x) + (_hero.width/2);
+			_bulletHolder[_bulletCounter].y = (_hero.y) + (_hero.height/2);
 			
 			trace(_bulletHolder[_bulletCounter].x, _bulletHolder[_bulletCounter].y);
 			
@@ -225,7 +225,7 @@ package com.wbarra.controller.states
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
-			_battleField.addChild( _hero);
+			_battleField.addChild(_hero);
 			
 			_livesDisplay = new TextField(200, 30, "HP: ", "Verdana", 16, 0xffffff);
 			_livesDisplay.x = 10;
