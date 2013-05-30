@@ -183,14 +183,17 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			_bulletHolder[_bulletCounter].x = _hero.x;
-			_bulletHolder[_bulletCounter].y = _hero.y;
+			_bulletHolder[_bulletCounter].x = (_hero.x + (_hero.width*.5) - 25);
+			_bulletHolder[_bulletCounter].y = (_hero.y + (_hero.height*.5) - 25);
+			
+			trace(_bulletHolder[_bulletCounter].x, _bulletHolder[_bulletCounter].y);
+			
 			// calculate the firing angle 
 			_bulletHolder[_bulletCounter].targetY = yParam;
 			_bulletHolder[_bulletCounter].targetX = xParam;
 			_bulletHolder[_bulletCounter].alive = true
 			stage.addChild(_bulletHolder[_bulletCounter]);
-			_bulletCounter ++;
+			_bulletCounter++;
 			
 			if (_bulletCounter >= 100)
 			{

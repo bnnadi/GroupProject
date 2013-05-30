@@ -21,10 +21,12 @@ package com.wbarra.controller.states
 		private var _background:Image;
 		private var _play:Button;
 		private var _options:Button;
+		private var _optionsR:Button;
 		private var _titleImg:Image;
 		private const _psConfig:XML =  XML(new AllMyParticles.titleEffect());
 		private const _psTexture:Texture = Texture.fromBitmap(new AllMyParticles.titlEffectImg());
-		private var _titlePS:PDParticleSystem = new PDParticleSystem(_psConfig, _psTexture);
+		private const _titlePS:PDParticleSystem = new PDParticleSystem(_psConfig, _psTexture);
+		private const _instructions:Image = Image.fromBitmap(new  AllMyImages.instructions());
 		
 		public function Menu(game:Game)
 		{
@@ -39,9 +41,6 @@ package com.wbarra.controller.states
 			addChild(_background);
 			
 			// adding the particle effects
-			
-//			_titlePS = new PDParticleSystem(_psConfig, _psTexture);
-//			_titlePS.x = 220;
 			_titlePS.y = 225;
 			
 			_titlePS.emitterX = 0;
@@ -73,6 +72,22 @@ package com.wbarra.controller.states
 		private function onClickOptions(event:Event):void
 		{
 			_titlePS.stop();
+			
+			addChild( _instructions );
+			_optionsR = new Button(Texture.fromBitmap(new AllMyImages.OptionsButton()));
+			_optionsR.addEventListener(Event.TRIGGERED, onClickOptionsR);
+			_optionsR.x = stage.stageWidth*.5;
+			_optionsR.y = 600;
+			addChild(_optionsR);
+			
+			
+		}
+		
+		private function onClickOptionsR():void
+		{
+			removeChild( _instructions);
+			removeChild( _optionsR);
+			_titlePS.start();
 		}
 		
 		private function onClickPlay(event:Event):void

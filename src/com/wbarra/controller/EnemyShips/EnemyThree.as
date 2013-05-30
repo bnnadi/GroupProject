@@ -85,7 +85,7 @@ package com.wbarra.controller.EnemyShips
 				_speedY *= -1;
 				_mc.rotation += deg2rad(180); 
 			}
-			if (y <= 0)
+			if (y <= 60)
 			{
 				_speedY *= -1;
 				_mc.rotation += deg2rad(180); 
