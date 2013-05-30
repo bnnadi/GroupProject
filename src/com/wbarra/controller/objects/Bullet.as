@@ -96,7 +96,8 @@ package com.wbarra.controller.objects
 				
 				if (x > 1024 || x < 0)
 				{
-					_alive = false;	
+					_alive = false;
+					if(parent)
 					parent.removeChild( this );
 					_onceOver = true;
 				}
@@ -104,6 +105,7 @@ package com.wbarra.controller.objects
 				{
 					_alive = false;	
 					_onceOver = true;
+					if(parent)
 					parent.removeChild( this );
 				}
 				
