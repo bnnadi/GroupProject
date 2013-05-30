@@ -11,7 +11,6 @@ package
 	
 	import starling.core.Starling;
 	
-	
 	[SWF(width="1024", height="768", frameRate="60", backgroundColor="#000000")]
 	
 	public class GroupProject extends Sprite
