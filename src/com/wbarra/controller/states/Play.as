@@ -603,13 +603,13 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder 	= null;
-				_enemyTwoHolder 	= null;
-				_enemyThreeHolder 	= null;
-				_bulletHolder 		= null;
-				_psE1Holder 		=  [];
-				_psE2Holder 		=  [];
-				_psE3Holder 		=  [];
+				_enemyOneHolder 	= [];
+				_enemyTwoHolder 	= [];
+				_enemyThreeHolder 	= [];
+				_bulletHolder 		= [];
+				_psE1Holder 		= [];
+				_psE2Holder 		= [];
+				_psE3Holder 		= [];
 				
 			}
 			
