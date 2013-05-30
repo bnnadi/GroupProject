@@ -303,6 +303,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
+						e1.dispose();
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -332,6 +333,7 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
+								e1.dispose();
 								checkWin();
 							}
 						}
@@ -366,6 +368,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
+						e2.dispose();
 						checkWin();
 					}
 					// BULLET SHOT TEST
@@ -394,6 +397,7 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
+								e2.dispose();
 								checkWin();
 							}
 						}
@@ -423,6 +427,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
+						e3.dispose();
 						checkWin();
 					}
 				}
@@ -452,6 +457,7 @@ package com.wbarra.controller.states
 							_battleField.removeChild(e3);
 							_battleField.removeChild( bulls );
 							e3.alive = false;
+							e3.dispose();
 							checkWin();
 						}
 					}
@@ -525,7 +531,7 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder 	= null;
+				_enemyOneHolder		= null;
 				_enemyTwoHolder 	= null;
 				_enemyThreeHolder 	= null;
 				_bulletHolder 		= null;
@@ -551,6 +557,7 @@ package com.wbarra.controller.states
 				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
 				//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+				_battleField.dispose();
 				
 				_game.changeState(Game.GAME_OVER_STATE);
 			}
@@ -558,7 +565,6 @@ package com.wbarra.controller.states
 		
 		private function checkWin():void
 		{
-			trace('is this shit running');
 			// We a re checking to see if the Hero is alive and there are
 			// no more enemies on the _battleField.
 			
@@ -571,7 +577,6 @@ package com.wbarra.controller.states
 					_relaunchGame = false;	
 					_waveCounter++;
 					createEnemies();
-					trace('SUCCESS!!!!');
 				}
 			}
 		}
