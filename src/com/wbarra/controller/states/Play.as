@@ -24,6 +24,7 @@ package com.wbarra.controller.states
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
 	import starling.extensions.PDParticleSystem;
+	import starling.text.TextField;
 	import starling.textures.Texture;
 	
 	public class Play extends Sprite implements IState
@@ -110,6 +111,13 @@ package com.wbarra.controller.states
 		private var _e2BaseSpawn:uint = 5;
 		private var _e3BaseSpawn:uint = 10;
 		
+		// SCORE STUFF
+		private var _score:uint = 0;
+		private var _scoreTextfied:TextField;
+		
+		// LIVES DISPLAY
+		private var _livesDisplay:TextField;
+		
 		// particle effects 
 		// p1
 		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
@@ -123,12 +131,10 @@ package com.wbarra.controller.states
 		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
 		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
 		private var _psE3:PDParticleSystem;
-		
+
 		private var _psE1Holder:Array = [];
 		private var _psE2Holder:Array = [];
 		private var _psE3Holder:Array = [];
-		
-		
 		
 		private var _spacer:uint;
 		
@@ -206,10 +212,22 @@ package com.wbarra.controller.states
 			_background.y = 50;
 			_battleField.addChild(_background);
 			
+			_scoreTextfied = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_scoreTextfied.x = 200;
+			_scoreTextfied.y = 22;
+			_scoreTextfied.text = String("Score: "+_score);
+			_battleField.addChild(_scoreTextfied);
+			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
 			_battleField.addChild( _hero);
+			
+			_livesDisplay = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_livesDisplay.x = 10;
+			_livesDisplay.y = 22;
+			_livesDisplay.text = String("HP: "+_hero.health);
+			_battleField.addChild(_livesDisplay);
 			
 			// Creating enemies
 			createEnemies();
@@ -345,6 +363,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
+
 						_enemyAmount--;
 						checkWin();
 					}
@@ -388,6 +407,8 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
+
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -423,6 +444,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
+
 						_enemyAmount--;
 						checkWin();
 					}
@@ -462,6 +484,8 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
+
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -492,6 +516,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
+						
+						((_score++) * 10);
 						_enemyAmount--;
 						checkWin();
 					}
@@ -526,14 +552,12 @@ package com.wbarra.controller.states
 								Starling.juggler.add(_psE3);
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
-//								setTimeout(function(_psE3:PDParticleSystem){
-//									_battleField.removeChild(_psE3);
-//								}, 1000);
-								
 								
 								_battleField.removeChild(e3);
 								_battleField.removeChild( bulls );
 								e3.alive = false;
+
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -542,6 +566,7 @@ package com.wbarra.controller.states
 					
 				}
 			}
+			_scoreTextfied.text = String("Score: "+_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
 			// ALLOWS FOR IT
@@ -564,7 +589,6 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			
 			if(_hero.health <= 0)
 			{
 				_hero.alive = false;
@@ -582,6 +606,7 @@ package com.wbarra.controller.states
 				trace(_hero.health);
 				_hero.alive = true;
 			}
+			_livesDisplay.text = String("HP: "+_hero.health);
 		}
 		
 		public function update():void
@@ -603,13 +628,14 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder 	= [];
-				_enemyTwoHolder 	= [];
-				_enemyThreeHolder 	= [];
-				_bulletHolder 		= [];
-				_psE1Holder 		= [];
-				_psE2Holder 		= [];
-				_psE3Holder 		= [];
+
+				_enemyOneHolder		=  [];
+				_enemyTwoHolder 	=  [];
+				_enemyThreeHolder 	=  [];
+				_bulletHolder 		=  [];
+				_psE1Holder 		=  [];
+				_psE2Holder 		=  [];
+				_psE3Holder 		=  [];
 				
 			}
 			
@@ -629,6 +655,7 @@ package com.wbarra.controller.states
 				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
 				//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+				_battleField.dispose();
 				
 				_game.changeState(Game.GAME_OVER_STATE);
 			}
