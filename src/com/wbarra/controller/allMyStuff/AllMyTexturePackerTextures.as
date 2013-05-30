@@ -7,7 +7,7 @@ package com.wbarra.controller.allMyStuff
 		public static const enemiesXML:Class;
 		
 		[Embed(source="animations/EnemiesAnimated.png")]
-		public static const enemiesImage:Class;
+		public static const enemiesImage:Class; 
 		
 		public function AllMyTexturePackerTextures()
 		{

@@ -43,10 +43,10 @@
     </application>
   </applications>
   <modules/>
-  <workers/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
+<<<<<<< HEAD
     <buildTarget buildTargetName="default" platformId="default">
       <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
         <airExcludes/>
@@ -55,10 +55,17 @@
         <modifiedLaunchParams/>
         <newPackagingParams/>
         <modifiedPackagingParams/>
+=======
+    <buildTarget buildTargetName="default">
+      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
+        <airExcludes/>
+        <anePaths/>
+>>>>>>> dc24851b6fe6e512fd3a36f4a7b13fd139be9551
       </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
   </buildTargets>
 </actionScriptProperties>
+
 
 
