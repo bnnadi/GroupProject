@@ -348,13 +348,17 @@ package com.wbarra.controller.states
 			//=======================================================
 			_hero.update();
 			//=======================================================
+			
+			// HAD TO HARDCODE THESE IN SINCE THE HERO WIDTH AND HEIGHT ARE CONSTANTLY CHANGING
+			// IT MADE IT PRETTY HARD TO SET BOUNDARIES TO THE RIGHT AND BOTTOM 
+			// HOPE WE DONT FAIL!! GG
 			if(_hero.x < _battleField.x)
 			{
 				_hero.x = 1;
 			}
 			if(_hero.x >= _battleField.width - 50)
 			{
-				_hero.x = 974;
+				_hero.x = 964;
 			}
 			if(_hero.y < 48)
 			{
