@@ -31,6 +31,12 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="particles/hero.png")]
 		public static const PIHero:Class; 
 		
+		[Embed(source="particles/titleEffect.pex", mimeType = "application/octet-stream")]
+		public static const titleEffect:Class;
+		
+		[Embed(source="particles/titleEffect.png")]
+		public static const titlEffectImg:Class;
+		
 		
 		
 		public function AllMyParticles()

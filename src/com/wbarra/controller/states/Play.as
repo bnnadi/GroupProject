@@ -170,6 +170,7 @@ package com.wbarra.controller.states
 			stage.addChild( _battleField );
 			
 			_background = Image.fromBitmap(new AllMyImages.Background());
+			_background.y = 50;
 			_battleField.addChild(_background);
 			
 			_hero = new Hero();

@@ -1,13 +1,16 @@
 package com.wbarra.controller.states
 {
 	import com.wbarra.controller.allMyStuff.AllMyImages;
+	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.interfaces.IState;
 	
+	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
+	import starling.extensions.PDParticleSystem;
 	import starling.textures.Texture;
 	
 	public class Menu extends Sprite implements IState
@@ -16,6 +19,10 @@ package com.wbarra.controller.states
 		private var _background:Image;
 		private var _play:Button;
 		private var _options:Button;
+		private var _titleImg:Image;
+		private const _psConfig:XML = XML(new AllMyParticles.titleEffect());
+		private const _psTexture:Texture = Texture.fromBitmap(new AllMyParticles.titlEffectImg());
+		private var _titlePS:PDParticleSystem;
 		
 		public function Menu(game:Game)
 		{
@@ -26,7 +33,37 @@ package com.wbarra.controller.states
 		private function init(event:Event):void
 		{
 			_background = Image.fromBitmap(new AllMyImages.Background());
-			addChild(_background);
+			_background.y = 50;
+//			addChild(_background);
+			
+			// adding the particle effects
+			//			// 1
+			//			var psConfig:XML = XML(new AllMyParticles.PE3Down());
+			//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIE3Down());
+			//			_psUp = new PDParticleSystem(psConfig, psTexture);
+			//			_psUp.x = 0;
+			//			_psUp.y = 0;
+			//			_psUp.emitterX = 0;
+			//			_psUp.emitterY = 0;
+			//			addChild( _psUp );
+			//			Starling.juggler.add( _psUp );
+			
+			_titlePS = new PDParticleSystem(_psConfig, _psTexture);
+			_titlePS.x = 220;
+			_titlePS.y = 200;
+			
+			_titlePS.emitterX = 0;
+			_titlePS.emitterY = 0;
+			addChild( _titlePS );
+			Starling.juggler.add( _titlePS );
+			_titlePS.start();
+			
+			
+			_titleImg = Image.fromBitmap (new AllMyImages.titleImg());
+			_titleImg.x = 220;
+			_titleImg.y = 200;
+			addChild( _titleImg );
+			
 			
 			_play = new Button(Texture.fromBitmap(new AllMyImages.PlayButton()));
 			_play.addEventListener(Event.TRIGGERED, onClickPlay);
@@ -43,11 +80,12 @@ package com.wbarra.controller.states
 		
 		private function onClickOptions(event:Event):void
 		{
-			trace('options');
+			_titlePS.stop();
 		}
 		
 		private function onClickPlay(event:Event):void
 		{
+			_titlePS.stop();
 			_game.changeState(Game.PLAY_STATE);
 			destroy()
 		}
@@ -61,6 +99,7 @@ package com.wbarra.controller.states
 			while(this.numChildren > 0)
 			{
 				removeChildAt(0);
+				
 				removeEventListeners(Event.TRIGGERED);
 				removeEventListener(Event.ADDED_TO_STAGE, init);
 
