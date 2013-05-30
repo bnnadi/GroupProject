@@ -10,10 +10,10 @@ package com.wbarra.controller.allMyStuff
 		public static const EnemyTwo:Class;
 		[Embed(source="images/EnemyThree.png")]
 		public static const EnemyThreeImage:Class;
-		[Embed(source="images/Ship.png")]
+		[Embed(source="images/shipBody.png")]
 		public static const Ship:Class;
-		[Embed(source="images/Turret.png")]
-		public static const Turret:Class;
+/*		[Embed(source="images/shipTurret.png")]
+		public static const Turret:Class;*/
 		[Embed(source="images/Bullet.png")]
 		public static const BulletImg:Class;
 		[Embed(source="images/Main_bg.png")]

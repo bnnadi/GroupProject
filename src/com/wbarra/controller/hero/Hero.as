@@ -6,6 +6,7 @@ package com.wbarra.controller.hero
 	
 	import flash.ui.Keyboard;
 	
+	import starling.core.starling_internal;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
@@ -42,19 +43,14 @@ package com.wbarra.controller.hero
 		{
 			// I'm a ship 
 			_ship = Image.fromBitmap(new AllMyImages.Ship());
-			// setting the particle effect
-			// =====
-			_turret = Image.fromBitmap(new AllMyImages.Turret());
-			_ship.x = this.width/2;
-			_ship.y = this.height/2;
-//			_ship.scaleX = _ship.scaleY = .5; // just change this to get ship to original size. 
+			_turret = Image.fromBitmap(new AllMyImages.shipTurretImg());
+			
+			// 
 			addChild(_ship);
-			_turret.width = _turret.width;
-			_turret.pivotX = _turret.width/2;
-			_turret.pivotY = _turret.height/2;
-			_turret.x = this.width/2 - _turret.x;
-			_turret.y = this.height/2 - _turret.y;
-//			_turret.scaleX = _turret.scaleY = .5;
+			_turret.x = _ship.width/2;
+			_turret.y = _ship.height/2;
+			_turret.pivotX = _turret.width - _turret.width/2;
+			_turret.pivotY = _turret.height;
 			addChild(_turret);
 			
 			update();

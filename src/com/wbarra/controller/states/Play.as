@@ -96,6 +96,7 @@ package com.wbarra.controller.states
 		private var _totalScore:uint = 0;
 		
 		// bullet realted
+		private var _bullet:Bullet;
 		private var _bulletHolder:Array = [];
 		private var _canFire:Boolean = true; // Tracks whether enough time has elapsed since last bullet.
 		private var _firing:Boolean = false; // Tracks whether the mouse is currently down, for machine-gun.
@@ -183,10 +184,8 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			_bulletHolder[_bulletCounter].x = (_hero.x) + (_hero.width/2);
-			_bulletHolder[_bulletCounter].y = (_hero.y) + (_hero.height/2);
-			
-			trace(_bulletHolder[_bulletCounter].x, _bulletHolder[_bulletCounter].y);
+			_bulletHolder[_bulletCounter].x = (((_hero.x) + 15) - _bullet.width/2); // 32 Because im tired of trying to get this to work
+			_bulletHolder[_bulletCounter].y = (((_hero.y) + 15) - _bullet.height/2); // 32 Because im tired of trying to get this to work
 			
 			// calculate the firing angle 
 			_bulletHolder[_bulletCounter].targetY = yParam;
@@ -225,6 +224,7 @@ package com.wbarra.controller.states
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
+			_hero.scaleX = _hero.scaleY = .5;
 			_battleField.addChild(_hero);
 			
 			_livesDisplay = new TextField(200, 30, "HP: ", "Verdana", 16, 0xffffff);
@@ -237,6 +237,8 @@ package com.wbarra.controller.states
 			_wavesTextfield.x = 390;
 			_wavesTextfield.y = 22;
 			_battleField.addChild(_wavesTextfield);
+			
+			_bullet = new Bullet();
 			
 			// Creating enemies
 			createEnemies();
@@ -611,7 +613,6 @@ package com.wbarra.controller.states
 			else
 			{
 				_hero.health -= _damage;
-				trace(_hero.health);
 				_hero.alive = true;
 			}
 			_livesDisplay.text = String("HP: "+_hero.health);
