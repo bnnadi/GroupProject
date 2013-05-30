@@ -88,6 +88,7 @@ package com.wbarra.controller.states
 		private var _distanceHealthDrop:Number;
 		private var _distanceDoubleShot:Number;
 		private var _powerUp:PowerUp;
+		private var _totalScore:uint = 0;
 		
 		// bullet realted
 		private var _bulletHolder:Array = [];
@@ -185,7 +186,7 @@ package com.wbarra.controller.states
 				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
-			for (var e2:int = 0; e2 < 100wd; e2++)
+			for (var e2:int = 0; e2 < 100; e2++)
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
