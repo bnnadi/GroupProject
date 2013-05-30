@@ -98,6 +98,12 @@ package com.wbarra.controller.states
 		
 		private var _killGame:Boolean = true;
 		
+		// WAVE COUNTER & ENEMY COUNTER
+		private var _waveCounter:uint = 1;
+		private var _e1BaseSpawn:uint = 3;
+		private var _e2BaseSpawn:uint = 5;
+		private var _e3BaseSpawn:uint = 10;
+		
 		public function Play(game:Game)
 		{
 			this._game = game;
@@ -174,7 +180,7 @@ package com.wbarra.controller.states
 			//building a bunch of test enemies of class Enemy one
 			var spacer:Number = 10;
 			// ENEMY 1 
-			for (var e1:int = 0; e1 < 1; e1++)
+			for (var e1:int = 0; e1 < (_e1BaseSpawn*_waveCounter); e1++)
 			{
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
@@ -186,7 +192,7 @@ package com.wbarra.controller.states
 				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
-			for (var e2:int = 0; e2 < 100; e2++)
+			for (var e2:int = 0; e2 < (_e2BaseSpawn*_waveCounter); e2++)
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
@@ -198,7 +204,7 @@ package com.wbarra.controller.states
 				//				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
-			for (var e3:int = 0; e3 < 30; e3 ++ )
+			for (var e3:int = 0; e3 < (_e3BaseSpawn*_waveCounter); e3 ++ )
 			{
 				// spawning enemy three
 				_enemyThree = new EnemyThree();
