@@ -41,10 +41,10 @@ package com.wbarra.chrome
 			_bbg = new Sprite();
 			_lbg = new Sprite();
 			
-			addChild(_tbg);
+			//addChild(_tbg);
 			addChild(_rbg);
 			addChild(_bbg);
-			addChild(_lbg);
+			//addChild(_lbg);
 			
 			// adding the creation of the top bar to the stage
 			createTopBar();
