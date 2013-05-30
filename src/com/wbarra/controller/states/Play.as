@@ -118,6 +118,9 @@ package com.wbarra.controller.states
 		// LIVES DISPLAY
 		private var _livesDisplay:TextField;
 		
+		// WAVES TEXTFIELD
+		private var _wavesTextfield:TextField;
+		
 		// particle effects 
 		// p1
 		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
@@ -180,10 +183,6 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			trace(_bulletHolder);
-			trace(_bulletCounter);
-			trace(_hero);
-			
 			_bulletHolder[_bulletCounter].x = _hero.x;
 			_bulletHolder[_bulletCounter].y = _hero.y;
 			// calculate the firing angle 
@@ -228,11 +227,16 @@ package com.wbarra.controller.states
 			_hero.y = stage.stageHeight/2;
 			_battleField.addChild( _hero);
 			
-			_livesDisplay = new TextField(200, 30, "Score: ", "Verdana", 16, 0xffffff);
+			_livesDisplay = new TextField(200, 30, "HP: ", "Verdana", 16, 0xffffff);
 			_livesDisplay.x = 10;
 			_livesDisplay.y = 22;
 			_livesDisplay.text = String("HP: "+_hero.health);
 			_battleField.addChild(_livesDisplay);
+			
+			_wavesTextfield = new TextField(200, 30, "Wave: ", "Verdana", 16, 0xffffff);
+			_wavesTextfield.x = 390;
+			_wavesTextfield.y = 22;
+			_battleField.addChild(_wavesTextfield);
 			
 			// Creating enemies
 			createEnemies();
@@ -570,6 +574,7 @@ package com.wbarra.controller.states
 					
 				}
 			}
+			_wavesTextfield.text = String("Wave: "+_waveCounter);
 			_scoreTextfied.text = String("Score: "+_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
@@ -681,6 +686,7 @@ package com.wbarra.controller.states
 					_waveCounter++;
 					createEnemies();
 					createBullets();
+					
 				}
 			}
 		}
