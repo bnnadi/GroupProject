@@ -152,8 +152,6 @@ package com.wbarra.controller.states
 			}
 		}
 		
-		
-		
 		private function onAdded():void
 		{
 			// adding the event listener to the stage
@@ -270,6 +268,7 @@ package com.wbarra.controller.states
 						e1.alive = false;
 					}
 					// BULLET SHOT TEST
+					// Bullet collisioin with the enemy ships
 					for each (var b:Bullet in _bulletHolder) 
 					{
 						if (b.alive)
@@ -360,6 +359,7 @@ package com.wbarra.controller.states
 					}
 				}
 			}
+
 			//Moving EnemyThree on the stage. 
 			//=======================================================
 			for each (var e3:EnemyThree in _enemyThreeHolder)
@@ -441,6 +441,7 @@ package com.wbarra.controller.states
 			// the last method in this class.
 			//			trace("hit");
 			//			trace('hero health: '+_hero.health);
+						
 			
 			if(_hero.health <= 0)
 			{
@@ -481,9 +482,10 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
-				_enemyOneHolder = null;
-				_enemyTwoHolder = null;
-				_enemyThreeHolder = null;
+				_enemyOneHolder 	= null;
+				_enemyTwoHolder 	= null;
+				_enemyThreeHolder 	= null;
+				_bulletHolder 		= null;
 				
 			}
 			
@@ -502,12 +504,11 @@ package com.wbarra.controller.states
 				trace('testing the killGame()');
 				_killGame = false;
 				// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
-				removeEventListener(Event.ADDED_TO_STAGE, onAdded);
-				removeEventListener(Event.ENTER_FRAME, onEnterFrame);
-				removeEventListener(TouchEvent.TOUCH, onTouch);
-				stage.removeEventListener(TouchEvent.TOUCH, onTouch);
+				_battleField.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
+				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
 //				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
-				
+
 				_game.changeState(Game.GAME_OVER_STATE);
 			}
 		}
