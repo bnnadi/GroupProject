@@ -61,6 +61,7 @@ package com.wbarra.controller.hero
 			_turret.pivotY = _turret.height/2;
 			_turret.x = this.width/2 - _turret.x;
 			_turret.y = this.height/2 - _turret.y;
+//			_turret.scaleX = _turret.scaleY = .5;
 			addChild(_turret);
 			
 			update();
