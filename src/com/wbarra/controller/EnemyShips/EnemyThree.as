@@ -58,6 +58,11 @@ package com.wbarra.controller.EnemyShips
 			spawnPoint();
 		}
 
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
+		}
+
 		public function get alive():Boolean
 		{
 			return _alive;

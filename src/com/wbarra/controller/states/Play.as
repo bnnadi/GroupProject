@@ -10,7 +10,6 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.objects.PowerUp;
 	
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
@@ -21,7 +20,6 @@ package com.wbarra.controller.states
 	import starling.events.Touch;
 	import starling.events.TouchEvent;
 	import starling.events.TouchPhase;
-	import starling.utils.formatString;
 	
 	public class Play extends Sprite implements IState
 	{
@@ -30,6 +28,7 @@ package com.wbarra.controller.states
 		// so we can switch back to Menu or Over states
 		private var _game:Game;
 		/***************************/
+		private var _battleField:Sprite;
 		private var _background:Image;
 		
 		private var _hero:Hero;
@@ -162,14 +161,17 @@ package com.wbarra.controller.states
 			//***************EVENT LISTENER******************
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
 			
+			// creating a enw canvas. 
+			_battleField = new Sprite();
+			stage.addChild( _battleField );
 			
 			_background = Image.fromBitmap(new AllMyImages.Background());
-			addChild(_background);
+			_battleField.addChild(_background);
 			
 			_hero = new Hero();
 			_hero.x = stage.stageWidth/2
 			_hero.y = stage.stageHeight/2;
-			addChild( _hero);
+			_battleField.addChild( _hero);
 			
 			//building a bunch of test enemies of class Enemy one
 			var spacer:Number = 10;
@@ -179,7 +181,7 @@ package com.wbarra.controller.states
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
 				_enemyOne.scaleX = _enemyOne.scaleY = .5;
-				addChild( _enemyOne );
+				_battleField.addChild( _enemyOne );
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
@@ -191,7 +193,7 @@ package com.wbarra.controller.states
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
 				_enemyTwo.scaleX = _enemyTwo.scaleY = .5;
-				addChild( _enemyTwo);
+				_battleField.addChild( _enemyTwo);
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
@@ -204,7 +206,7 @@ package com.wbarra.controller.states
 				_enemyThree = new EnemyThree();
 				_enemyThree.scaleX = _enemyThree.scaleY = .5;
 				_enemyThree.x = spacer;
-				addChild( _enemyThree);
+				_battleField.addChild( _enemyThree);
 				
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
@@ -250,8 +252,6 @@ package com.wbarra.controller.states
 				{
 					e1.enemyMove( (_hero.x  ), (_hero.y ));
 					// collision detection for enemy One
-					
-					
 					// this is the working model for collision detection. 
 					// use this model to build the rest of the collision detection system
 					if(_hero.x > e1.x){
@@ -259,16 +259,13 @@ package com.wbarra.controller.states
 					}else{
 						_shipDistanceX =  e1.x - _hero.x;
 					}
-					
 					if(_hero.y > e1.y){
 						_shipDistanceY = _hero.y - e1.y;
 					}else{
 						_shipDistanceY = e1.y - _hero.y;
 					}
-					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-						trace("hit1");
 						shipHit();
 					}
 					// BULLET SHOT TEST
@@ -295,7 +292,9 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-								removeChild(e1);
+								_battleField.removeChild( e1 );
+								_battleField.removeChild( b );
+								e1.alive = false;
 							}
 						}
 					}
@@ -309,24 +308,22 @@ package com.wbarra.controller.states
 			{
 				if(e2.alive)
 				{
-				
 					e2.enemyMove();
-					
-					if(_hero.x > e2.x){
+					if(_hero.x > e2.x)
+					{
 						_shipDistanceX = _hero.x - e2.x;
 					}else{
 						_shipDistanceX =  e2.x - _hero.x;
 					}
-					
-					if(_hero.y > e2.y){
+					if(_hero.y > e2.y)
+					{
 						_shipDistanceY = _hero.y - e2.y;
-					}else{
+					}else
+					{
 						_shipDistanceY = e2.y - _hero.y;
 					}
-					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-						trace("hit2");
 						shipHit();
 					}
 					// BULLET SHOT TEST
@@ -352,13 +349,15 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-								removeChild(e2);
+								_battleField.removeChild( e2 );
+								_battleField.removeChild( b );
+								e2.alive = false;
 							}
 						}
 					}
 				}
 			}
-			
+
 			//Moving EnemyThree on the stage. 
 			//=======================================================
 			for each (var e3:EnemyThree in _enemyThreeHolder)
@@ -366,49 +365,47 @@ package com.wbarra.controller.states
 				if(e2.alive)
 				{
 					e3.enemyMove();	
-					
 					if(_hero.x > e3.x){
 						_shipDistanceX = _hero.x - e3.x;
 					}else{
 						_shipDistanceX =  e3.x - _hero.x;
 					}
-					
 					if(_hero.y > e3.y){
 						_shipDistanceY = _hero.y - e3.y;
 					}else{
 						_shipDistanceY = e3.y - _hero.y;
 					}
-					
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
-						trace("hit3");
 						shipHit();
 					}
-					// BULLET SHOT TEST
-					for each (var b:Bullet in _bulletHolder) 
+				}
+				// BULLET SHOT TEST
+				for each (var b:Bullet in _bulletHolder) 
+				{
+					if (b.alive)
 					{
-						if (b.alive)
+						if (b.x > e3.x)
 						{
-							if (b.x > e3.x)
-							{
-								_bullDistanceX = b.x - e3.x;
-							}
-							else
-							{
-								_bullDistanceX = e3.x - b.x;
-							}
-							if (b.y > e3.y)
-							{
-								_bullDistanceY = b.y - e3.y;
-							}
-							else
-							{
-								_bullDistanceY = e3.y - b.y;
-							}
-							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
-							{
-								removeChild(e3);
-							}
+							_bullDistanceX = b.x - e3.x;
+						}
+						else
+						{
+							_bullDistanceX = e3.x - b.x;
+						}
+						if (b.y > e3.y)
+						{
+							_bullDistanceY = b.y - e3.y;
+						}
+						else
+						{
+							_bullDistanceY = e3.y - b.y;
+						}
+						if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
+						{
+							_battleField.removeChild(e3);
+							_battleField.removeChild( b );
+							e3.alive = false;
 						}
 					}
 				}
@@ -472,17 +469,14 @@ package com.wbarra.controller.states
 		
 		public function destroy():void
 		{
-			//			Removing all children from the screen, yet somehow there
-			//			is still colision happening. It is breaking the game 
 			//			if either the changeState() is called.
-			while(this.numChildren > 0)
+			while(numChildren > 0)
 			{
-				trace('testing the destroy()');
-				this.removeChildAt(0);				
+				removeChildAt(0);				
 				
 				for each (var i:Bullet in _bulletHolder) 
 				{
-					stage.removeChild(i);
+					removeChild(i);
 				}
 				_enemyOneHolder 	= null;
 				_enemyTwoHolder 	= null;
@@ -504,7 +498,6 @@ package com.wbarra.controller.states
 			{
 				trace('testing the killGame()');
 				_killGame = false;
-				
 				// REMOVING ALL THE EVENT HANDLERS ON THE STAGE
 				removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 				removeEventListener(Event.ENTER_FRAME, onEnterFrame);

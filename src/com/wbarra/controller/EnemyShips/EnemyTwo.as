@@ -1,6 +1,5 @@
 package com.wbarra.controller.EnemyShips
 {
-	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.allMyStuff.AllMyTexturePackerTextures;
 	
 	import starling.core.Starling;
@@ -34,6 +33,11 @@ package com.wbarra.controller.EnemyShips
 			_alive = true;
 			// calling spawn point function 
 			spawnPoint();
+		}
+
+		public function set alive(value:Boolean):void
+		{
+			_alive = value;
 		}
 
 		public function get alive():Boolean
