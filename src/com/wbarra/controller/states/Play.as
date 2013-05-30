@@ -104,6 +104,8 @@ package com.wbarra.controller.states
 		private var _e2BaseSpawn:uint = 5;
 		private var _e3BaseSpawn:uint = 10;
 		
+		private var _spacer:uint;
+		
 		public function Play(game:Game)
 		{
 			this._game = game;
@@ -178,7 +180,6 @@ package com.wbarra.controller.states
 			_battleField.addChild( _hero);
 			
 			//building a bunch of test enemies of class Enemy one
-			var spacer:Number = 10;
 			// ENEMY 1 
 			for (var e1:int = 0; e1 < (_e1BaseSpawn*_waveCounter); e1++)
 			{
@@ -206,18 +207,20 @@ package com.wbarra.controller.states
 				//				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
+			
+			_spacer = (_battleField.width / (_e3BaseSpawn*_waveCounter));
+			
 			for (var e3:int = 0; e3 < (_e3BaseSpawn*_waveCounter); e3 ++ )
 			{
+
 				// spawning enemy three
 				_enemyThree = new EnemyThree();
 				_enemyThree.scaleX = _enemyThree.scaleY = .5;
-				_enemyThree.x = spacer;
+				_enemyThree.x = _spacer * e3 + (_spacer / 2);
 				_battleField.addChild( _enemyThree);
 				
 				// pushing into enemy array 
 				_enemyThreeHolder.push(_enemyThree);
-				spacer += _enemyThree.width + 10;
-				//				trace(_enemyThreeHolder.length);
 			}
 			// building the bullets 
 			for (var f:int = 0; f < 100; f++)
