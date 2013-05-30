@@ -175,7 +175,7 @@ package com.wbarra.controller.states
 			//building a bunch of test enemies of class Enemy one
 			var spacer:Number = 10;
 			// ENEMY 1 
-			for (var e1:int = 0; e1 < 10; e1++)
+			for (var e1:int = 0; e1 < 1; e1++)
 			{
 				// spawning enemy One
 				_enemyOne = new EnemyOne();
@@ -187,7 +187,7 @@ package com.wbarra.controller.states
 				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
-			for (var e2:int = 0; e2 < 10; e2++)
+			for (var e2:int = 0; e2 < 100wd; e2++)
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
@@ -266,6 +266,8 @@ package com.wbarra.controller.states
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
 						shipHit();
+						_battleField.removeChild( e1 );
+						e1.alive = false;
 					}
 					// BULLET SHOT TEST
 					for each (var b:Bullet in _bulletHolder) 
@@ -307,6 +309,7 @@ package com.wbarra.controller.states
 				if(e2.alive)
 				{
 					e2.enemyMove();
+					
 					if(_hero.x > e2.x)
 					{
 						_shipDistanceX = _hero.x - e2.x;
@@ -323,32 +326,34 @@ package com.wbarra.controller.states
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
 						shipHit();
+						_battleField.removeChild( e2 );
+						e2.alive = false;
 					}
 					// BULLET SHOT TEST
-					for each (var b:Bullet in _bulletHolder) 
+					for each (var bull:Bullet in _bulletHolder) 
 					{
-						if (b.alive)
+						if (bull.alive)
 						{
-							if (b.x > e2.x)
+							if (bull.x > e2.x)
 							{
-								_bullDistanceX = b.x - e2.x;
+								_bullDistanceX = bull.x - e2.x;
 							}
 							else
 							{
-								_bullDistanceX = e2.x - b.x;
+								_bullDistanceX = e2.x - bull.x;
 							}
-							if (b.y > e2.y)
+							if (bull.y > e2.y)
 							{
-								_bullDistanceY = b.y - e2.y;
+								_bullDistanceY = bull.y - e2.y;
 							}
 							else
 							{
-								_bullDistanceY = e2.y - b.y;
+								_bullDistanceY = e2.y - bull.y;
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
 								_battleField.removeChild( e2 );
-								_battleField.removeChild( b );
+								_battleField.removeChild( bull );
 								e2.alive = false;
 							}
 						}
@@ -359,7 +364,7 @@ package com.wbarra.controller.states
 			//=======================================================
 			for each (var e3:EnemyThree in _enemyThreeHolder)
 			{
-				if(e2.alive)
+				if(e3.alive)
 				{
 					e3.enemyMove();	
 					if(_hero.x > e3.x){
@@ -375,33 +380,35 @@ package com.wbarra.controller.states
 					if (_shipDistanceX <= 25 && _shipDistanceY <= 25)
 					{
 						shipHit();
+						_battleField.removeChild( e3 );
+						e3.alive = false;
 					}
 				}
 				// BULLET SHOT TEST
-				for each (var b:Bullet in _bulletHolder) 
+				for each (var bulls:Bullet in _bulletHolder) 
 				{
-					if (b.alive)
+					if (bulls.alive)
 					{
-						if (b.x > e3.x)
+						if (bulls.x > e3.x)
 						{
-							_bullDistanceX = b.x - e3.x;
+							_bullDistanceX = bulls.x - e3.x;
 						}
 						else
 						{
-							_bullDistanceX = e3.x - b.x;
+							_bullDistanceX = e3.x - bulls.x;
 						}
-						if (b.y > e3.y)
+						if (bulls.y > e3.y)
 						{
-							_bullDistanceY = b.y - e3.y;
+							_bullDistanceY = bulls.y - e3.y;
 						}
 						else
 						{
-							_bullDistanceY = e3.y - b.y;
+							_bullDistanceY = e3.y - bulls.y;
 						}
 						if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 						{
 							_battleField.removeChild(e3);
-							_battleField.removeChild( b );
+							_battleField.removeChild( bulls );
 							e3.alive = false;
 						}
 					}
