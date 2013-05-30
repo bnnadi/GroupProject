@@ -5,6 +5,8 @@ package com.wbarra.controller.core
 	import com.wbarra.controller.states.Over;
 	import com.wbarra.controller.states.Play;
 	
+	import flash.system.System;
+	
 	import starling.display.Sprite;
 	import starling.events.Event;
 	
@@ -34,6 +36,7 @@ package com.wbarra.controller.core
 			{
 				_currentState.destroy();
 				_currentState = null;
+				System.gc();
 			}
 			
 			switch(state)
@@ -58,9 +61,9 @@ package com.wbarra.controller.core
 			_currentState.update();
 		}
 		
-		private function destroy():void
+		private function restart(event:Event):void
 		{
-			
+			trace("restarting");
 		}
 	}
 }

@@ -9,8 +9,10 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 	import flash.events.MouseEvent;
+	import flash.system.System;
 	
 	import starling.core.Starling;
+	import starling.events.Event;
 	
 	[SWF(width="1024", height="768", frameRate="60", backgroundColor="#000000")]
 	
@@ -46,5 +48,6 @@ package
 			Hero.mouseX = stage.mouseX;
 			Hero.mouseY = stage.mouseY;
 		}
+		
 	}
 }

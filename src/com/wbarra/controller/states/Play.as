@@ -12,6 +12,7 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.PowerUp;
 	
 	import flash.geom.Point;
+	import flash.system.System;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
@@ -646,6 +647,8 @@ package com.wbarra.controller.states
 			{
 				killGame();
 			}
+			
+			System.gc();
 		}
 		
 		private function killGame():void

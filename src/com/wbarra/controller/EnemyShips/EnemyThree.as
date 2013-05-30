@@ -26,15 +26,17 @@ package com.wbarra.controller.EnemyShips
 		private var _placementVar:Boolean;
 		private var _mc:MovieClip;
 	
+		private static  var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
+		private static  var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
+		private static var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+		
 		
 		public function EnemyThree()
 		{
 			// I tracel in a line
 			super();
 			// test 
-			var texture:Texture = Texture.fromBitmap(new AllMyTexturePackerTextures.enemiesImage());
-			var xml:XML = XML(new AllMyTexturePackerTextures.enemiesXML());
-			var atlas:TextureAtlas = new TextureAtlas(texture, xml);
+			
 			_mc= new MovieClip(atlas.getTextures("enemy3"), 30);
 			addChild(_mc);
 			Starling.juggler.add(_mc);
