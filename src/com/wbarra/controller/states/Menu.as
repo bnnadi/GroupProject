@@ -5,6 +5,8 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.core.Game;
 	import com.wbarra.controller.interfaces.IState;
 	
+	import feathers.data.XMLListListCollectionDataDescriptor;
+	
 	import starling.core.Starling;
 	import starling.display.Button;
 	import starling.display.Image;
@@ -20,9 +22,9 @@ package com.wbarra.controller.states
 		private var _play:Button;
 		private var _options:Button;
 		private var _titleImg:Image;
-		private const _psConfig:XML = XML(new AllMyParticles.titleEffect());
+		private const _psConfig:XML =  XML(new AllMyParticles.titleEffect());
 		private const _psTexture:Texture = Texture.fromBitmap(new AllMyParticles.titlEffectImg());
-		private var _titlePS:PDParticleSystem;
+		private var _titlePS:PDParticleSystem = new PDParticleSystem(_psConfig, _psTexture);
 		
 		public function Menu(game:Game)
 		{
@@ -34,21 +36,11 @@ package com.wbarra.controller.states
 		{
 			_background = Image.fromBitmap(new AllMyImages.Background());
 			_background.y = 50;
-//			addChild(_background);
+			addChild(_background);
 			
 			// adding the particle effects
-			//			// 1
-			//			var psConfig:XML = XML(new AllMyParticles.PE3Down());
-			//			var psTexture:Texture = Texture.fromBitmap(new AllMyParticles.PIE3Down());
-			//			_psUp = new PDParticleSystem(psConfig, psTexture);
-			//			_psUp.x = 0;
-			//			_psUp.y = 0;
-			//			_psUp.emitterX = 0;
-			//			_psUp.emitterY = 0;
-			//			addChild( _psUp );
-			//			Starling.juggler.add( _psUp );
 			
-			_titlePS = new PDParticleSystem(_psConfig, _psTexture);
+//			_titlePS = new PDParticleSystem(_psConfig, _psTexture);
 //			_titlePS.x = 220;
 			_titlePS.y = 225;
 			

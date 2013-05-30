@@ -15,6 +15,7 @@ package com.wbarra.controller.states
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
 	
+	import starling.core.Starling;
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.Event;
@@ -113,15 +114,16 @@ package com.wbarra.controller.states
 		// p1
 		private const _psE1PopCon:XML = XML(new AllMyParticles.e1Pop());
 		private const _psE1PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e1PopImg());
-		private var _psE1:PDParticleSystem;
+		private var _psE1:PDParticleSystem = new PDParticleSystem(_psE1PopCon, _psE1PopImg);
 		// p2
 		private const _psE2PopCon:XML = XML(new AllMyParticles.e2Pop());
 		private const _psE2PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e2PopImg());
-		private var _psE2:PDParticleSystem;
+		private var _psE2:PDParticleSystem = new PDParticleSystem(_psE2PopCon, _psE2PopImg);
 		// p3
 		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
 		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
 		private var _psE3:PDParticleSystem;
+			
 		
 		private var _spacer:uint;
 		
@@ -181,6 +183,10 @@ package com.wbarra.controller.states
 		
 		private function onAdded():void
 		{
+			// adding the particle effects 
+			Starling.juggler.add(_psE1);
+			Starling.juggler.add(_psE2);
+			Starling.juggler.add(_psE3);
 			// adding the event listener to the stage
 			//***************EVENT LISTENER******************
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -329,6 +335,7 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
+								_psE1.start();
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
@@ -391,6 +398,7 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
+								_psE2.start();
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
@@ -449,6 +457,13 @@ package com.wbarra.controller.states
 						}
 						if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 						{
+							_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
+							_battleField.addChild(_psE3);
+							_psE3.x = bulls.x;
+							_psE3.y = bulls.y;
+							Starling.juggler.add(_psE3);
+							_psE3.start(1);
+							
 							_battleField.removeChild(e3);
 							_battleField.removeChild( bulls );
 							e3.alive = false;
