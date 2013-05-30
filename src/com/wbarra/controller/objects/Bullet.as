@@ -22,8 +22,7 @@ package com.wbarra.controller.objects
 		private var _targetY:Number;
 		private var _onceOver:Boolean = true;;
 		
-		
-		public function Bullet(alive = false)
+		public function Bullet(alive:Boolean = false)
 		{
 			super();
 			addEventListener(Event.ADDED_TO_STAGE, onAdded);
