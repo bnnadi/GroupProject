@@ -31,6 +31,29 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="particles/hero.png")]
 		public static const PIHero:Class; 
 		
+		[Embed(source="particles/titleEffect.pex", mimeType = "application/octet-stream")]
+		public static const titleEffect:Class;
+		
+		[Embed(source="particles/titleEffect.png")]
+		public static const titlEffectImg:Class;
+		
+		/// the pops
+		[Embed(source="particles/e1Pop.pex", mimeType = "application/octet-stream")]
+		public static const e1Pop:Class;
+		[Embed(source="particles/e1pop.png")]
+		public static const e1PopImg:Class;
+		
+		[Embed(source="particles/e2Pop.pex", mimeType = "application/octet-stream")]
+		public static const e2Pop:Class;
+		[Embed(source="particles/e2Pop.png")]
+		public static const e2PopImg:Class;
+		
+		[Embed(source="particles/e3Pop.pex", mimeType = "application/octet-stream")]
+		public static const e3Pop:Class;
+		[Embed(source="particles/e3Pop.png")]
+		public static const e3PopImg:Class;
+		
+		
 		
 		
 		public function AllMyParticles()

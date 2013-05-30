@@ -23,6 +23,14 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="images/OptionsBtn.png")]
 		public static const OptionsButton:Class;
 		
+		[Embed(source="Images/shipTurret.png")]
+		public static const shipTurretImg:Class;
+		
+		[Embed(source="Images/shipBody.png")]
+		public static const shipBodyImg:Class;
+		
+		[Embed(source="Images/title.png")]
+		public static const titleImg:Class;
 		
 		public function AllMyImages()
 		{
