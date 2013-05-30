@@ -23,16 +23,29 @@ package com.wbarra.chrome
 
 		private var _close:closeBtn;
 
+		private var _tbg:Sprite;
+		private var _rbg:Sprite;
 		private var _bbg:Sprite;
+		private var _lbg:Sprite;
+		
 		public function TopBar()
 		{
 			super();
-			_bbg = new Sprite();
 			addEventListener(Event.ADDED_TO_STAGE, onAdd);
 		}
 		
 		protected function onAdd(event:Event):void
 		{
+			_tbg = new Sprite();
+			_rbg = new Sprite();
+			_bbg = new Sprite();
+			_lbg = new Sprite();
+			
+			addChild(_tbg);
+			addChild(_rbg);
+			addChild(_bbg);
+			addChild(_lbg);
+			
 			// adding the creation of the top bar to the stage
 			createTopBar();
 		}
@@ -101,12 +114,27 @@ package com.wbarra.chrome
 			
 			if(event.fullScreen)
 			{
-				_bbg.graphics.beginFill(0);
-				_bbg.graphics.drawRect(0,0,stage.nativeWindow.width, stage.nativeWindow.height);
-				_bbg.graphics.endFill();
-				addChild(_bbg);
-				_bbg.visible = true;
+				// Draw top
+				_tbg.graphics.beginFill(0);
+				_tbg.graphics.drawRect(0,0,stage.nativeWindow.width, stage.nativeWindow.y);
+				_tbg.graphics.endFill();
 				
+				// Draw right
+				_rbg.graphics.beginFill(0);
+				_rbg.graphics.drawRect(1024,0,stage.nativeWindow.width - 1024 , stage.nativeWindow.height);
+				_rbg.graphics.endFill();
+				
+				// Draw bottom
+				_bbg.graphics.beginFill(0);
+				_bbg.graphics.drawRect(0,768,stage.nativeWindow.width, stage.nativeWindow.height - 768);
+				_bbg.graphics.endFill();
+				
+				// Draw left
+				_lbg.graphics.beginFill(0);
+				_rbg.graphics.drawRect(0,0,0 , stage.nativeWindow.height);
+				_lbg.graphics.endFill();
+				
+				// Move bar
 				_bar.x = 0;
 				_bar.width = stage.nativeWindow.width;
 				trace(_bar.x);

@@ -23,6 +23,7 @@ package com.wbarra.controller.core
 		
 		private function init(event:Event):void
 		{
+			trace("added to stage");
 			changeState(MENU_STATE);
 			addEventListener(Event.ENTER_FRAME, update);
 		}

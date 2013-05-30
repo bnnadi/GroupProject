@@ -26,7 +26,8 @@ package
 			
 			// Added the new Chrome
 			var top:TopBar = new TopBar();
-			addChild(top);
+			stage.addChild(top);
+			trace("top bar");
 			
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onMove);			
 			// Create a Starling instance that will run the "Game" class
