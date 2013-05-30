@@ -408,6 +408,7 @@ package com.wbarra.controller.states
 								_battleField.removeChild( b );
 								e1.alive = false;
 
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -484,6 +485,7 @@ package com.wbarra.controller.states
 								_battleField.removeChild( bull );
 								e2.alive = false;
 
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -514,7 +516,8 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
-
+						
+						((_score++) * 10);
 						_enemyAmount--;
 						checkWin();
 					}
@@ -550,11 +553,11 @@ package com.wbarra.controller.states
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
 								
-								
 								_battleField.removeChild(e3);
 								_battleField.removeChild( bulls );
 								e3.alive = false;
 
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -563,7 +566,7 @@ package com.wbarra.controller.states
 					
 				}
 			}
-			trace(_score);
+			_scoreTextfied.text = String("Score: "+_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
 			// ALLOWS FOR IT
@@ -586,7 +589,6 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			
 			if(_hero.health <= 0)
 			{
 				_hero.alive = false;
@@ -604,6 +606,7 @@ package com.wbarra.controller.states
 				trace(_hero.health);
 				_hero.alive = true;
 			}
+			_livesDisplay.text = String("HP: "+_hero.health);
 		}
 		
 		public function update():void
