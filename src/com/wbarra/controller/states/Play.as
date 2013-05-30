@@ -193,7 +193,9 @@ package com.wbarra.controller.states
 				_enemyOneHolder.push(_enemyOne);
 			}
 			// ENEMY 2 
+
 			for (var e2:int = 0; e2 < (_e2BaseSpawn*_waveCounter); e2++)
+
 			{
 				// spawning enemy two
 				_enemyTwo = new EnemyTwo();
