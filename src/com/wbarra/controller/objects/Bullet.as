@@ -72,7 +72,7 @@ package com.wbarra.controller.objects
 		public function onAdded():void
 		{
 			var bullet:Image = Image.fromBitmap(new AllMyImages.BulletImg());
-			scaleX = scaleY = .5;
+			scaleX = scaleY = .4;
 			addChild(bullet);
 			_alive = alive;
 		}

@@ -32,6 +32,9 @@ package com.wbarra.controller.allMyStuff
 		[Embed(source="Images/title.png")]
 		public static const titleImg:Class;
 		
+		[Embed(source="Images/instructions.png")]
+		public static const instructions:Class
+		
 		public function AllMyImages()
 		{
 		}

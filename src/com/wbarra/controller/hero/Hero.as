@@ -54,7 +54,7 @@ package com.wbarra.controller.hero
 			_turret = Image.fromBitmap(new AllMyImages.Turret());
 			_ship.x = this.width/2;
 			_ship.y = this.height/2;
-			_ship.scaleX = _ship.scaleY = .5; // just change this to get ship to original size. 
+//			_ship.scaleX = _ship.scaleY = .5; // just change this to get ship to original size. 
 			addChild(_ship);
 			_turret.width = _turret.width;
 			_turret.pivotX = _turret.width/2;

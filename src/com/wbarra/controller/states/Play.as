@@ -180,12 +180,8 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			trace(_bulletHolder);
-			trace(_bulletCounter);
-			trace(_hero);
-			
-			_bulletHolder[_bulletCounter].x = _hero.x;
-			_bulletHolder[_bulletCounter].y = _hero.y;
+			_bulletHolder[_bulletCounter].x = _hero.x ;
+			_bulletHolder[_bulletCounter].y = _hero.y ;
 			// calculate the firing angle 
 			_bulletHolder[_bulletCounter].targetY = yParam;
 			_bulletHolder[_bulletCounter].targetX = xParam;
@@ -567,7 +563,6 @@ package com.wbarra.controller.states
 							}
 						}
 					}
-					
 				}
 			}
 			_scoreTextfied.text = String("Score: "+_score);
