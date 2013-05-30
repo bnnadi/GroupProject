@@ -623,6 +623,7 @@ package com.wbarra.controller.states
 				{
 					_battleField.removeChild(i);
 				}
+
 				_enemyOneHolder		=  [];
 				_enemyTwoHolder 	=  [];
 				_enemyThreeHolder 	=  [];
