@@ -2,7 +2,6 @@ package com.wbarra.controller.hero
 {
 	import com.wbarra.controller.CustomStuff.KeyClass;
 	import com.wbarra.controller.allMyStuff.AllMyImages;
-	import com.wbarra.controller.allMyStuff.AllMyParticles;
 	import com.wbarra.controller.objects.PowerUp;
 	
 	import flash.ui.Keyboard;
@@ -10,8 +9,6 @@ package com.wbarra.controller.hero
 	import starling.display.Image;
 	import starling.display.Sprite;
 	import starling.events.TouchEvent;
-	import starling.extensions.PDParticleSystem;
-	import starling.textures.Texture;
 	import starling.utils.deg2rad;
 	
 	public class Hero extends Sprite
@@ -41,10 +38,6 @@ package com.wbarra.controller.hero
 		private static const ACCEL:Number = 0.5;
 		private static const FRICTION:Number = 0.98;
 		
-		
-		// hugo messing with stuff 
-		private var _ps:PDParticleSystem;
-		
 		public function Hero()
 		{
 			// I'm a ship 
@@ -54,7 +47,7 @@ package com.wbarra.controller.hero
 			_turret = Image.fromBitmap(new AllMyImages.Turret());
 			_ship.x = this.width/2;
 			_ship.y = this.height/2;
-			_ship.scaleX = _ship.scaleY = .5; // just change this to get ship to original size. 
+//			_ship.scaleX = _ship.scaleY = .5; // just change this to get ship to original size. 
 			addChild(_ship);
 			_turret.width = _turret.width;
 			_turret.pivotX = _turret.width/2;
