@@ -25,6 +25,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			
+			// Added the new Chrome
 			var top:TopBar = new TopBar();
 			addChild(top);
 			

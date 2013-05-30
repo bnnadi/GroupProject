@@ -98,6 +98,11 @@ package com.wbarra.chrome
 			
 			if(event.fullScreen)
 			{
+				var bbg:Sprite = new Sprite();
+				bbg.graphics.beginFill(0);
+				bbg.graphics.drawRect(0,0,stage.stageWidth, stage.stageHeight);
+				bbg.graphics.endFill();
+				
 				_bar.x = 0;
 				_bar.width = stage.nativeWindow.width;
 				trace(_bar.x);
@@ -106,6 +111,10 @@ package com.wbarra.chrome
 				_close.visible = false;
 				
 				_full.addEventListener(MouseEvent.CLICK, onResize);
+			}
+			else
+			{
+				bbg.graphics.clear();
 			}
 		}
 		
