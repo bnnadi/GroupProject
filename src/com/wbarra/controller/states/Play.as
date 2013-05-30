@@ -348,6 +348,22 @@ package com.wbarra.controller.states
 			//=======================================================
 			_hero.update();
 			//=======================================================
+			if(_hero.x < _battleField.x)
+			{
+				_hero.x = 1;
+			}
+			if(_hero.x >= _battleField.width - 50)
+			{
+				_hero.x = 974;
+			}
+			if(_hero.y < 48)
+			{
+				_hero.y = 48;
+			}
+			if(_hero.y >= _battleField.height - 30)
+			{
+				_hero.y = 715;
+			}
 			
 			// testing the collisions
 			_pHero = new Point( (_hero.x) , (_hero.y) );// breaking when we add the height and the width 

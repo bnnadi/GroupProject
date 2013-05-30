@@ -45,7 +45,7 @@ package com.wbarra.controller.hero
 			_ship = Image.fromBitmap(new AllMyImages.Ship());
 			_turret = Image.fromBitmap(new AllMyImages.shipTurretImg());
 			
-			// 
+			// Cannot figure out why the point for the turret is in the wrong place
 			addChild(_ship);
 			_turret.x = _ship.width/2;
 			_turret.y = _ship.height/2;
