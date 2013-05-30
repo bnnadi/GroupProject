@@ -592,7 +592,7 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			if(_hero.health <= 0)
+			if(_hero.health < 1)
 			{
 				_hero.alive = false;
 				//				_hero.isAlive(_hero.alive);
