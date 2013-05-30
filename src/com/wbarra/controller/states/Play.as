@@ -131,20 +131,11 @@ package com.wbarra.controller.states
 		private const _psE3PopCon:XML = XML(new AllMyParticles.e3Pop());
 		private const _psE3PopImg:Texture = Texture.fromBitmap(new AllMyParticles.e3PopImg());
 		private var _psE3:PDParticleSystem;
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
 		private var _psE1Holder:Array = [];
 		private var _psE2Holder:Array = [];
 		private var _psE3Holder:Array = [];
 		
-<<<<<<< HEAD
-		
-		
-=======
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
 		private var _spacer:uint;
 		
 		private var _enemyAmount:uint = 0;
@@ -372,11 +363,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
-<<<<<<< HEAD
 						e1.dispose();
-=======
-
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
 						_enemyAmount--;
 						checkWin();
 					}
@@ -416,12 +403,10 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
-<<<<<<< HEAD
 								e1.dispose();
 								_score++;
-=======
 
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -457,11 +442,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
-<<<<<<< HEAD
 						e2.dispose();
-=======
-
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
 						_enemyAmount--;
 						checkWin();
 					}
@@ -498,12 +479,9 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
-<<<<<<< HEAD
 								e2.dispose();
 								_score++;
-=======
-
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -534,11 +512,10 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
-<<<<<<< HEAD
 						e3.dispose();
-=======
 
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
+						
+						((_score++) * 10);
 						_enemyAmount--;
 						checkWin();
 					}
@@ -566,32 +543,16 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
-<<<<<<< HEAD
-								/*_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
-=======
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
-								_psE3 = new PDParticleSystem(_psE3PopCon, _psE3PopImg);
-								_battleField.addChild(_psE3);
-								_psE3.x = bulls.x;
-								_psE3.y = bulls.y;
-								Starling.juggler.add(_psE3);
-<<<<<<< HEAD
-								_psE3.start(1);*/
-=======
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
-								
 								
 								_battleField.removeChild(e3);
 								_battleField.removeChild( bulls );
 								e3.alive = false;
-<<<<<<< HEAD
 								e3.dispose();
 								_score++;
-=======
 
->>>>>>> 33c7b1e16ddb96136e36f72fa7a7cb9f1792abc2
+								_score += 10;
 								_enemyAmount--;
 								checkWin();
 							}
@@ -600,7 +561,7 @@ package com.wbarra.controller.states
 					
 				}
 			}
-			trace(_score);
+			_scoreTextfied.text = String("Score: "+_score);
 			// =======================================================
 			// DO NOT MESS WITH THIS CRAP----- WILL BE IMPLEMENTED IF TIME 
 			// ALLOWS FOR IT
@@ -623,7 +584,6 @@ package com.wbarra.controller.states
 		}
 		private function shipHit():void
 		{
-			
 			if(_hero.health <= 0)
 			{
 				_hero.alive = false;
@@ -641,6 +601,7 @@ package com.wbarra.controller.states
 				trace(_hero.health);
 				_hero.alive = true;
 			}
+			_livesDisplay.text = String("HP: "+_hero.health);
 		}
 		
 		public function update():void
