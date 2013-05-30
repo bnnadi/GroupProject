@@ -153,6 +153,10 @@ package com.wbarra.controller.hero
 		}	
 		private function updateY():void
 		{
+			if(this.x < 50)
+			{
+				
+			}
 			this.y += _speedY;	
 		}
 
