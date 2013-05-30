@@ -11,7 +11,6 @@ package com.wbarra.controller.states
 	import com.wbarra.controller.objects.Bullet;
 	import com.wbarra.controller.objects.PowerUp;
 	
-	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	import flash.utils.setTimeout;
