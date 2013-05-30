@@ -204,9 +204,6 @@ package com.wbarra.controller.states
 		private function onAdded():void
 		{
 			// adding the particle effects 
-			Starling.juggler.add(_psE1);
-			Starling.juggler.add(_psE2);
-			Starling.juggler.add(_psE3);
 			// adding the event listener to the stage
 			//***************EVENT LISTENER******************
 			stage.addEventListener(TouchEvent.TOUCH, onTouch);
@@ -574,7 +571,6 @@ package com.wbarra.controller.states
 							}
 						}
 					}
-					
 				}
 			}
 			_wavesTextfield.text = String("Wave: "+_waveCounter);
