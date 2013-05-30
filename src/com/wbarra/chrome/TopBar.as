@@ -1,6 +1,7 @@
 package com.wbarra.chrome
 {
 	import flash.display.Sprite;
+	import flash.display.StageAlign;
 	import flash.display.StageDisplayState;
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
@@ -44,7 +45,7 @@ package com.wbarra.chrome
 			//addChild(_tbg);
 			addChild(_rbg);
 			addChild(_bbg);
-			//addChild(_lbg);
+			addChild(_lbg);
 			
 			// adding the creation of the top bar to the stage
 			createTopBar();
@@ -111,9 +112,12 @@ package com.wbarra.chrome
 		{
 			// Well put the game in full screen mode
 			trace("I am He-man!!!!!");
+			stage.align = StageAlign.TOP;
 			
 			if(event.fullScreen)
 			{
+				
+				
 				// Draw top
 				_tbg.graphics.beginFill(0);
 				_tbg.graphics.drawRect(0,0,stage.nativeWindow.width, stage.nativeWindow.y);
