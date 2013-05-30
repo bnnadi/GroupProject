@@ -547,6 +547,12 @@ package com.wbarra.controller.states
 							}
 							if (_bullDistanceX <= 24 && _bullDistanceY <= 25)
 							{
+								_psE3= new PDParticleSystem(_psE3PopCon, _psE3PopImg);
+								
+								_psE3.x = bulls.x;
+								_psE3.y = bulls.y;
+								Starling.juggler.add(_psE3);
+								_battleField.addChild(_psE3);
 								_psE3.start(.4);
 								_psE3Holder.push(_psE3);
 								
