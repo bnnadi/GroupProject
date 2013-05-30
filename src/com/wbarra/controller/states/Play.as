@@ -96,7 +96,9 @@ package com.wbarra.controller.states
 		private var _firing:Boolean = false; // Tracks whether the mouse is currently down, for machine-gun.
 		private var _bulletCounter:uint = 0;
 		
+		// BOOLS to check on game states
 		private var _killGame:Boolean = true;
+		private var _relaunchGame:Boolean = true;
 		
 		// WAVE COUNTER & ENEMY COUNTER
 		private var _waveCounter:uint = 1;
@@ -146,7 +148,6 @@ package com.wbarra.controller.states
 			_canFire = false;
 			setTimeout(resetFiring,100);
 			
-			
 			_bulletHolder[_bulletCounter].x = _hero.x;
 			_bulletHolder[_bulletCounter].y = _hero.y;
 			// calculate the firing angle 
@@ -190,7 +191,6 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyOneHolder.push(_enemyOne);
-				//				trace(_enemyOneHolder.length);
 			}
 			// ENEMY 2 
 			for (var e2:int = 0; e2 < (_e2BaseSpawn*_waveCounter); e2++)
@@ -202,15 +202,13 @@ package com.wbarra.controller.states
 				
 				// pushing into enemy array 
 				_enemyTwoHolder.push(_enemyTwo);
-				//				trace(_enemyTwoHolder.length);
 			}
 			// ENEMY 3 
-			
+			// Creating space between enemies based on the amount of enemies
 			_spacer = (_battleField.width / (_e3BaseSpawn*_waveCounter));
-			
 			for (var e3:int = 0; e3 < (_e3BaseSpawn*_waveCounter); e3 ++ )
 			{
-
+				
 				// spawning enemy three
 				_enemyThree = new EnemyThree();
 				_enemyThree.scaleX = _enemyThree.scaleY = .5;
@@ -276,6 +274,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e1 );
 						e1.alive = false;
+						checkWin();
 					}
 					// BULLET SHOT TEST
 					// Bullet collisioin with the enemy ships
@@ -304,6 +303,7 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e1 );
 								_battleField.removeChild( b );
 								e1.alive = false;
+								checkWin();
 							}
 						}
 					}
@@ -337,6 +337,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e2 );
 						e2.alive = false;
+						checkWin();
 					}
 					// BULLET SHOT TEST
 					for each (var bull:Bullet in _bulletHolder) 
@@ -364,12 +365,13 @@ package com.wbarra.controller.states
 								_battleField.removeChild( e2 );
 								_battleField.removeChild( bull );
 								e2.alive = false;
+								checkWin();
 							}
 						}
 					}
 				}
 			}
-
+			
 			//Moving EnemyThree on the stage. 
 			//=======================================================
 			for each (var e3:EnemyThree in _enemyThreeHolder)
@@ -392,6 +394,7 @@ package com.wbarra.controller.states
 						shipHit();
 						_battleField.removeChild( e3 );
 						e3.alive = false;
+						checkWin();
 					}
 				}
 				// BULLET SHOT TEST
@@ -420,6 +423,7 @@ package com.wbarra.controller.states
 							_battleField.removeChild(e3);
 							_battleField.removeChild( bulls );
 							e3.alive = false;
+							checkWin();
 						}
 					}
 				}
@@ -451,7 +455,7 @@ package com.wbarra.controller.states
 			// the last method in this class.
 			//			trace("hit");
 			//			trace('hero health: '+_hero.health);
-						
+			
 			
 			if(_hero.health <= 0)
 			{
@@ -517,9 +521,25 @@ package com.wbarra.controller.states
 				_battleField.removeEventListener(Event.ADDED_TO_STAGE, onAdded);
 				_battleField.removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 				_battleField.removeEventListener(TouchEvent.TOUCH, onTouch);
-//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
-
+				//				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onMove);
+				
 				_game.changeState(Game.GAME_OVER_STATE);
+			}
+		}
+		
+		private function checkWin():void
+		{
+			// We a re checking to see if the Hero is alive and there are
+			// no more enemies on the _battleField.
+			
+			if(_relaunchGame)
+			{
+				_relaunchGame = false;				
+				// WE ARE USING 2 BECAUSE THERE WILL ALWAYS BE A SHIP AND A TURRET 
+				if(_hero.alive && _battleField.numChildren == 2)
+				{
+					
+				}
 			}
 		}
 	}
